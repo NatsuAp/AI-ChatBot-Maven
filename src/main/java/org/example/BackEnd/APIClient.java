@@ -10,7 +10,7 @@ import java.util.List;
 
 public class APIClient {
 
-    // String apiKey = "";
+     String apiKey = System.getenv("apiKey");
 
     OpenAIClient client = OpenAIOkHttpClient.builder()
             .apiKey(apiKey)
