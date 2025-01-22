@@ -10,7 +10,7 @@ import java.util.List;
 
 public class APIClient {
 
-     String apiKey = "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";
+     String apiKey = "";
 
     OpenAIClient client = OpenAIOkHttpClient.builder()
             .apiKey(apiKey)
