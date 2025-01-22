@@ -13,7 +13,7 @@ public class APIClient {
      String apiKey =
 
     OpenAIClient client = OpenAIOkHttpClient.builder()
-            .apiKey(apiKey)
+            .apiKey()
             .build();
  public ChatCompletion AIResponse(){
      ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
