@@ -10,10 +10,10 @@ import java.util.List;
 
 public class APIClient {
 
-
+        String Apikey="";
 
     OpenAIClient client = OpenAIOkHttpClient.builder()
-            .apiKey()
+            .apiKey(Apikey)
             .build();
  public ChatCompletion AIResponse(){
      ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()

@@ -10,7 +10,7 @@ import javax.swing.border.Border;
 public class AttachButton {
     public JButton sendButton() {
 
-        ImageIcon clip = new ImageIcon("src/main/resources/Clip.png"); // imagen
+        ImageIcon clip = new ImageIcon("AI-ChatBot-Maven\\src\\main\\resources\\Clip.png"); // imagen
         JButton button = new JButton(clip); // Recibe como parametro la imagen
         Border border = BorderFactory.createEmptyBorder(0, 0, 4, 0); // Declaracion parametros de borde invisible
         button.setBorderPainted(false);

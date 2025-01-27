@@ -1,0 +1,7 @@
+// curl https://api.openai.com/v1/embeddings \
+//   -H "Content-Type: application/json" \
+//   -H "Authorization: Bearer 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" \
+//   -d '{
+//     "input": "zelaya es mk",
+//     "model": "text-embedding-3-small"
+//   }'

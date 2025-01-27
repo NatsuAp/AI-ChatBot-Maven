@@ -9,7 +9,7 @@ import javax.swing.JButton;
 public class MessageButton {
     public JButton inputButton() {
 
-        ImageIcon arrow = new ImageIcon("src/main/resources/Send.png");
+        ImageIcon arrow = new ImageIcon("AI-ChatBot-Maven\\src\\main\\resources\\Send.png");
         JButton button = new JButton(arrow);
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
