@@ -38,7 +38,7 @@ public String[] questionParser(){
                                         url+=String.valueOf(line.charAt(l));
                                     }else{
                                        
-                                       line = line.replaceFirst("<img src=\"" + url+ "\"",tesseract.textRetrieve(url));
+                                       line = line.replaceFirst("<img src=\"" + url+ "\"/>",tesseract.textRetrieve(url));
                                        url="";
                                         break;
                                     }
