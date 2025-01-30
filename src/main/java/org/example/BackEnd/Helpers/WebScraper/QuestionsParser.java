@@ -5,13 +5,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import org.example.BackEnd.Helpers.WebScraper.Tesseract.Tess;
+import org.example.BackEnd.Helpers.WebScraper.OpenAiRequest.ImageRetrieval;
+
 
 public class QuestionsParser {
 public String[] questionParser(){
-        String path = "src\\main\\resources\\data.txt";
+        String path = "src\\main\\resources\\newData.txt";
         File file = new File(path);
-
+        ImageRetrieval imgRet = new ImageRetrieval();
+        ImgOutput out = new ImgOutput();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             ArrayList<String> list = new ArrayList<>();
             String line;
@@ -23,7 +25,7 @@ public String[] questionParser(){
             int i = 0;
             int k=0;
             try {
-                Tess tesseract = new Tess();
+                
                 
                 String url="";
                 int x=0;
@@ -38,7 +40,7 @@ public String[] questionParser(){
                                         url+=String.valueOf(line.charAt(l));
                                     }else{
                                        
-                                       line = line.replaceFirst("<img src=\"" + url+ "\"/>",tesseract.textRetrieve(url));
+                                       line = line.replaceFirst("<img src=\"" + url+ "\"/>", out.outputParse(imgRet.ImgRequest(str)));
                                        url="";
                                         break;
                                     }

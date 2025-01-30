@@ -46,7 +46,7 @@ public class APIClient {
 
         List<ChatRequestMessage> chatMessages = new ArrayList<>();
         chatMessages.add(new ChatRequestSystemMessage("pregunta"));
-
+        
         ChatCompletions chatCompletions = client.getChatCompletions("gpt-4o-mini",
                 new ChatCompletionsOptions(chatMessages));
         System.out.printf("Model ID=%s is created at %s.%n", chatCompletions.getId(), chatCompletions.getCreatedAt());

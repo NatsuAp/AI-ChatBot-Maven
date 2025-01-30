@@ -1,9 +1,8 @@
 package org.example;
 import org.example.BackEnd.FrameBuilder;
-import org.example.BackEnd.Helpers.WebScraper.LineRemover;
 import org.example.BackEnd.Helpers.WebScraper.QuestionsParser;
+import org.example.BackEnd.Helpers.WebScraper.txtCreator;
 import org.example.BackEnd.APIClient;
-import org.example.BackEnd.Helpers.*;
 public class Main {
     public static void main(String[] args) {
         FrameBuilder in = new FrameBuilder(); // Se accede a la funcion que construye el frame
@@ -12,7 +11,12 @@ public class Main {
         // temp.AIResponse();
         QuestionsParser par = new QuestionsParser();
        String[]data =  par.questionParser();
-       System.out.println(data[21]);
+       txtCreator txt = new txtCreator();
+        String str = txt.fileCreator(data);
+      System.out.println(str);
+        
+        
     }
+
 
 }
