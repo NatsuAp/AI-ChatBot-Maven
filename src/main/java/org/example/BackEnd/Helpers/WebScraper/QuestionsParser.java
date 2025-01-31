@@ -14,16 +14,17 @@ public ArrayList<String> questionParser(){
         File file = new File(path);
         ImageRetrieval imgRet = new ImageRetrieval();
         ImgOutput out = new ImgOutput();
+        ArrayList<String> data = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             ArrayList<String> list = new ArrayList<>();
             String line;
-            ArrayList<String> data = new ArrayList<>();
+           
             String str="";
             while((line = reader.readLine())!=null){
                 list.add(line);
             }
             int i = 0;
-            int k=0;
+            
             try {
                 
                 String temp ="";
@@ -40,6 +41,7 @@ public ArrayList<String> questionParser(){
                                         url+=String.valueOf(line.charAt(l));
                                     }else{
                                        temp = imgRet.ImgRequest(url);
+                                       System.out.println(url);
                                        line = line.replaceFirst("<img src=\"" + url+ "\"/>", out.outputParse(temp));
                                        url="";
                                         break;
@@ -57,19 +59,21 @@ public ArrayList<String> questionParser(){
                     }
                     data.add(str);
                     str="";
-                    k++;
+                  
                 }
             } catch (IndexOutOfBoundsException e) {
-                e.printStackTrace();
-                System.out.println("error");
+                return data;
+                
+                
             }
             
-            return data;
+            
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            System.out.println("error");
+           e.printStackTrace();
+            
         }
-        
+        return null;
     }
 
 }

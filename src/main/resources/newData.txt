@@ -48,7 +48,7 @@ Explanation:
 Although the expression is always algebraically true for nonzero  x , the expression may evaluate to false. This could occur because of round-off error in performing the division and multiplication operations. Whether the right-hand side of the expression evaluates to exactly 3.0 depends on the value of  x . Note that if  x  is zero, the expression will be evaluated to  false  because the right-hand side will be assigned a value of  Infinity .
 #########################################################
 Question: 8
-8.  Let  x  be a variable of type  double  that is positive. A program contains the boolean expression  (Math.pow(x,0.5) == Math.sqrt(x)) . Even though  x  1/2  is mathematically equivalent to <img  src="https://img.crackap.com/ap/computer-science-a/br23/rootx.jpg">, the above expression returns the value  false  in a studentâs program. Which of the following is the most likely reason?</img>
+8.  Let  x  be a variable of type  double  that is positive. A program contains the boolean expression  (Math.pow(x,0.5) == Math.sqrt(x)) . Even though  x  1/2  is mathematically equivalent to <img  src="https://img.crackap.com/ap/computer-science-a/br23/rootx.jpg">, the above expression returns the value  false  in a studentâs program. Which of the following is the most likely reason? 
 A.  Math.pow  returns an  int , while  Math.sqrt  returns a  double .  B.  x  was imprecisely calculated in a previous program statement.  C. The computer stores floating-point numbers with 32-bit words.  D. There is round-off error in calculating the  pow  and  sqrt  functions.  E. There is overflow error in calculating the  pow  function.
 Correct Answer:  D
 Explanation:
@@ -1525,7 +1525,7 @@ Explanation:
 Answer: B   Declaration II fails because it fails this test:   LibraryItem  is-a  Book ? No.  Notice that declarations I and II pass the  is-a  test:      LibraryItem  is-a  LibraryItem?  Yes.<br/>     CD  is-a  LibraryItem ? Yes.
 #########################################################
 Question: 219
-5.  Suppose that, of the three classes shown in the diagram, only the   LibraryItem  class has a method called   getPrice  defined in it, whose specification is as follows.  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0004_1_mod.png"> </img>  Now consider the following declaration that appears in a client program.  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0004_2_mod.png"/>   Assume that   libraryList  is initialized with   LibraryItem  objects. Consider the following code segment that computes the total cost of all items stored in   libraryList .  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0004_mod2.png"/>   The use of   getPrice  in this code segment is an example of
+5.  Suppose that, of the three classes shown in the diagram, only the   LibraryItem  class has a method called   getPrice  defined in it, whose specification is as follows.  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0004_1_mod.png"/>  Now consider the following declaration that appears in a client program.  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0004_2_mod.png"/>   Assume that   libraryList  is initialized with   LibraryItem  objects. Consider the following code segment that computes the total cost of all items stored in   libraryList .  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0004_mod2.png"/>   The use of   getPrice  in this code segment is an example of
 A. an inherited method.  B. an overridden method.  C. polymorphism.  D. an overloaded method.  E. a mutator method.
 Correct Answer:  A
 Explanation:
@@ -1596,7 +1596,7 @@ Answer: C   The algorithm does a series of swaps, working from the endpoints of 
 #########################################################
 Question: 229
 5.  Which of the following code segments correctly stores in   int  variables   x1  and   x2  unequal integers, each of which can be between 10 and 15, inclusive?
-A. <img src="https://img.crackap.com/ap/computer-science-a/br23/15.1a.png"> </img>  B. <img src="https://img.crackap.com/ap/computer-science-a/br23/15.1b.png"/>   C. <img src="https://img.crackap.com/ap/computer-science-a/br23/15.1c.png"/>   D. <img src="https://img.crackap.com/ap/computer-science-a/br23/15.1d.png"/>   E. <img src="https://img.crackap.com/ap/computer-science-a/br23/15.1e.png"/>
+A. <img src="https://img.crackap.com/ap/computer-science-a/br23/15.1a.png">   B. <img src="https://img.crackap.com/ap/computer-science-a/br23/15.1b.png"/>   C. <img src="https://img.crackap.com/ap/computer-science-a/br23/15.1c.png"/>   D. <img src="https://img.crackap.com/ap/computer-science-a/br23/15.1d.png"/>   E. <img src="https://img.crackap.com/ap/computer-science-a/br23/15.1e.png"/>
 Correct Answer:  E
 Explanation:
 Answer: E    There are six different possible values for  x1  and  x2 :  10, 11, 12, 13, 14, or 15.   Thus  Math.random()  must be multiplied by 6. Eliminate choices B and D, which multiply by 5. Choices A and C are wrong because  x1  and  x2  may be the same value. Choice E correctly reassigns  x2  until it has a different value from  x1 .
@@ -1623,14 +1623,14 @@ Explanation:
 Answer: D   Segment III fails because the index for  list  is out of range. For example, if the array has 8 elements, the algorithm in segment III will try to add an element to an empty list at position 7. This will throw an  IndexOutOfBoundsException .
 #########################################################
 Question: 233
-9.  Which of the following declarations in a client class would cause an error?   <img src="https://img.crackap.com/ap/computer-science-a/br23/19.1.png"> </img>
+9.  Which of the following declarations in a client class would cause an error?   <img src="https://img.crackap.com/ap/computer-science-a/br23/19.1.png">  
 A. I only  B. II only  C. I and II only  D. II and III only  E. I, II, and III
 Correct Answer:  E
 Explanation:
 Answer: E   None of these declarations will get past the compiler. Declaration I fails because the  PosInt  class has no default constructor. Declaration II fails for the same reason: If  PosInt  had a default constructor, the following code would automatically be placed in the subclass  EvenPosInt .  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0016_1_mod.png"/>  Declaration III fails because the superclass constructors are not inherited. You need to add the following constructor code to  EvenPosInt  to make declaration III work.  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0016_2_mod.png"/>  But this only works if there is a default constructor in the superclass!
 #########################################################
 Question: 234
-10.  Suppose that the following constructor is added to the   EvenPosInt  class.  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0016_2_mod.png"> </img>  Which of the following is a correct /*    implementation    */ for the   getNextEven  method?  <img src="https://img.crackap.com/ap/computer-science-a/br23/20.2.png"/>
+10.  Suppose that the following constructor is added to the   EvenPosInt  class.  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0016_2_mod.png">    Which of the following is a correct /*    implementation    */ for the   getNextEven  method?  <img src="https://img.crackap.com/ap/computer-science-a/br23/20.2.png"/>
 A. I only  B. II only  C. III only  D. II and III only  E. I, II, and III
 Correct Answer:  B
 Explanation:
@@ -1672,7 +1672,7 @@ Explanation:
 Answer: A   The algorithm traverses the matrix starting with the second row (  i=1 ) and second column (  j=1 ). The expressions  i+=2  and  j+=2  cause every other row and column to be skipped. Thus, the second and fourth elements in the second and fourth rows of the matrix will be printed.
 #########################################################
 Question: 240
-6.  Which represents a correct   /*   implementation   */  for the   increment  method?  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_6_mod.png"> </img>
+6.  Which represents a correct   /*   implementation   */  for the   increment  method?  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_6_mod.png">  
 A. I only  B. II only  C. III only  D. II and III only  E. I, II, and III
 Correct Answer:  D
 Explanation:
@@ -1680,7 +1680,7 @@ Answer: D   Suppose the  NumberDisplay  represents hours on a 24-hour digital cl
 #########################################################
 Question: 241
 7.  A digital clock contains two   NumberDisplay  objects, for minutes and hours. Which of the following is the most suitable set of  declarations?
-A. <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_1_mod.png"> </img>  B. <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_2_mod.png"/>   C. <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_3_mod.jpg"/>   D. <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_4_mod.png"/>   E. <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_5_mod.png"/>
+A. <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_1_mod.png">    B. <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_2_mod.png"/>   C. <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_3_mod.jpg"/>   D. <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_4_mod.png"/>   E. <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0022_5_mod.png"/>
 Correct Answer:  D
 Explanation:
 Answer: D   The relationship between a  DigitalClock  and  NumberDisplay  is a  has-a  relationship: The  DigitalClock    has-a    NumberDisplay  for hours, and it  has-a    NumberDisplay  for minutes. There is no inheritance in this relationship, so all of the choices that use "extends" in their class headers are wrong (choices A, B, and C). Choice E is wrong because  hours  and  minutes  should be of type  NumberDisplay .
@@ -1707,14 +1707,14 @@ Explanation:
 Answer: C   The method call  f1(5)  leads to the following sequence of calls.  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0025_2_mod.png"/>
 #########################################################
 Question: 245
-1.  Which is correct   /*   implementation   */  code for the constructor of the   Hen  class?  <img src="https://img.crackap.com/ap/computer-science-a/br23/31.1.png"> </img>
+1.  Which is correct   /*   implementation   */  code for the constructor of the   Hen  class?  <img src="https://img.crackap.com/ap/computer-science-a/br23/31.1.png">  
 A. I only  B. II only  C. III only  D. II and III only  E. I, II, and III
 Correct Answer:  B
 Explanation:
 Answer: B   The superclass,  Bird , does not have a default constructor; therefore, segment I is incorrect. Segment II works because the constructor for  Bird  has one  String  parameter. Segment III fails because a subclass cannot access the private data of its superclass.
 #########################################################
 Question: 246
-2.  A client class has an   ArrayList&lt;Bird&gt; birds  that is initialized with many different objects that are subclasses of   Bird . Each subclass has an overridden   makeNoise  method, similar to those shown in the   Owl  and   Hen  classes. What is the effect of executing the following code segment?  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0026_mod.png"> </img>
+2.  A client class has an   ArrayList&lt;Bird&gt; birds  that is initialized with many different objects that are subclasses of   Bird . Each subclass has an overridden   makeNoise  method, similar to those shown in the   Owl  and   Hen  classes. What is the effect of executing the following code segment?  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0026_mod.png">  
 A. The unique noise for each particular   Bird  will be output.  B. There will be a compile-time error with a message to the effect that there cannot  be different types in   ArrayList&lt;Bird&gt; .  C. There will be a compile-time error with a message to the effect that   Bird b  needs to be cast to its actual type.  D. An   IndexOutOfBoundsException  will be thrown.  E. A  ConcurrentModificationException  will be thrown.
 Correct Answer:  A
 Explanation:
@@ -1749,7 +1749,7 @@ Explanation:
 Answer: E   All work! Segment I traverses the whole matrix and changes only those elements that are in the top or bottom rows of the leftmost or rightmost columns. Segment II changes first the leftmost and rightmost columns, then the top and bottom rows. Segment III does the same as segment II, except it doesn't change the corner elements, which have already been changed by the first  for  loop.
 #########################################################
 Question: 251
-7.  In a client program, which of the following correctly declares and initializes   Employee emp  whose name is Ben M. Zax and ID number is 1492?  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0031_2_mod.png"> </img> <pre></pre>
+7.  In a client program, which of the following correctly declares and initializes   Employee emp  whose name is Ben M. Zax and ID number is 1492?  <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0031_2_mod.png">   <pre></pre>
 A. I only  B. II only  C. III only  D. I and II only  E. II and III only
 Correct Answer:  C
 Explanation:
@@ -1868,14 +1868,14 @@ Explanation:
 Answer: E   An overridden method is an inherited method whose implementation is changed in the subclass (same header, different body). Since  method1  fits this description, choice E is true and choice D is false. For choice A,  method2  is defined for the first time in  ClassB . Therefore, it is not inherited. For choice B, a superclass  never  inherits a method from its subclass. For choice C, for  method1  to be an overloaded method, it would need a different signature in  ClassB .
 #########################################################
 Question: 268
-4.  Consider the following declarations in a client class.   <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0050_1_mod.png"> </img>  Which of the following method calls will cause an error?   <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0050_2_mod.png"/>
+4.  Consider the following declarations in a client class.   <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0050_1_mod.png">    Which of the following method calls will cause an error?   <img src="https://img.crackap.com/ap/computer-science-a/br23/brn_0050_2_mod.png"/>
 A. I only  B. II only  C. III only  D. II and III only  E. I, II, and III
 Correct Answer:  D
 Explanation:
 Answer: D   Statement I is okay. Either  ob1  or  ob2  could call  method1  without a problem since each is of type  ClassA  and  method1  is in  ClassA . Statement II fails because an object of a superclass does not have access to new methods of its subclass. Statement III fails because  ob2  is declared to be of type  ClassA , so a compile-time error will occur with a message indicating that there is no  method2  in  ClassA .
 #########################################################
 Question: 269
-5.  Consider the  ElapsedTime  constructor that creates an  ElapsedTime  object from its  numSecs  parameter.  Recall that there are 60 seconds in a minute, and 60 minutes in an hour.  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg79_01a.png"> </img>  Which of the following is a correct /*  ElapsedTimeÂ   implementation code   */?   <img src="https://img.crackap.com/ap/computer-science-a/br23/pg79_02.png"/>
+5.  Consider the  ElapsedTime  constructor that creates an  ElapsedTime  object from its  numSecs  parameter.  Recall that there are 60 seconds in a minute, and 60 minutes in an hour.  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg79_01a.png">    Which of the following is a correct /*  ElapsedTimeÂ   implementation code   */?   <img src="https://img.crackap.com/ap/computer-science-a/br23/pg79_02.png"/>
 A. I only  B. II only  C. III only  D. I and III only  E. I, II, and III
 Correct Answer:  C
 Explanation:
@@ -1910,7 +1910,7 @@ Explanation:
 Answer: E   Notice from the solution to the previous question that for  mystery(6)  there are 15 calls to  mystery . Plug  n  = 6 into each formula of the answer choices to find which formula gives the result closest to 15:  <div class="table-responsive"><table class="table table-bordered"><tbody> <tr><td> n </td><td>  â </td><td> 6 </td><td></td><td></td> </tr> <tr><td> n 2  </td><td>  â </td><td>  (6) 2  </td><td>  = </td><td>  36 </td> </tr> <tr><td> n 3  </td><td>  â </td><td>  (6)  3  </td><td>  = </td><td>  216 </td> </tr> <tr><td> 2 n  </td><td>  â </td><td> 2 6  </td><td>  = </td><td>  64 </td> </tr> <tr><td> 2 n-2  </td><td>  â </td><td> 2 4  </td><td>  = </td><td>  16 </td> </tr></tbody> </table>
 #########################################################
 Question: 274
-10.  Which of the following is a correct implementation for   /* body */  in the   toString  method of the   Book  class?  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg86_02.png"> </img>
+10.  Which of the following is a correct implementation for   /* body */  in the   toString  method of the   Book  class?  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg86_02.png">  
 A. I only  B. II only  C. III only  D. I and III only  E. I, II, and III
 Correct Answer:  D
 Explanation:
@@ -1924,7 +1924,7 @@ Explanation:
 Answer: C   A client of a class cannot access a private instance variable of that class.
 #########################################################
 Question: 276
-2.  Refer to the following class.   <img src="https://img.crackap.com/ap/computer-science-a/br23/pg88_02.png"> </img>  Which of the following is correct   /* implementation code */ ?  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg89_01.png"/>
+2.  Refer to the following class.   <img src="https://img.crackap.com/ap/computer-science-a/br23/pg88_02.png">    Which of the following is correct   /* implementation code */ ?  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg89_01.png"/>
 A. I only  B. II only  C. III only  D. I and III only  E. I, II, and III
 Correct Answer:  D
 Explanation:
@@ -2036,14 +2036,14 @@ Explanation:
 Answer: C   Before manipulating  LargeInt  objects, you have to check that they've been correctly constructed, and to do that you need to output them. This means that the  toString  method must be defined in order to read the output easily. Therefore, the constructor and  toString  methods should be coded before the others.
 #########################################################
 Question: 292
-8.  Consider the problem of simulating the following loop for   LargeInt  objects.  <img src="https://img.crackap.com/ap/computer-science-a/br23/comp_prin_2ag.png"> </img>  The following code is used. You may assume that   n  exists and is of type   LargeInt .  <img src="https://img.crackap.com/ap/computer-science-a/br23/comp_prin_2ah.png"/>   Which of the following should replace   /*   statement to increment i by one   */  to simulate the loop correctly?
+8.  Consider the problem of simulating the following loop for   LargeInt  objects.  <img src="https://img.crackap.com/ap/computer-science-a/br23/comp_prin_2ag.png">    The following code is used. You may assume that   n  exists and is of type   LargeInt .  <img src="https://img.crackap.com/ap/computer-science-a/br23/comp_prin_2ah.png"/>   Which of the following should replace   /*   statement to increment i by one   */  to simulate the loop correctly?
 A.  i = i.add(one);   B.  i = i.add(1);   C.  i = one.add(n);   D.  i = n.add(one);   E.  i = i.add(n);
 Correct Answer:  A
 Explanation:
 Answer: A   You want to simulate  i++  (or  i=i+1 ). Thus, eliminate choices C and D, which don't include  i  in the method calls to  add . Choice C would be correct if its method call were  one.add(i) . Eliminate choice B because a  LargeInt  parameter must be used. Choice E is wrong because you're not adding  n  to  i , you're adding  1  to  i .
 #########################################################
 Question: 293
-9.  Consider "triangles" that are formed by stacking squares, each with area 1. <div>  <img src="https://img.crackap.com/ap/computer-science-a/br23/t2_s1_039.png"> </img>   The area of each such triangle is a  triangular number . Note that the area of the  n th such triangle equals the area of the ( n -1)th triangle plus the area of the new base. Here is a   Triangle  class that provides code to find the area of these   Triangle  objects, given their base.  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg109_01.png"/>  Which of the following replacements for   /* code to find area of triangle */  will correctly find the area of a triangle with the specified base?  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg109_02.png"/>
+9.  Consider "triangles" that are formed by stacking squares, each with area 1. <div>  <img src="https://img.crackap.com/ap/computer-science-a/br23/t2_s1_039.png">     The area of each such triangle is a  triangular number . Note that the area of the  n th such triangle equals the area of the ( n -1)th triangle plus the area of the new base. Here is a   Triangle  class that provides code to find the area of these   Triangle  objects, given their base.  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg109_01.png"/>  Which of the following replacements for   /* code to find area of triangle */  will correctly find the area of a triangle with the specified base?  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg109_02.png"/>
 A. I only  B. II only  C. III only  D. I and II only  E. I, II, and III
 Correct Answer:  E
 Explanation:
@@ -2078,7 +2078,7 @@ Explanation:
 Answer: D    Statement I is incorrect because when  a  and  b  are both false, the expression  !a &amp;&amp; !b  is equivalent to T  &amp;&amp;  T, which is true. Statements II and III are correct because T  &amp;&amp;  F and F  &amp;&amp;  T both evaluate to false.
 #########################################################
 Question: 298
-4.  Consider the following classes, where   Clown  and   Acrobat  are subclasses of   CircusPerformer . <div>  <img src="https://img.crackap.com/ap/computer-science-a/br23/t3_s1_004.png"> </img>    Which of the following is a  true  statement about the classes shown?
+4.  Consider the following classes, where   Clown  and   Acrobat  are subclasses of   CircusPerformer . <div>  <img src="https://img.crackap.com/ap/computer-science-a/br23/t3_s1_004.png">      Which of the following is a  true  statement about the classes shown?
 A. Each of the classes-  CircusPerformer ,   Clown , and   Acrobat -can have a method   doTrick  that has different code.  B. Both   Clown  and   Acrobat  inherit the constructors in   CircusPerformer .  C. If   CircusPerformer  has a private instance variable   routine , both   Clown  and   Acrobat  can directly access it.  D. If   CircusPerformer  has a private method   tumble , both   Clown  and   Acrobat  can access it.  E. If   Clown  has a private instance variable   jokes ,   CircusPerformer  can access it.
 Correct Answer:  A
 Explanation:
@@ -2288,7 +2288,7 @@ Explanation:
 Answer: B    Here is the sequence of recursive calls:  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg165_02.png"/>   which is a base case that returns  2,  since  n = k = 2.
 #########################################################
 Question: 328
-4.  Consider the following program description.  A programmer plans to write a program that simulates a small card game (no more than four players). Each player will have a hand of ten cards, in which each card has a suit and a value. The game will involve either adding cards to a hand or discarding cards. The first player to have zero cards left in his hand is the winner. In the simulation, as the game is in progress, each player's hand is displayed on the screen.   The programmer plans to have a short class whose  main  method has just two statements: <div class="s9-scrollable"> <img src="https://img.crackap.com/ap/computer-science-a/br23/qno33_01.png"> </img>   The  Game  class will have several objects: a  Display , a  Deck , a  Card , and a  PlayerGroup . The  PlayerGroup  will have a list of  Player s, and each  Player  will have a  Hand  of  Card s.  The relationship between the   Player  and   Hand  classes is an example of
+4.  Consider the following program description.  A programmer plans to write a program that simulates a small card game (no more than four players). Each player will have a hand of ten cards, in which each card has a suit and a value. The game will involve either adding cards to a hand or discarding cards. The first player to have zero cards left in his hand is the winner. In the simulation, as the game is in progress, each player's hand is displayed on the screen.   The programmer plans to have a short class whose  main  method has just two statements: <div class="s9-scrollable"> <img src="https://img.crackap.com/ap/computer-science-a/br23/qno33_01.png">     The  Game  class will have several objects: a  Display , a  Deck , a  Card , and a  PlayerGroup . The  PlayerGroup  will have a list of  Player s, and each  Player  will have a  Hand  of  Card s.  The relationship between the   Player  and   Hand  classes is an example of
 A. inheritance  B. top-down design  C. information hiding  D. independent classes  E. composition
 Correct Answer:  E
 Explanation:
@@ -2302,7 +2302,7 @@ Explanation:
 Answer: D   Data structure III conveniently stores a list of  Card s in which  Card s can easily be removed using the  remove  method of  ArrayList . The array in data structure II allows for all cards in a deck to be represented (either in the  Hand  or not); however, it doesn't provide a way to represent the suits and values of the cards themselves or to display a card. The array of  Card  in data structure I may seem unsuitable because an array has fixed length. However, when a card is removed, it is easy to represent this by replacing that card with  null  in that array slot.
 #########################################################
 Question: 330
-6.  Consider the  Card  and  Deck  classes below, which are used to create a  Deck of Card  objects.  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg168_01.png"> </img>  The programmer tests the constructor of the  Deck  class with the  DeckTester  class shown below.  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg168_02.png"/>   When the code is run, a  NullPointerException  is thrown. Which of the following could be the cause of the error?    The  DeckTester  class object was not created with  new .   In the  getCards  method, an attempt was made to add a  Card  to an  ArrayList  that had not been  created with  new .   In the  getCards  method, an attempt was made to construct a  Card  object without  new .
+6.  Consider the  Card  and  Deck  classes below, which are used to create a  Deck of Card  objects.  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg168_01.png">    The programmer tests the constructor of the  Deck  class with the  DeckTester  class shown below.  <img src="https://img.crackap.com/ap/computer-science-a/br23/pg168_02.png"/>   When the code is run, a  NullPointerException  is thrown. Which of the following could be the cause of the error?    The  DeckTester  class object was not created with  new .   In the  getCards  method, an attempt was made to add a  Card  to an  ArrayList  that had not been  created with  new .   In the  getCards  method, an attempt was made to construct a  Card  object without  new .
 A. I only  B. II only  C. III only  D. I and II only  E. II and III only
 Correct Answer:  B
 Explanation:

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class txtCreator {
 public String fileCreator(ArrayList<String> lines){
-    String path = "src\\main\\resources\\Images\\newerData.txt";
+    String path = "src\\main\\resources\\newerData.txt";
     File file = new File(path);
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {

@@ -19,14 +19,14 @@ public class ImageRetrieval {
 
         //String openAIKey = "";
         String modelId = "gpt-4o-mini";
-        String azureKey = "";
+        String azureKey = "DbJJJ2a7jiUDtSZo4aFulZzZX2W3TPQNQvJW2gKHVL0ciZhdXyJiJQQJ99BAACHYHv6XJ3w3AAABACOGh5pr";
         OpenAIClient client = new OpenAIClientBuilder()
                 .credential(new KeyCredential(azureKey))
                 .endpoint("https://hacknet-colsanjose.openai.azure.com/")
                 .buildClient();
 
         List<ChatRequestMessage> chatMessages = new ArrayList<>();
-        chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant that reads text in images with the following format:"));
+        chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant that reads text in images and answers in the following format: \"This is what I see in the image: ```(Text in image)```\""));
         chatMessages.add(new ChatRequestUserMessage(Arrays.asList(
                 new ChatMessageTextContentItem("What text do you see in this image"),
                 new ChatMessageImageContentItem(
