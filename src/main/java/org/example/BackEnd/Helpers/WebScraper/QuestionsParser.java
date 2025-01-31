@@ -9,7 +9,7 @@ import org.example.BackEnd.Helpers.WebScraper.OpenAiRequest.ImageRetrieval;
 
 
 public class QuestionsParser {
-public String[] questionParser(){
+public ArrayList<String> questionParser(){
         String path = "src\\main\\resources\\newData.txt";
         File file = new File(path);
         ImageRetrieval imgRet = new ImageRetrieval();
@@ -17,7 +17,7 @@ public String[] questionParser(){
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             ArrayList<String> list = new ArrayList<>();
             String line;
-            String[] data = new String[334];
+            ArrayList<String> data = new ArrayList<>();
             String str="";
             while((line = reader.readLine())!=null){
                 list.add(line);
@@ -26,7 +26,7 @@ public String[] questionParser(){
             int k=0;
             try {
                 
-                
+                String temp ="";
                 String url="";
                 int x=0;
                 while(true){
@@ -39,8 +39,8 @@ public String[] questionParser(){
                                     if(line.charAt(l)!='\"'){
                                         url+=String.valueOf(line.charAt(l));
                                     }else{
-                                       
-                                       line = line.replaceFirst("<img src=\"" + url+ "\"/>", out.outputParse(imgRet.ImgRequest(str)));
+                                       temp = imgRet.ImgRequest(url);
+                                       line = line.replaceFirst("<img src=\"" + url+ "\"/>", out.outputParse(temp));
                                        url="";
                                         break;
                                     }
@@ -55,12 +55,13 @@ public String[] questionParser(){
                         }
                         i++;
                     }
-                    data[k]=str;
+                    data.add(str);
                     str="";
                     k++;
                 }
             } catch (IndexOutOfBoundsException e) {
-                
+                e.printStackTrace();
+                System.out.println("error");
             }
             
             return data;

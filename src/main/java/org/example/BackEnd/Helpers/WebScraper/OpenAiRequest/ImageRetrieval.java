@@ -26,7 +26,7 @@ public class ImageRetrieval {
                 .buildClient();
 
         List<ChatRequestMessage> chatMessages = new ArrayList<>();
-        chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant that reads text in images"));
+        chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant that reads text in images with the following format:"));
         chatMessages.add(new ChatRequestUserMessage(Arrays.asList(
                 new ChatMessageTextContentItem("What text do you see in this image"),
                 new ChatMessageImageContentItem(
@@ -36,7 +36,7 @@ public class ImageRetrieval {
         ChatCompletionsOptions chatCompletionsOptions = new ChatCompletionsOptions(chatMessages);
         chatCompletionsOptions.setMaxTokens(2048);
         ChatCompletions chatCompletions = client.getChatCompletions(modelId, chatCompletionsOptions);
-
+        System.out.println(chatCompletions.getChoices().get(0).getMessage().getContent());
         return chatCompletions.getChoices().get(0).getMessage().getContent();
     }
 }
