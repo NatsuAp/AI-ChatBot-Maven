@@ -16,7 +16,7 @@ public class Main {
         QuestionsParser par = new QuestionsParser();
        ArrayList<String> data =  par.questionParser();
        txtCreator txt = new txtCreator();
-
+       
          String str = txt.fileCreator(data);
        System.out.println(str);
         

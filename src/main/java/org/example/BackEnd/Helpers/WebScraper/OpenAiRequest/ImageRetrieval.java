@@ -19,7 +19,7 @@ public class ImageRetrieval {
 
         //String openAIKey = "";
         String modelId = "gpt-4o-mini";
-        String azureKey = "DbJJJ2a7jiUDtSZo4aFulZzZX2W3TPQNQvJW2gKHVL0ciZhdXyJiJQQJ99BAACHYHv6XJ3w3AAABACOGh5pr";
+        String azureKey = "";
         OpenAIClient client = new OpenAIClientBuilder()
                 .credential(new KeyCredential(azureKey))
                 .endpoint("https://hacknet-colsanjose.openai.azure.com/")
