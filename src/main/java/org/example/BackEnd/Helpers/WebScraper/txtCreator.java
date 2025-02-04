@@ -7,13 +7,15 @@ import java.util.ArrayList;
 
 public class txtCreator {
 public String fileCreator(ArrayList<String> lines){
-    String path = "src\\main\\resources\\newerData.txt";
+    String path = "src\\main\\resources\\newestData.txt";
     File file = new File(path);
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
         for (String string : lines) {
             if(lines!=null){
                 writer.write(string);
+                writer.newLine();
+                writer.write("#########################################################");
                 writer.newLine();
             }
            

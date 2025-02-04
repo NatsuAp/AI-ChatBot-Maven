@@ -14,13 +14,13 @@ public class Main {
        // in.frameSetup(); //se llama a la funcion
         //APIClient temp = new APIClient();
         // temp.AIResponse();
-        //QuestionsParser par = new QuestionsParser();
-       //ArrayList<String> data =  par.questionParser();
-       //txtCreator txt = new txtCreator();
+        QuestionsParser par = new QuestionsParser();
+       ArrayList<String> data =  par.questionParser();
+      txtCreator txt = new txtCreator();
        
-         //String str = txt.fileCreator(data);
-       EmbeddingsRequests emb = new EmbeddingsRequests();
-       emb.embeddingsRequest();
+         String str = txt.fileCreator(data);
+       //EmbeddingsRequests emb = new EmbeddingsRequests();
+      System.out.println(str);
         
         
     }

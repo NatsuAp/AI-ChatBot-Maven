@@ -20,6 +20,11 @@
   <artifactId>tess4j</artifactId>
   <version>5.6.0</version> <!-- or latest -->
 </dependency>
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-ai-vision-imageanalysis</artifactId>
+    <version>1.0.0</version>
+</dependency>
        <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-ai-openai</artifactId>
