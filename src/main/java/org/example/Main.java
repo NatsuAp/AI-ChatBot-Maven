@@ -2,6 +2,7 @@ package org.example;
 import org.example.BackEnd.FrameBuilder;
 import org.example.BackEnd.Embeddings.EmbeddingsRequests;
 import org.example.BackEnd.Helpers.WebScraper.QuestionsParser;
+import org.example.BackEnd.Helpers.WebScraper.azureOCR;
 import org.example.BackEnd.Helpers.WebScraper.txtCreator;
 
 import java.util.ArrayList;
@@ -15,12 +16,14 @@ public class Main {
         //APIClient temp = new APIClient();
         // temp.AIResponse();
         QuestionsParser par = new QuestionsParser();
-       ArrayList<String> data =  par.questionParser();
-      txtCreator txt = new txtCreator();
+      // ArrayList<String> data =  par.questionParser();
+      //txtCreator txt = new txtCreator();
        
-         String str = txt.fileCreator(data);
+         //String str = txt.fileCreator(data);
        //EmbeddingsRequests emb = new EmbeddingsRequests();
-      System.out.println(str);
+        azureOCR ocr = new azureOCR();
+        String str = ocr.OCRRequest("hola");
+        System.out.println(str);
         
         
     }
