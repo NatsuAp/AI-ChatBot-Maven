@@ -40,12 +40,18 @@ public class QuestionsParser {
                                     if (line.charAt(l) != '\"') {
                                         url += String.valueOf(line.charAt(l));
                                     } else {
-                                       // temp = imgRet.ImgRequest(url);
+                                      
                                         System.out.println(url);
                                        // line = line.replaceFirst("<img src=\"" + url + "\"/>", out.outputParse(temp));
-
-                                        line = line.replaceFirst("<img src=\"" + url + "\"/>", ocr.OCRRequest(url));
-
+                                        if(!((temp = ocr.OCRRequest(url))==null)){
+                                            line = line.replaceFirst("<img src=\"" + url + "\"/>", temp);
+                                            System.out.println(temp);
+                                        }else{
+                                            temp = imgRet.ImgRequest(url);
+                                            line = line.replaceFirst("<img src=\"" + url + "\"/>",out.outputParse(temp) );
+                                        }
+                                        
+                                             
                                         url = "";
                                         break;
                                     }

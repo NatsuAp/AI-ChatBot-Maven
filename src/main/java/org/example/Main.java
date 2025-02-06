@@ -16,12 +16,13 @@ public class Main {
        // in.frameSetup(); //se llama a la funcion
         //APIClient temp = new APIClient();
         // temp.AIResponse();
-       //QuestionsParser par = new QuestionsParser();
-      // ArrayList<String> data =  par.questionParser();
-      //txtCreator txt = new txtCreator();
-       azureOCR ocr = new azureOCR();
-       String str = ocr.OCRRequest("hello");
-        // String str = txt.fileCreator(data);
+       QuestionsParser par = new QuestionsParser();
+       ArrayList<String> data =  par.questionParser();
+      txtCreator txt = new txtCreator();
+      String str = txt.fileCreator(data);
+      System.out.println(str);
+       //azureOCR ocr = new azureOCR();
+       
        //EmbeddingsRequests emb = new EmbeddingsRequests();
 
 

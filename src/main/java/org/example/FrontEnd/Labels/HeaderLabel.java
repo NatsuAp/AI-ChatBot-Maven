@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 public class HeaderLabel {
     public JLabel headerLabel(){
         JLabel headerLabel = new JLabel();
-        ImageIcon OGlogo = new ImageIcon("AI-ChatBot-Maven\\src\\main\\resources\\logo.png"); //Imagen tamaño original
+        ImageIcon OGlogo = new ImageIcon("src\\main\\resources\\Images\\logo.png"); //Imagen tamaño original
         Image img = OGlogo.getImage().getScaledInstance(100,99,Image.SCALE_SMOOTH); //Imagen Nueva de menor tamaño
         ImageIcon newlogo = new ImageIcon(img);  //declaracion
         headerLabel.setText("AP Classroom ChatBot"); //se afirma el texto del label, que ira en el panel superior

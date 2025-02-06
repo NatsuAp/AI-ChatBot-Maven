@@ -42,8 +42,8 @@ public class MessageButton {
             public void mousePressed(MouseEvent e) { // Cuando clickeas
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
-                String pregunta = Searchbox.enter();
-                api.Chat(pregunta);
+                
+                
                 // Aqui falta la funcion que llame a la API
             }
 

@@ -4,6 +4,7 @@ import com.azure.ai.vision.imageanalysis.ImageAnalysisClient;
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClientBuilder;
 import com.azure.ai.vision.imageanalysis.models.DetectedTextLine;
 import com.azure.ai.vision.imageanalysis.models.DetectedTextWord;
+import com.azure.ai.vision.imageanalysis.models.ImageAnalysisOptions;
 import com.azure.ai.vision.imageanalysis.models.ImageAnalysisResult;
 import com.azure.ai.vision.imageanalysis.models.VisualFeatures;
 
@@ -21,57 +22,74 @@ import com.azure.core.credential.KeyCredential;
 import com.azure.core.util.BinaryData;
 
 import javax.imageio.ImageIO;
+
+import org.example.BackEnd.Helpers.imageResizer;
+
 import java.util.Arrays;
 
 public class azureOCR {
     //Image img = OGlogo.getImage().getScaledInstance(100,99,Image.SCALE_SMOOTH);
 public String OCRRequest(String str){
+    imageResizer resizer = new imageResizer();
     String key = "";
     String endpoint = "https://hacknet-vision-consanjose.cognitiveservices.azure.com/";
     Image img = null;
-    try {
-        URL imageUrl = new URL("https://img.crackap.com/ap/computer-science-a/br23/p0082-04.jpg");
-        BufferedImage originalImage = ImageIO.read(imageUrl);
-        if(originalImage.getHeight()< 50){
-            img = originalImage.getScaledInstance(originalImage.getWidth(), 50, Image.SCALE_SMOOTH);
-        }else{
-            img = originalImage.getScaledInstance(50, originalImage.getHeight(), Image.SCALE_SMOOTH);
-        }
-
-
-
-
-
-
-// Create a synchronous client using API key authentication
     ImageAnalysisClient client = new ImageAnalysisClientBuilder()
-            .credential(new KeyCredential(key))
-            .endpoint(endpoint)
-            .buildClient();
+    .credential(new KeyCredential(key))
+    .endpoint(endpoint)
+    .buildClient();
 
+    ImageAnalysisResult result = null;
+    int i = 1;
+    try {
+        URL imageUrl = new URL(str);
+        
+        BufferedImage originalImage = ImageIO.read(imageUrl);
+        if(originalImage.getWidth()<50 || originalImage.getHeight()<50){
+            BufferedImage newImg = resizer.imgResized(originalImage);
 
-//    ImageAnalysisResult result = client.analyzeFromUrl(
-//            str, // imageUrl: the URL of the image to analyze
-//            Arrays.asList(VisualFeatures.READ), // visualFeatures
-//            null); // options: There are no options for READ visual feature
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        BufferedImage bufferedImage = (BufferedImage) img;
-        ImageIO.write(bufferedImage, "png", baos);
+            ImageIO.write(newImg, "jpg", new File("src\\main\\resources\\FileImages\\image_"+ i + ".jpg"));
+            i++;
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+       
+        ImageIO.write(newImg, "png", baos);
         byte[] bytes = baos.toByteArray();
         BinaryData binaryData = BinaryData.fromBytes(bytes);
-    ImageAnalysisResult result = client.analyze(
+            result = client.analyze(
             binaryData, // imageData: Image file loaded into memory as BinaryData
             Arrays.asList(VisualFeatures.READ), // visualFeatures
             null); // options: There are no options for READ visual feature
+        }else{
+            result = client.analyzeFromUrl(
+            str, // imageUrl: the URL of the image to analyze
+            Arrays.asList(VisualFeatures.READ), // visualFeatures
+            new ImageAnalysisOptions().setGenderNeutralCaption(true)); // options:  Set to 'true' or 'false' (relevant for CAPTION or DENSE_CAPTIONS visual features)
 
-// Print analysis results to the console
+        }
+       
+       
+
+        
+        
+        
+
+
+
+
+
 
     String text = "";
+   try {
     for (DetectedTextLine line : result.getRead().getBlocks().get(0).getLines()) {
         text += line.getText()+ "\n";
-        System.out.println(line.getText());
+       
 
     }
+   } catch (IndexOutOfBoundsException e) {
+    System.out.println("no readable text ");
+    return null;
+   }
+    
 
     return text;
     }
