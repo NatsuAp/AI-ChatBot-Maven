@@ -8,7 +8,7 @@ public class ImgOutput {
         try {
         String newStr=str.substring(x);
         newStr =newStr.replaceAll("```", "").strip();
-        return "\n" + newStr;
+        return newStr;
         } catch (Exception e) {
          
             System.out.println(x);

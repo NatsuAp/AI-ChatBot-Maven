@@ -11,6 +11,7 @@ public class QuestionsParser {
     public ArrayList<String> questionParser() {
         String path = "src\\main\\resources\\newData.txt";
         File file = new File(path);
+        azureOCR ocr = new azureOCR();
         ImageRetrieval imgRet = new ImageRetrieval();
         ImgOutput out = new ImgOutput();
         ArrayList<String> data = new ArrayList<>();
@@ -39,9 +40,12 @@ public class QuestionsParser {
                                     if (line.charAt(l) != '\"') {
                                         url += String.valueOf(line.charAt(l));
                                     } else {
-                                        temp = imgRet.ImgRequest(url);
+                                       // temp = imgRet.ImgRequest(url);
                                         System.out.println(url);
-                                        line = line.replaceFirst("<img src=\"" + url + "\"/>", out.outputParse(temp));
+                                       // line = line.replaceFirst("<img src=\"" + url + "\"/>", out.outputParse(temp));
+
+                                        line = line.replaceFirst("<img src=\"" + url + "\"/>", ocr.OCRRequest(url));
+
                                         url = "";
                                         break;
                                     }

@@ -26,8 +26,8 @@ public class ImageRetrieval {
                 .buildClient();
 
         List<ChatRequestMessage> chatMessages = new ArrayList<>();
-        chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant that reads text in images and answers in the following format: \"This is what I see in the image: ```(Text in image)```\", if at first you dont see any text, try to read more carefully or zoom it as you will receive some images with big amounts of text and it might be a little small "));
-        chatMessages.add(new ChatRequestSystemMessage("If you definitly can not read anything just return \"did not see any text\""));
+        chatMessages.add(new ChatRequestSystemMessage("You are a helpful assistant that reads text in images and answers in the following format: \"This is what I see in the image: ```\n(Text in image)\n```\", try to keep the new lines in the texts. If at first you dont see any text, try to read more carefully or zoom it as you will receive some images with big amounts of text and it might be a little small "));
+        chatMessages.add(new ChatRequestSystemMessage("If you definitly can not read anything just return ```did not see any text```"));
         chatMessages.add(new ChatRequestUserMessage(Arrays.asList(
                 new ChatMessageTextContentItem("What text do you see in this image"),
                 new ChatMessageImageContentItem(

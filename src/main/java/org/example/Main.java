@@ -1,6 +1,7 @@
 package org.example;
 import org.example.BackEnd.FrameBuilder;
 import org.example.BackEnd.Embeddings.EmbeddingsRequests;
+import org.example.BackEnd.Helpers.WebScraper.OpenAiRequest.ImageRetrieval;
 import org.example.BackEnd.Helpers.WebScraper.QuestionsParser;
 import org.example.BackEnd.Helpers.WebScraper.azureOCR;
 import org.example.BackEnd.Helpers.WebScraper.txtCreator;
@@ -15,15 +16,16 @@ public class Main {
        // in.frameSetup(); //se llama a la funcion
         //APIClient temp = new APIClient();
         // temp.AIResponse();
-        QuestionsParser par = new QuestionsParser();
+       //QuestionsParser par = new QuestionsParser();
       // ArrayList<String> data =  par.questionParser();
       //txtCreator txt = new txtCreator();
-       
-         //String str = txt.fileCreator(data);
+       azureOCR ocr = new azureOCR();
+       String str = ocr.OCRRequest("hello");
+        // String str = txt.fileCreator(data);
        //EmbeddingsRequests emb = new EmbeddingsRequests();
-        azureOCR ocr = new azureOCR();
-        String str = ocr.OCRRequest("hola");
-        System.out.println(str);
+
+
+
         
         
     }
