@@ -6,9 +6,13 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import org.example.BackEnd.APIClient;
+import org.example.FrontEnd.TextArea.Searchbox;
+
 public class MessageButton {
     public JButton inputButton() {
-
+        APIClient api = new APIClient();
+        Searchbox Searchbox = new Searchbox();
         ImageIcon arrow = new ImageIcon("AI-ChatBot-Maven\\src\\main\\resources\\Send.png");
         JButton button = new JButton(arrow);
         button.setBorderPainted(false);
@@ -38,7 +42,8 @@ public class MessageButton {
             public void mousePressed(MouseEvent e) { // Cuando clickeas
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
-
+                String pregunta = Searchbox.enter();
+                api.Chat(pregunta);
                 // Aqui falta la funcion que llame a la API
             }
 
