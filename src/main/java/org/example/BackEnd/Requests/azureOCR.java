@@ -1,4 +1,4 @@
-package org.example.BackEnd.Helpers.WebScraper;
+package org.example.BackEnd.Requests;
 
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClient;
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClientBuilder;

@@ -1,4 +1,4 @@
-package org.example.BackEnd.Helpers.WebScraper.OpenAiRequest;
+package org.example.BackEnd.Requests;
 import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.OpenAIClientBuilder;
 import com.azure.ai.openai.models.ChatCompletions;

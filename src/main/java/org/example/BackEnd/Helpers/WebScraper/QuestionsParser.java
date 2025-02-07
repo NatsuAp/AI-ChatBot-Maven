@@ -5,7 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import org.example.BackEnd.Helpers.WebScraper.OpenAiRequest.ImageRetrieval;
+import org.example.BackEnd.Requests.ImageRetrieval;
+import org.example.BackEnd.Requests.azureOCR;
 
 public class QuestionsParser {
     public ArrayList<String> questionParser() {
