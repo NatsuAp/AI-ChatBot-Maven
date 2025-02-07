@@ -3,29 +3,19 @@ package org.example.BackEnd.Requests;
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClient;
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClientBuilder;
 import com.azure.ai.vision.imageanalysis.models.DetectedTextLine;
-import com.azure.ai.vision.imageanalysis.models.DetectedTextWord;
 import com.azure.ai.vision.imageanalysis.models.ImageAnalysisOptions;
 import com.azure.ai.vision.imageanalysis.models.ImageAnalysisResult;
 import com.azure.ai.vision.imageanalysis.models.VisualFeatures;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
-import com.azure.ai.vision.imageanalysis.models.ImageAnalysisResult;
-import com.azure.ai.vision.imageanalysis.models.VisualFeatures;
 import com.azure.core.credential.KeyCredential;
 import com.azure.core.util.BinaryData;
-
 import javax.imageio.ImageIO;
-
-import org.example.BackEnd.Helpers.imageResizer;
-
-import java.util.Arrays;
+import org.example.BackEnd.Helpers.WebScraper.imageResizer;
 
 public class azureOCR {
     //Image img = OGlogo.getImage().getScaledInstance(100,99,Image.SCALE_SMOOTH);

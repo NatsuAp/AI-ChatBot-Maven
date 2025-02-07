@@ -2,7 +2,7 @@ package org.example.BackEnd;
 import java.util.*;
 
 
-import java.util.*;
+
 import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.OpenAIClientBuilder;
 import com.azure.ai.openai.models.*;
@@ -16,29 +16,6 @@ public class APIClient {
     public void Chat(String pregunta) {
         String apiKey = "";
         String url = "https://hacknet-colsanjose.openai.azure.com/";
-        String urlDB = "jdbc:postgresql://hacknet.cncguc2ysbs8.us-east-1.rds.amazonaws.com:5432/HACKNETDB";
-
-        // Coneccion con la base de Datos
-        Properties props = new Properties();
-        //FALTA USER Y PASSWORD
-        Connection conn;
-        try {
-            conn = DriverManager.getConnection(urlDB, props);
-            Statement st = conn.createStatement();
-            st.executeQuery("CREATE TABLE AfanaProfe (\r\n" + //
-                    "    PersonID int,\r\n" + //
-                    "    LastName varchar(255),\r\n" + //
-                    "    FirstName varchar(255),\r\n" + //
-                    "    Address varchar(255),\r\n" + //
-                    "    City varchar(255)\r\n" + //
-                    ");");
-        } catch (SQLException e) {
-            System.out.println("no funciono brou");
-            e.printStackTrace();
-        }
-        // https://jdbc.postgresql.org/documentation/use/
-
-
         OpenAIClient client = new OpenAIClientBuilder()
                 .credential(new AzureKeyCredential(apiKey))
                 .endpoint(url)

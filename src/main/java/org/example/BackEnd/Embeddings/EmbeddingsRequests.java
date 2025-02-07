@@ -7,7 +7,7 @@ import com.azure.ai.openai.models.Embeddings;
 import com.azure.ai.openai.models.EmbeddingsOptions;
 import com.azure.ai.openai.models.EmbeddingsUsage;
 import com.azure.core.credential.AzureKeyCredential;
-import com.azure.core.util.Configuration;
+
 
 import java.util.Arrays;
 public class EmbeddingsRequests {
@@ -26,8 +26,7 @@ public void embeddingsRequest(){
     Embeddings embeddings = client.getEmbeddings(deploymentOrModelId, embeddingsOptions);
 
     for (EmbeddingItem item : embeddings.getData()) {
-        System.out.printf("Index: %d.%n", item.getPromptIndex());
-        System.out.println("Embedding as base64 encoded string: " +  item.getEmbeddingAsString());
+        
         System.out.println("Embedding as list of floats: ");
         for (Float embedding : item.getEmbedding()) {
             System.out.printf("%f;", embedding);
