@@ -19,9 +19,12 @@ import org.example.BackEnd.Helpers.WebScraper.imageResizer;
 
 public class azureOCR {
     //Image img = OGlogo.getImage().getScaledInstance(100,99,Image.SCALE_SMOOTH);
+
+    //esta funcion fue utilizada para conseguir texto de imagenes, puesto que era mas preciso que OpenAI, 
+    //Cuando se parseo el contenido de "https://www.crackap.com/questions.php?type=csa", se llamo a esta funcion, y cuando esta no retornaba nada, se utilizo la de OpenAI
 public String OCRRequest(String str){
     imageResizer resizer = new imageResizer();
-    String key = "";
+    String key = System.getenv("AzureOCR_API_KEY");
     String endpoint = "https://hacknet-vision-consanjose.cognitiveservices.azure.com/";
     Image img = null;
     ImageAnalysisClient client = new ImageAnalysisClientBuilder()

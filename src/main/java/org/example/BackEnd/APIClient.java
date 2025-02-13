@@ -14,7 +14,8 @@ import java.sql.*;
 public class APIClient {
 
     public void Chat(String pregunta) {
-        String apiKey = "";
+        
+        String apiKey = System.getenv("AZURE_API_KEY");
         String url = "https://hacknet-colsanjose.openai.azure.com/";
         OpenAIClient client = new OpenAIClientBuilder()
                 .credential(new AzureKeyCredential(apiKey))
@@ -22,7 +23,7 @@ public class APIClient {
                 .buildClient();
 
         List<ChatRequestMessage> chatMessages = new ArrayList<>();
-        chatMessages.add(new ChatRequestSystemMessage("pregunta"));
+        chatMessages.add(new ChatRequestSystemMessage(pregunta));
         
         ChatCompletions chatCompletions = client.getChatCompletions("gpt-4o-mini",
                 new ChatCompletionsOptions(chatMessages));
