@@ -1,11 +1,20 @@
 package org.example.FrontEnd.TextArea;
 
 import javax.swing.*;
+
+import org.example.BackEnd.ChatBackEnd.UserInput;
+
 import java.awt.*;
 
 public class Searchbox {
     JTextArea Searchbox = new JTextArea();
     public JScrollPane SearchB(){
+        
+        // UserInput user = new UserInput();
+        // user.setUserInput(this.Searchbox.getText());
+        // user.calculateEmbedding();
+        // user.embedding
+        
         
         Searchbox.setLineWrap(true);
         Searchbox.setWrapStyleWord(true);
@@ -22,7 +31,7 @@ public class Searchbox {
         return scrollPane;
 
     }
-    public String Enter(){
-        return Searchbox.getText();
-    }
+    // public static String Enter(){
+    //     return Searchbox.getText();
+    // }
 }

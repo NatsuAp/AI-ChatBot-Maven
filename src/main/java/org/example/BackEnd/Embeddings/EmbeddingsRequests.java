@@ -10,7 +10,7 @@ import com.azure.core.credential.AzureKeyCredential;
 import java.util.*;
 
 public class EmbeddingsRequests {
-    public String embeddingsRequest(String embRequest, int c) {
+    public String embeddingsRequest(String embRequest ) {
         String azureOpenaiKey = "DbJJJ2a7jiUDtSZo4aFulZzZX2W3TPQNQvJW2gKHVL0ciZhdXyJiJQQJ99BAACHYHv6XJ3w3AAABACOGh5pr";
         String endpoint = "https://hacknet-colsanjose.openai.azure.com/";
         String deploymentOrModelId = "text-embedding-ada-002";
@@ -24,33 +24,32 @@ public class EmbeddingsRequests {
         String chunk1 = "";
         String chunk2 = "";
         Embeddings embeddings;
-        // try {
-        //     embeddingsOptions = new EmbeddingsOptions(Arrays.asList(embRequest));
-        //     //embeddings = client.getEmbeddings(deploymentOrModelId, embeddingsOptions);
-        // } catch (Exception e) {
+        try {
+            embeddingsOptions = new EmbeddingsOptions(Arrays.asList(embRequest));
+            embeddings = client.getEmbeddings(deploymentOrModelId, embeddingsOptions);
+        } catch (Exception e) {
 
-        //     chunk1 = embRequest.substring(0, embRequest.length() / 2);
-        //     chunk2 = embRequest.substring(embRequest.length() / 2, embRequest.length());
-        //     chunk1 = embeddingsRequest(chunk1);
-        //     chunk2 = embeddingsRequest(chunk2);
-        //     System.out.println("ENTRO PERO SE SOLUCIONO");
-        //     return sumaEmb(chunk1, chunk2);
-        // }
+            chunk1 = embRequest.substring(0, embRequest.length() / 2);
+            chunk2 = embRequest.substring(embRequest.length() / 2, embRequest.length());
+            chunk1 = embeddingsRequest(chunk1);
+            chunk2 = embeddingsRequest(chunk2);
+            System.out.println("ENTRO PERO SE SOLUCIONO");
+            return sumaEmb(chunk1, chunk2);
+        }
 
         
         // "'[12.12,14.14]'"
-        // String emb = "[";
+        String emb = "[";
 
-        // for (EmbeddingItem item : embeddings.getData()) {
-        //     for (Float embedding : item.getEmbedding()) {
-        //         emb = emb + embedding.toString() + ",";
+        for (EmbeddingItem item : embeddings.getData()) {
+            for (Float embedding : item.getEmbedding()) {
+                emb = emb + embedding.toString() + ",";
 
-        //     }
-        //     emb = emb.substring(0, emb.length() - 1);
-        //     emb = emb + "]";
-        // }
-        System.out.println(c);
-        return "Entro";
+            }
+            emb = emb.substring(0, emb.length() - 1);
+            emb = emb + "]";
+        }
+        return emb;
     }
 
     public String sumaEmb(String emb1, String emb2) {
