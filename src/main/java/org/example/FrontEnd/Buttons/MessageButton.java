@@ -23,9 +23,11 @@ public class MessageButton {
         button.setBorder(BorderFactory.createEmptyBorder(0, 7, 0, 0));
         button.addMouseListener(new MouseAdapter() { // Detector de eventos
             @Override
+
             public void mouseEntered(MouseEvent e) { // si pasas el mouse por el boton
                 button.setFocusPainted(true);
                 button.setBorder(BorderFactory.createEmptyBorder(0, 7, 4, 0));
+                
             }
 
             @Override
@@ -42,7 +44,8 @@ public class MessageButton {
             public void mousePressed(MouseEvent e) { // Cuando clickeas
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
-                
+                String str = Searchbox.Enter();
+                api.Chat(str);
                 
                 // Aqui falta la funcion que llame a la API
             }

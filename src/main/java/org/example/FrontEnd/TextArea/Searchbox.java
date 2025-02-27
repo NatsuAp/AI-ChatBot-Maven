@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Searchbox {
+    JTextArea Searchbox = new JTextArea();
     public JScrollPane SearchB(){
-        JTextArea Searchbox = new JTextArea();
+        
         Searchbox.setLineWrap(true);
         Searchbox.setWrapStyleWord(true);
         Searchbox.setBackground(new Color(53, 59, 78));
@@ -20,5 +21,8 @@ public class Searchbox {
         scrollPane.setBackground(new Color(53, 59, 78));
         return scrollPane;
 
+    }
+    public String Enter(){
+        return Searchbox.getText();
     }
 }

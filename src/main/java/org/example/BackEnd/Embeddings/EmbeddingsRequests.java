@@ -5,37 +5,69 @@ import com.azure.ai.openai.OpenAIClientBuilder;
 import com.azure.ai.openai.models.EmbeddingItem;
 import com.azure.ai.openai.models.Embeddings;
 import com.azure.ai.openai.models.EmbeddingsOptions;
-import com.azure.ai.openai.models.EmbeddingsUsage;
 import com.azure.core.credential.AzureKeyCredential;
 
+import java.util.*;
 
-import java.util.Arrays;
 public class EmbeddingsRequests {
-public void embeddingsRequest(){
-    String azureOpenaiKey = "";
-    String endpoint = "https://hacknet-colsanjose.openai.azure.com/";
-    String deploymentOrModelId = "text-embedding-ada-002";
+    public String embeddingsRequest(String embRequest, int c) {
+        String azureOpenaiKey = "DbJJJ2a7jiUDtSZo4aFulZzZX2W3TPQNQvJW2gKHVL0ciZhdXyJiJQQJ99BAACHYHv6XJ3w3AAABACOGh5pr";
+        String endpoint = "https://hacknet-colsanjose.openai.azure.com/";
+        String deploymentOrModelId = "text-embedding-ada-002";
+        OpenAIClient client;
+        client = new OpenAIClientBuilder()
+                .credential(new AzureKeyCredential(azureOpenaiKey))
+                .endpoint(endpoint)
+                .buildClient();
 
-    OpenAIClient client = new OpenAIClientBuilder()
-        .credential(new AzureKeyCredential(azureOpenaiKey))
-        .endpoint(endpoint)
-        .buildClient();
+        EmbeddingsOptions embeddingsOptions = new EmbeddingsOptions(null);
+        String chunk1 = "";
+        String chunk2 = "";
+        Embeddings embeddings;
+        // try {
+        //     embeddingsOptions = new EmbeddingsOptions(Arrays.asList(embRequest));
+        //     //embeddings = client.getEmbeddings(deploymentOrModelId, embeddingsOptions);
+        // } catch (Exception e) {
 
-    EmbeddingsOptions embeddingsOptions = new EmbeddingsOptions(Arrays.asList("Zelaya cv"));
+        //     chunk1 = embRequest.substring(0, embRequest.length() / 2);
+        //     chunk2 = embRequest.substring(embRequest.length() / 2, embRequest.length());
+        //     chunk1 = embeddingsRequest(chunk1);
+        //     chunk2 = embeddingsRequest(chunk2);
+        //     System.out.println("ENTRO PERO SE SOLUCIONO");
+        //     return sumaEmb(chunk1, chunk2);
+        // }
 
-    Embeddings embeddings = client.getEmbeddings(deploymentOrModelId, embeddingsOptions);
-
-    for (EmbeddingItem item : embeddings.getData()) {
         
-        System.out.println("Embedding as list of floats: ");
-        for (Float embedding : item.getEmbedding()) {
-            System.out.printf("%f;", embedding);
-        }
+        // "'[12.12,14.14]'"
+        // String emb = "[";
+
+        // for (EmbeddingItem item : embeddings.getData()) {
+        //     for (Float embedding : item.getEmbedding()) {
+        //         emb = emb + embedding.toString() + ",";
+
+        //     }
+        //     emb = emb.substring(0, emb.length() - 1);
+        //     emb = emb + "]";
+        // }
+        System.out.println(c);
+        return "Entro";
     }
 
-    EmbeddingsUsage usage = embeddings.getUsage();
-    System.out.printf(
-        "Usage: number of prompt token is %d and number of total tokens in request and response is %d.%n",
-        usage.getPromptTokens(), usage.getTotalTokens());
-}
+    public String sumaEmb(String emb1, String emb2) {
+        String emb = "[";
+        emb1 = emb1.substring(1, emb1.length() - 1);
+        emb2 = emb2.substring(1, emb2.length() - 1);
+        String[] emb11 = emb1.split(",");
+        String[] emb22 = emb2.split(",");
+        for (int i = 0; i < emb11.length; i++) {
+            Float x = Float.parseFloat(emb11[i]);
+            Float y = Float.parseFloat(emb22[i]);
+            Float res = (x + y) / 2;
+            String r = String.valueOf(res);
+            emb = emb + r + ",";
+        }
+        emb = emb.substring(0, emb.length() - 1);
+        emb = emb + "]";
+        return emb;
+    }
 }

@@ -11,17 +11,20 @@ public class Table {
 public void createTable(){
   // Coneccion con la base de Datos
         Properties props = new Properties();
+        props.setProperty("user", "hacknet_colsanjose");
+        props.setProperty("password", "235711");
         //FALTA USER Y PASSWORD
+        //
         Connection conn;
         try {
             conn = DriverManager.getConnection(urlDB, props);
             Statement st = conn.createStatement();
             st.executeQuery("CREATE TABLE Data (\r\n" + //
                     "    ID Text,\r\n" + //
-                    "    Question varchar(255),\r\n" + //
-                    "    AnswerC varchar(255),\r\n" + //
-                    "    Answer varchar(255),\r\n" + //
-                    "    Explanation varchar(255)\r\n" + //
+                    "    Question Text,\r\n" + //
+                    "    AnswerC Text,\r\n" + //
+                    "    Answer Text,\r\n" + //
+                    "    Explanation Text,\r\n" + //
                     "    Embedding vector(1536)\r\n" + //
                     ");");
                     System.out.println("Se creo la tabla exitosamente");
