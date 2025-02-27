@@ -23,8 +23,8 @@ public class Main {
         // ie.embeddingsRequest("hola mundo");
         //System.out.println(ie.embeddingsRequest());
 
-        GettingStrings get = new GettingStrings();
-        get.guardarBD();
+        // GettingStrings get = new GettingStrings();
+        // get.guardarBD();
        
       
 
