@@ -10,10 +10,7 @@ public class Searchbox {
     JTextArea Searchbox = new JTextArea();
     public JScrollPane SearchB(){
         
-        // UserInput user = new UserInput();
-        // user.setUserInput(this.Searchbox.getText());
-        // user.calculateEmbedding();
-        // user.embedding
+       
         
         
         Searchbox.setLineWrap(true);
@@ -31,7 +28,7 @@ public class Searchbox {
         return scrollPane;
 
     }
-    // public static String Enter(){
-    //     return Searchbox.getText();
-    // }
+    public String Enter(){
+        return Searchbox.getText();
+    }
 }

@@ -42,8 +42,8 @@ public class GettingStrings {
                 concatenado = q+concatenado;
             }
             concatenado = concatenado.trim();
-            emb.embeddingsRequest(concatenado, c);
-            // insert.inserts(question, emb.embeddingsRequest(concatenado, c));
+            
+            insert.inserts(question, emb.embeddingsRequest(concatenado));
             c = c+1;
         }
         System.out.println("LO LOGRASTE HPTAAAA");

@@ -11,7 +11,7 @@ public class Frame {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //cuando cierras la ventana cierra el programa
         frame.setResizable(true); //Se puede editar el tamaño
         frame.setSize(650, 1000); //Tamaño del frame
-        File file = new File("logo.png");
+        // File file = new File("logo.png");
         
         ImageIcon logo = new ImageIcon("src\\main\\resources\\Images\\logo.png"); //directorio de imagen
         frame.setIconImage(logo.getImage());  //Imagen

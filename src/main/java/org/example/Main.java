@@ -19,12 +19,14 @@ public class Main {
         // table.createTable();
         // APIClient client = new APIClient();
         // client.Chat("tell me a joke");
-        // EmbeddingsRequests ie = new EmbeddingsRequests();
+        EmbeddingsRequests ie = new EmbeddingsRequests();
         // ie.embeddingsRequest("hola mundo");
         //System.out.println(ie.embeddingsRequest());
 
         // GettingStrings get = new GettingStrings();
         // get.guardarBD();
+        CompareEmb a = new CompareEmb();
+        a.Compare(ie.embeddingsRequest("Question: 202 how mergesort and sort"));
        
       
 
