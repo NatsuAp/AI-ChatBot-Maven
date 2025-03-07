@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-
-
 public class CompareEmb {
     String urlDB = "jdbc:postgresql://hacknet.cncguc2ysbs8.us-east-1.rds.amazonaws.com:5432/HACKNETDB";
 
@@ -26,23 +24,27 @@ public class CompareEmb {
         try {
             conn = DriverManager.getConnection(urlDB, props);
             PreparedStatement st = conn
-                    .prepareStatement("SELECT ID, Question, AnswerC, Answer, Explanation, (Embedding <=> ?) AS distance " +
-                           "FROM DATA " +
-                           "ORDER BY distance DESC " +
-                           "LIMIT 5");
+            .prepareStatement("SELECT ID, Question, AnswerC, Answer, Explanation,
+            (Embedding <=> ?) AS distance " +
+            "FROM DATA " +
+            "ORDER BY distance DESC " +
+            "LIMIT 5");
             st.setString(1, embedding);
-        
+
+            // PreparedStatement st = conn
+            //         .prepareStatement("SELECT ID, (Embedding <=> ?) AS distance " +
+            //                 "FROM DUMMIE " +
+            //                 "ORDER BY distance ASC " +
+            //                 "LIMIT 5");
+            // st.setString(1, embedding);
             a = st.executeQuery();
-            
             int i = 0;
-        
             while (a.next()) {
-                for(int j = 0; j<6; j++){
-                    res[i][j] = a.getString(j+1);
+                for (int j = 0; j < 6; j++) {
+                    res[i][j] = a.getString(j + 1);
                 }
                 i++;
             }
-
             st.close();
             System.out.println(" hecho");
         } catch (SQLException e) {
@@ -50,7 +52,6 @@ public class CompareEmb {
             e.printStackTrace();
         }
         // https://jdbc.postgresql.org/documentation/use/
-        
 
         return res;
 

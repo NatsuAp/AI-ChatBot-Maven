@@ -19,13 +19,17 @@ public void createTable(){
         try {
             conn = DriverManager.getConnection(urlDB, props);
             Statement st = conn.createStatement();
-            st.executeQuery("CREATE TABLE Data (\r\n" + //
-                    "    ID Text,\r\n" + //
-                    "    Question Text,\r\n" + //
-                    "    AnswerC Text,\r\n" + //
-                    "    Answer Text,\r\n" + //
-                    "    Explanation Text,\r\n" + //
-                    "    Embedding vector(1536)\r\n" + //
+            // st.executeQuery("CREATE TABLE Data (\r\n" + //
+            //         "    ID Text,\r\n" + //
+            //         "    Question Text,\r\n" + //
+            //         "    AnswerC Text,\r\n" + //
+            //         "    Answer Text,\r\n" + //
+            //         "    Explanation Text,\r\n" + //
+            //         "    Embedding vector(1536)\r\n" + //
+            //         ");");
+            st.executeUpdate("CREATE TABLE Dummie (\r\n" + //
+            "    ID Text,\r\n" + //
+            "    Embedding vector(1536)\r\n" + //
                     ");");
                     System.out.println("Se creo la tabla exitosamente");
         } catch (SQLException e) {
