@@ -24,10 +24,10 @@ public class CompareEmb {
         try {
             conn = DriverManager.getConnection(urlDB, props);
             PreparedStatement st = conn
-            .prepareStatement("SELECT ID, Question, AnswerC, Answer, Explanation,
-            (Embedding <=> ?) AS distance " +
+            .prepareStatement("SELECT ID, Question, AnswerC, Answer, Explanation," +
+            "(Embedding <=> ?) AS distance " +
             "FROM DATA " +
-            "ORDER BY distance DESC " +
+            "ORDER BY distance ASC " +
             "LIMIT 5");
             st.setString(1, embedding);
 

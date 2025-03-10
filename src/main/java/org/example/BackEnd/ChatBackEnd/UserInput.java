@@ -21,8 +21,8 @@ public class UserInput {
     private void setEmbedding(String embedding){
         this.embedding = embedding;
     }
-     // UserInput user = new UserInput();
-        // user.setUserInput(this.Searchbox.getText());
-        // user.calculateEmbedding();
-        // user.embedding
+    //  UserInput user = new UserInput();
+    //     user.setUserInput(this.Searchbox.getText());
+    //     user.calculateEmbedding();
+    //     user.embedding
 }
