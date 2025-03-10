@@ -25,7 +25,7 @@ public class CompareEmb {
             conn = DriverManager.getConnection(urlDB, props);
             PreparedStatement st = conn
             .prepareStatement("SELECT ID, Question, AnswerC, Answer, Explanation," +
-            "(Embedding <=> ?) AS distance " +
+            // "(Embedding <=> ?) AS distance " +
             "FROM DATA " +
             "ORDER BY distance ASC " +
             "LIMIT 5");
@@ -40,7 +40,7 @@ public class CompareEmb {
             a = st.executeQuery();
             int i = 0;
             while (a.next()) {
-                for (int j = 0; j < 6; j++) {
+                for (int j = 0; j < 5; j++) {
                     res[i][j] = a.getString(j + 1);
                 }
                 i++;
