@@ -25,26 +25,26 @@ public class insert {
         Connection conn;
         try {
             conn = DriverManager.getConnection(urlDB, props);
-            // PreparedStatement st = conn
-            //         .prepareStatement("INSERT INTO DATA (ID, Question, AnswerC, Answer, Explanation, Embedding) VALUES (?, ?, ?, ?, ?, ?)");
-            // st.setString(1, question.ID.trim());
-            // st.setString(2, question.Question.trim());
-            // st.setString(3, question.AnswerC.trim());
-            // st.setString(4, question.Answer.trim());
-            // st.setString(5, question.Explanation.trim());
-            // st.setString(6, embedding.trim());
-            // st.executeUpdate();
-            // st.close();
+            PreparedStatement st = conn
+                    .prepareStatement("INSERT INTO DATA (ID, Question, AnswerC, Answer, Explanation, Embedding) VALUES (?, ?, ?, ?, ?, ?)");
+            st.setString(1, question.ID.trim());
+            st.setString(2, question.Question.trim());
+            st.setString(3, question.AnswerC.trim());
+            st.setString(4, question.Answer.trim());
+            st.setString(5, question.Explanation.trim());
+            st.setString(6, embedding.trim());
+            st.executeUpdate();
+            st.close();
 
-            for(String x: a){
-                PreparedStatement st = conn
-                     .prepareStatement("INSERT INTO DUMMIE (ID, Embedding) VALUES (?, ?)");
-                st.setString(1, x);
-                st.setString(2, emb.embeddingsD(x).trim());
-                st.executeUpdate();
-                st.close();
-            System.out.println("Insert hecho");
-            }
+            // for(String x: a){
+            //     PreparedStatement st = conn
+            //          .prepareStatement("INSERT INTO DUMMIE (ID, Embedding) VALUES (?, ?)");
+            //     st.setString(1, x);
+            //     st.setString(2, emb.embeddingsD(x).trim());
+            //     st.executeUpdate();
+            //     st.close();
+            // System.out.println("Insert hecho");
+            // }
             
             
         } catch (SQLException e) {

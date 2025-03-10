@@ -23,18 +23,19 @@ public class EmbeddingsRequests {
         EmbeddingsOptions embeddingsOptions = new EmbeddingsOptions(null);
         String chunk1 = "";
         String chunk2 = "";
-        Embeddings embeddings;
+        Embeddings embeddings= null;
         try {
             embeddingsOptions = new EmbeddingsOptions(Arrays.asList(embRequest));
             embeddings = client.getEmbeddings(deploymentOrModelId, embeddingsOptions);
         } catch (Exception e) {
 
-            chunk1 = embRequest.substring(0, embRequest.length() / 2);
-            chunk2 = embRequest.substring(embRequest.length() / 2, embRequest.length());
-            chunk1 = embeddingsRequest(chunk1);
-            chunk2 = embeddingsRequest(chunk2);
-            System.out.println("ENTRO PERO SE SOLUCIONO");
-            return sumaEmb(chunk1, chunk2);
+            // chunk1 = embRequest.substring(0, embRequest.length() / 2);
+            // chunk2 = embRequest.substring(embRequest.length() / 2, embRequest.length());
+            // chunk1 = embeddingsRequest(chunk1);
+            // chunk2 = embeddingsRequest(chunk2);
+            // System.out.println("ENTRO PERO SE SOLUCIONO");
+            // return sumaEmb(chunk1, chunk2);
+            System.out.println(e);
         }
 
         
@@ -49,6 +50,7 @@ public class EmbeddingsRequests {
             emb = emb.substring(0, emb.length() - 1);
             emb = emb + "]";
         }
+        
         return emb;
     }
 
