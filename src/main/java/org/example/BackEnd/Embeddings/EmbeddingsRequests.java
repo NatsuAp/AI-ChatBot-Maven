@@ -21,8 +21,8 @@ public class EmbeddingsRequests {
                 .buildClient();
 
         EmbeddingsOptions embeddingsOptions = new EmbeddingsOptions(null);
-        String chunk1 = "";
-        String chunk2 = "";
+        // String chunk1 = "";
+        // String chunk2 = "";
         Embeddings embeddings= null;
         try {
             embeddingsOptions = new EmbeddingsOptions(Arrays.asList(embRequest));

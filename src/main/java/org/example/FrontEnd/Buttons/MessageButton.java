@@ -7,14 +7,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import org.example.BackEnd.APIClient;
+import org.example.BackEnd.UserInput.GetFinalString;
 import org.example.FrontEnd.TextArea.Searchbox;
 
 public class MessageButton {
     public JButton inputButton() {
         APIClient api = new APIClient();
         Searchbox Searchbox = new Searchbox();
-        ImageIcon arrow = new ImageIcon("AI-ChatBot-Maven\\src\\main\\resources\\Send.png");
+        ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
         JButton button = new JButton(arrow);
+        GetFinalString gtf = new GetFinalString();
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
         button.setFocusPainted(false); // Para quitar los bordes, rellenos usuales del boton y dejar solo la imagen
@@ -45,8 +47,11 @@ public class MessageButton {
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
                 String str = Searchbox.Enter();
-                api.Chat(str);
-                
+                String prompt = null;
+                if(!str.isBlank()){
+                    prompt = gtf.getPrompt(str);
+                }
+                // api.Chat(prompt);
                 // Aqui falta la funcion que llame a la API
             }
 

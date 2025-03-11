@@ -1,9 +1,6 @@
 package org.example.FrontEnd.TextArea;
 
 import javax.swing.*;
-
-import org.example.BackEnd.ChatBackEnd.UserInput;
-
 import java.awt.*;
 
 public class Searchbox {

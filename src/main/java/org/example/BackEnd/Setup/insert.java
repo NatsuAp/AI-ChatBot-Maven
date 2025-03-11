@@ -20,8 +20,8 @@ public class insert {
         props.setProperty("stringtype", "unspecified");
         // FALTA USER Y PASSWORD
         //
-        String[] a = new String[] {"Mat", "Fis", "Comp", "Ing", "Esp", "EdF", "Art", "Leng", "Soc", "Lit", "Calc", "Est", "Per", "Hon", "Sql"};
-
+        // String[] a = new String[] {"Mat", "Fis", "Comp", "Ing", "Esp", "EdF", "Art", "Leng", "Soc", "Lit", "Calc", "Est", "Per", "Hon", "Sql"};
+        // Este fue el arreglo que usamos para probar nuestros Embeddings
         Connection conn;
         try {
             conn = DriverManager.getConnection(urlDB, props);

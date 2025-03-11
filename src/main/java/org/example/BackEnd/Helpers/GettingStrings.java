@@ -28,7 +28,7 @@ public class GettingStrings {
 
         
 
-        int c = 1;
+
         String[] preguntas = todo.split("#########################################################");
         //Para meter separar las preguntas y despues llamar la funcion que conecta con la base de datos
         for(String x: preguntas){
