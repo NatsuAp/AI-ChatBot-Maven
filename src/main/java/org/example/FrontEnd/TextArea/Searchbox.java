@@ -2,7 +2,7 @@ package org.example.FrontEnd.TextArea;
 
 import javax.swing.*;
 
-import org.example.BackEnd.ChatBackEnd.UserInput;
+import org.example.BackEnd.UserInput.UserInput;
 
 import java.awt.*;
 
@@ -16,7 +16,6 @@ public class Searchbox {
         Searchbox.setLineWrap(true);
         Searchbox.setWrapStyleWord(true);
         Searchbox.setBackground(new Color(53, 59, 78));
-
         Searchbox.setFont(new Font("Segoe UI", Font.BOLD, 20));
         Searchbox.setForeground(Color.WHITE);
         JScrollPane scrollPane = new JScrollPane(Searchbox);

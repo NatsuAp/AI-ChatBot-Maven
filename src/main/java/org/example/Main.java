@@ -2,8 +2,7 @@ package org.example;
 import org.example.BackEnd.*;
 import org.example.BackEnd.Embeddings.EmbeddingsRequests;
 import org.example.BackEnd.Helpers.GettingStrings;
-import org.example.BackEnd.APIClient;
-import org.example.BackEnd.FrameBuilder;
+import org.example.BackEnd.Requests.APIClient;
 import org.example.BackEnd.Setup.*;
 import java.util.ArrayList;
 
@@ -29,16 +28,35 @@ public class Main {
         // get.guardarBD();
 
         CompareEmb a = new CompareEmb();
-        a.Compare(ie.embeddingsRequest("""
-                Question: 1 ### 1.  Which of the following pairs of declarations will cause an error message?  I. double x = 14.7;
-int y = x;
-  II. double x = 14.7;
-int y = (int) x;
-  III. int x = 14;
-double y = x;
- ### A. None  B. I only  C. II only  D. III only  E. I and III only ### Correct Answer:  B ### Explanation: ### When  x  is converted to an integer, as in segment I, information is lost. Java requires that an explicit cast to an  int  be made, as in segment II. Note that segment II will cause  x  to be truncated: The value stored in  y  is  14 . By requiring the explicit cast, Java doesnât let you do this accidentally. In segment III,  y  will contain the value  14.0 . No explicit cast to a  double  is required since no information is lost. ### 
-
-                """));
+       String[][] str = a.Compare(ie.embeddingsRequest("Consider the  Card  and  Deck  classes below, which are used to create a  Deck of Card  objects.  public class Card\r\n" + //
+                    "{\r\n" + //
+                    "private String suit;\r\n" + //
+                    "private String value;\r\n" + //
+                    "public Card(String aSuit, String aValue)\r\n" + //
+                    "{\r\n" + //
+                    "suit = aSuit;\r\n" + //
+                    "value = aValue;\r\n" + //
+                    "//Other methods not shown.\r\n" + //
+                    "}\r\n" + //
+                    "public class Deck\r\n" + //
+                    "ArrayList<Card> deck;\r\n" + //
+                    "public Deck()\r\n" + //
+                    "{\r\n" + //
+                    "getCards () ;\r\n" + //
+                    "}\r\n" + //
+                    "public void getCards ()\r\n" + //
+                    "{ /* implementation not shown */ }\r\n" + //
+                    "//Other methods not shown.\r\n" + //
+                    "    The programmer tests the constructor of the  Deck  class with the  DeckTester  class shown below.  public class DeckTester\r\n" + //
+                    "{\r\n" + //
+                    "public static void main(String[] args)\r\n" + //
+                    "{\r\n" + //
+                    "Deck d = new Deck() ;\r\n" + //
+                    "}\r\n" + //
+                    "   When the code is run, a  NullPointerException  is thrown. Which of the following could be the cause of the error? "));
+          for (String strings : str[0]) {
+            System.out.println(strings);
+          }
         // insert in = new insert();
         // in.inserts(null, null);
       

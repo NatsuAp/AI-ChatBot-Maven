@@ -6,7 +6,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import org.example.BackEnd.APIClient;
+import org.example.BackEnd.Requests.APIClient;
 import org.example.FrontEnd.TextArea.Searchbox;
 
 public class MessageButton {
