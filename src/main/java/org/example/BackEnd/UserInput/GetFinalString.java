@@ -1,7 +1,8 @@
-package org.example.BackEnd.ChatBackEnd;
+package org.example.BackEnd.UserInput;
 
+import org.example.BackEnd.Embeddings.CompareEmb;
 import org.example.BackEnd.Embeddings.EmbeddingsRequests;
-import org.example.BackEnd.Setup.CompareEmb;
+
 
 public class GetFinalString {
     public String userInput;

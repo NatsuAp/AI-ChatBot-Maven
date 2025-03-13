@@ -2,32 +2,41 @@ package org.example.FrontEnd.TextArea;
 
 import javax.swing.*;
 
-import org.example.BackEnd.UserInput.UserInput;
+
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Searchbox {
-    JTextArea Searchbox = new JTextArea();
-    public JScrollPane SearchB(){
-        
+    private JTextField searchField;
+
+    public JTextField textField() {
+       
+        searchField = new JTextField(20);
+
+
+        searchField.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        searchField.setBackground(new Color(53, 59, 78));
+        searchField.setForeground(Color.WHITE);
+        searchField.setBorder(null);
+
+        //Captura de texto cuando se presiona ENTER
+        searchField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e){
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    System.out.println(searchField.getText());
+                    searchField.setText("");
+                }
+            }
+        });
        
         
-        
-        Searchbox.setLineWrap(true);
-        Searchbox.setWrapStyleWord(true);
-        Searchbox.setBackground(new Color(53, 59, 78));
-        Searchbox.setFont(new Font("Segoe UI", Font.BOLD, 20));
-        Searchbox.setForeground(Color.WHITE);
-        JScrollPane scrollPane = new JScrollPane(Searchbox);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); //Si el texto es demasiado largo se habilita para
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // scrollear
-        scrollPane.setBorder(null);
-        scrollPane.setOpaque(false);
-        scrollPane.setBackground(new Color(53, 59, 78));
-        return scrollPane;
-
+      
+        return searchField;
     }
-    public String Enter(){
-        return Searchbox.getText();
-    }
+    
+    
+    
 }

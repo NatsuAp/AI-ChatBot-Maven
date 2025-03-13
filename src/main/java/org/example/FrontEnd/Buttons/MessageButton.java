@@ -5,15 +5,22 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JTextField;
+
+import org.example.Main;
 
 import org.example.BackEnd.Requests.APIClient;
-import org.example.FrontEnd.TextArea.Searchbox;
+
 
 public class MessageButton {
+    JTextField field;
     public JButton inputButton() {
+        
+       
         APIClient api = new APIClient();
-        Searchbox Searchbox = new Searchbox();
-        ImageIcon arrow = new ImageIcon("AI-ChatBot-Maven\\src\\main\\resources\\Send.png");
+        Main main = new Main();
+    
+        ImageIcon arrow = new ImageIcon("src/main/resources/Images/Send.png");
         JButton button = new JButton(arrow);
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
@@ -44,14 +51,19 @@ public class MessageButton {
             public void mousePressed(MouseEvent e) { // Cuando clickeas
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
-                String str = Searchbox.Enter();
-                api.Chat(str);
+
                 
-                // Aqui falta la funcion que llame a la API
+
             }
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
+                System.out.println(main.textGetter());
+
+              
+                
+
+//
             }
         });
 

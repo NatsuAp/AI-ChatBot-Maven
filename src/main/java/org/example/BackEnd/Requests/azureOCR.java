@@ -6,7 +6,6 @@ import com.azure.ai.vision.imageanalysis.models.DetectedTextLine;
 import com.azure.ai.vision.imageanalysis.models.ImageAnalysisOptions;
 import com.azure.ai.vision.imageanalysis.models.ImageAnalysisResult;
 import com.azure.ai.vision.imageanalysis.models.VisualFeatures;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -23,7 +22,7 @@ public String OCRRequest(String str){
     imageResizer resizer = new imageResizer();
     String key = System.getenv("AzureOCR_API_KEY");
     String endpoint = "https://hacknet-vision-consanjose.cognitiveservices.azure.com/";
-    Image img = null;
+    // Image img = null;
     ImageAnalysisClient client = new ImageAnalysisClientBuilder()
     .credential(new KeyCredential(key))
     .endpoint(endpoint)

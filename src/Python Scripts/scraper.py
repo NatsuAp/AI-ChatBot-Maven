@@ -51,8 +51,7 @@ def scrape():
             file.write(content)
             file.write("\n#########################################################")
 
-prompt = "Can you print the text in this image?"
-image_path=""
+
 
 
 

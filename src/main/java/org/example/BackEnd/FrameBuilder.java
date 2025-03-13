@@ -1,12 +1,10 @@
 package org.example.BackEnd;
-
-
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import org.example.FrontEnd.Frame;
 import org.example.FrontEnd.Labels.HeaderLabel;
 import org.example.FrontEnd.Panels.*;
@@ -14,6 +12,7 @@ import org.example.FrontEnd.TextArea.Searchbox;
 import org.example.FrontEnd.Buttons.*;
 
 public class FrameBuilder {
+    public JTextField textArea;
     public void frameSetup(){
         HeaderPanel headerP = new HeaderPanel();  //
         SearchboxPanel searchboxP = new SearchboxPanel();//  importacion archivos
@@ -29,16 +28,25 @@ public class FrameBuilder {
         JButton AttachButton = buttonC.sendButton();//
         JButton MessageButton = inButton.inputButton(); //
         JPanel bodyPanel= bodyP.Body();
-        JScrollPane Searchbox = textA.SearchB();
+        textArea = textA.textField();
+    
         headerPanel.add(headerLabel);
         searchPanel.add(MessageButton, BorderLayout.EAST);
         searchPanel.add(AttachButton, BorderLayout.WEST); //Se añaden componentes como los botones y la caja de texto a los paneles
-        searchPanel.add(Searchbox, BorderLayout.CENTER);
+       
+        searchPanel.add(textArea, BorderLayout.CENTER);
 
         frame.add(searchPanel, BorderLayout.SOUTH);
         frame.add(headerPanel, BorderLayout.NORTH);  //se añaden los paneles al frame
         frame.add(bodyPanel, BorderLayout.CENTER);
 
         frame.setVisible(true);
+       
     }
+    public String getFieldText(){
+        String str = textArea.getText();
+        textArea.setText("");
+        return str;
+    }
+    
 }
