@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -17,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.border.Border;
 
+import org.example.BackEnd.Requests.azureOCR;
 import org.example.FrontEnd.setFilechooser;
 
 public class AttachButton {
@@ -60,17 +63,21 @@ public class AttachButton {
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
-                File pathFile = new File("src\\main\\resources\\UserImages");
+                
                 int response = fileChooser.showOpenDialog(button);
                 if (response == JFileChooser.APPROVE_OPTION) {
-                    File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-                    
-                  try {
-                 
-                   Files.copy(file.toPath(), pathFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                  } catch (IOException error) {
-                   
-                  }
+                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+               
+                  azureOCR ocr = new azureOCR();
+                  ocr.AzureRequest(String.valueOf(file));
+                    File pathFile = new File("src\\main\\resources\\UserImages");
+                //   try {
+                  
+                //    //Files.copy(file.toPath(), pathFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                
+                //   } catch (IOException error) {
+                //   error.printStackTrace();
+                //   }
                 }
 
             }

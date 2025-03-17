@@ -5,15 +5,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import org.example.BackEnd.Requests.ImageRetrieval;
-import org.example.BackEnd.Requests.azureOCR;
+import org.example.BackEnd.Helpers.WebScraper.Requests.ImageRetrievalAzure;
+import org.example.BackEnd.Helpers.WebScraper.Requests.ImageRetrievalOpenAI;
 
 public class QuestionsParser {
     public ArrayList<String> questionParser() {
         String path = "src\\main\\resources\\newData.txt";
         File file = new File(path);
-        azureOCR ocr = new azureOCR();
-        ImageRetrieval imgRet = new ImageRetrieval();
+        ImageRetrievalAzure ocr = new ImageRetrievalAzure();
+        ImageRetrievalOpenAI imgRet = new ImageRetrievalOpenAI();
         ImgOutput out = new ImgOutput();
         ArrayList<String> data = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {

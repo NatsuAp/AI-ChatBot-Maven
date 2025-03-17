@@ -10,7 +10,7 @@ public JFileChooser fileChooser(){
     JFileChooser fileChooser = new JFileChooser();
     //Filtro que solo acepta imagenes
     FileNameExtensionFilter filter =
-                new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg");
+                new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg", "txt");
         fileChooser.setFileFilter(filter);
 
         //Remueve la capacidad de recibir cualquier tipo de archivo

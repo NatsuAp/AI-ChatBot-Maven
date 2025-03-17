@@ -1,4 +1,4 @@
-package org.example.BackEnd.Requests;
+package org.example.BackEnd.Helpers.WebScraper.Requests;
 import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.OpenAIClientBuilder;
 import com.azure.ai.openai.models.ChatCompletions;
@@ -14,12 +14,13 @@ import com.azure.core.credential.KeyCredential;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-public class ImageRetrieval {
+public class ImageRetrievalOpenAI {
+    //Esta funcion se usa si el request para Azure, 
     public String ImgRequest(String str){
 
         //String openAIKey = "";
         String modelId = "gpt-4o-mini";
-        String azureKey = System.getenv("AZURE_API_KEY");
+        String azureKey = "";
         OpenAIClient client = new OpenAIClientBuilder()
                 .credential(new KeyCredential(azureKey))
                 .endpoint("https://hacknet-colsanjose.openai.azure.com/")
