@@ -1,4 +1,5 @@
 package org.example.BackEnd.Requests;
+
 import java.io.File;
 import java.util.Arrays;
 
@@ -15,30 +16,27 @@ import com.azure.core.util.BinaryData;
 public class azureOCR {
     String endpoint = "https://hacknet-vision-consanjose.cognitiveservices.azure.com/";
     String key = "6VS8SKYPdi4ZGs3ltxYQNDdpMJEogk30g0L4N0ghqFdD0B8YWNHUJQQJ99BBACHYHv6XJ3w3AAAFACOGRYBw";
-    public String AzureRequest(String str){
-      
-    
-        
+
+    public String AzureRequest(String str) {
+
         // Create a synchronous client using API key authentication
         ImageAnalysisClient client = new ImageAnalysisClientBuilder()
-            .endpoint(endpoint)
-            .credential(new KeyCredential(key))
-            .buildClient();
-          ImageAnalysisResult result = client.analyze(
-    BinaryData.fromFile(new File(str).toPath()), // imageData: Image file loaded into memory as BinaryData
-    Arrays.asList(VisualFeatures.READ), // visualFeatures
-    null); // options: There are no options for READ visual feature
+                .endpoint(endpoint)
+                .credential(new KeyCredential(key))
+                .buildClient();
+        ImageAnalysisResult result = client.analyze(
+                BinaryData.fromFile(new File(str).toPath()), // imageData: Image file loaded into memory as BinaryData
+                Arrays.asList(VisualFeatures.READ), // visualFeatures
+                null); // options: There are no options for READ visual feature
 
-// Print analysis results to the console
-System.out.println("Image analysis results:");
-System.out.println(" Read:");
-for (DetectedTextLine line : result.getRead().getBlocks().get(0).getLines()) {
-    System.out.println(line.getText());
-        
+        // Print analysis results to the console
+        System.out.println("Image analysis results:");
+        System.out.println(" Read:");
+        for (DetectedTextLine line : result.getRead().getBlocks().get(0).getLines()) {
+            System.out.println(line.getText());
 
-}
-    
+        }
 
-return "";
-}
+        return "";
+    }
 }

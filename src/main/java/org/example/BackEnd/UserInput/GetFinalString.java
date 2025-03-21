@@ -1,12 +1,11 @@
 package org.example.BackEnd.UserInput;
 
-import org.example.BackEnd.Embeddings.CompareEmb;
 import org.example.BackEnd.Embeddings.EmbeddingsRequests;
 
 
 public class GetFinalString {
     public String userInput;
-    CompareEmb comp = new CompareEmb();
+   
     EmbeddingsRequests emb = new EmbeddingsRequests();
     public String getPrompt(String userInput) {
         this.userInput = userInput;

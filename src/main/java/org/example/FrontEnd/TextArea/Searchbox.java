@@ -20,7 +20,7 @@ public class Searchbox {
         searchField.setBackground(new Color(53, 59, 78));
         searchField.setForeground(Color.WHITE);
         searchField.setBorder(null);
-
+        
         //Captura de texto cuando se presiona ENTER
         searchField.addKeyListener(new KeyAdapter() {
             @Override

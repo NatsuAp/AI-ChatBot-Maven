@@ -12,29 +12,29 @@ import org.example.FrontEnd.TextArea.Searchbox;
 import org.example.FrontEnd.Buttons.*;
 
 public class FrameBuilder {
-    public JTextField textArea;
+    //public JTextField textArea;
     public void frameSetup(){
         HeaderPanel headerP = new HeaderPanel();  //
         SearchboxPanel searchboxP = new SearchboxPanel();//  importacion archivos
         HeaderLabel headerL = new HeaderLabel();//
-        AttachButton buttonC = new AttachButton();//
-        MessageButton inButton = new MessageButton();//
+        // AttachButton buttonC = new AttachButton();//
+        // MessageButton inButton = new MessageButton();//
         BodyPanel bodyP = new BodyPanel();
-        Searchbox textA = new Searchbox();
+        // Searchbox textA = new Searchbox();
         JFrame frame = Frame.createFrame();//
         JPanel headerPanel = headerP.createHeader();//
         JLabel headerLabel = headerL.headerLabel();//
         JPanel searchPanel =searchboxP.createSearchbox();//  importacion metodos
-        JButton AttachButton = buttonC.sendButton();//
-        JButton MessageButton = inButton.inputButton(); //
+        // JButton AttachButton = buttonC.sendButton();//
+        // JButton MessageButton = inButton.inputButton(); //
         JPanel bodyPanel= bodyP.Body();
-        textArea = textA.textField();
+        // textArea = textA.textField();
     
         headerPanel.add(headerLabel);
-        searchPanel.add(MessageButton, BorderLayout.EAST);
-        searchPanel.add(AttachButton, BorderLayout.WEST); //Se añaden componentes como los botones y la caja de texto a los paneles
+        // searchPanel.add(MessageButton, BorderLayout.EAST);
+        // searchPanel.add(AttachButton, BorderLayout.WEST); //Se añaden componentes como los botones y la caja de texto a los paneles
        
-        searchPanel.add(textArea, BorderLayout.CENTER);
+       // searchPanel.add(textArea, BorderLayout.SOUTH);
 
         frame.add(searchPanel, BorderLayout.SOUTH);
         frame.add(headerPanel, BorderLayout.NORTH);  //se añaden los paneles al frame
@@ -43,10 +43,6 @@ public class FrameBuilder {
         frame.setVisible(true);
        
     }
-    public String getFieldText(){
-        String str = textArea.getText();
-        textArea.setText("");
-        return str;
-    }
+    
     
 }

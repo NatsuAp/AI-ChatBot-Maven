@@ -5,22 +5,22 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JTextField;
 
 import org.example.Main;
-
+import org.example.BackEnd.Embeddings.*;
 import org.example.BackEnd.Requests.APIClient;
+import org.example.FrontEnd.Panels.SearchboxPanel;
+import org.example.FrontEnd.TextArea.Searchbox;
 
-
-public class MessageButton {
-    JTextField field;
-    public JButton inputButton() {
-        
-       
-        APIClient api = new APIClient();
-        Main main = new Main();
+public class MessageButton extends EmbeddingsRequests{
+    CompareEmb comparition = new CompareEmb();
+    SearchboxPanel text;
     
-        ImageIcon arrow = new ImageIcon("src/main/resources/Images/Send.png");
+    public JButton inputButton(SearchboxPanel textParam) {
+        this.text = textParam;
+        APIClient api = new APIClient();
+        Searchbox Searchbox = new Searchbox();
+        ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
         JButton button = new JButton(arrow);
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
@@ -51,19 +51,17 @@ public class MessageButton {
             public void mousePressed(MouseEvent e) { // Cuando clickeas
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
-
+        
+               // api.Chat(str);
                 
-
+                // Aqui falta la funcion que llame a la API
             }
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
-                System.out.println(main.textGetter());
-
-              
+                System.out.println(text.getFieldText());
+            
                 
-
-//
             }
         });
 

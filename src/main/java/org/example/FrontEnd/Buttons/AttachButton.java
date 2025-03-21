@@ -29,7 +29,7 @@ public class AttachButton {
         JFileChooser fileChooser = fl.fileChooser();
         ImageIcon clip = new ImageIcon("src/main/resources/Images/Clip.png"); // imagen
         JButton button = new JButton(clip); // Recibe como parametro la imagen
-        Border border = BorderFactory.createEmptyBorder(0, 0, 4, 0); // Declaracion parametros de borde invisible
+        Border border = BorderFactory.createEmptyBorder(0, 0, 4, 7); // Declaracion parametros de borde invisible
         
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
@@ -71,6 +71,7 @@ public class AttachButton {
                   azureOCR ocr = new azureOCR();
                   ocr.AzureRequest(String.valueOf(file));
                     File pathFile = new File("src\\main\\resources\\UserImages");
+                    
                 //   try {
                   
                 //    //Files.copy(file.toPath(), pathFile.toPath(), StandardCopyOption.REPLACE_EXISTING);

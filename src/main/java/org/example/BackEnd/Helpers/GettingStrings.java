@@ -40,7 +40,7 @@ public class GettingStrings {
             
             System.out.println(individual[0]);
             System.out.println("ESTE PROMP TIENE " + String.valueOf(x.length())+ "LETRAS");
-            insert.inserts(question, emb.embeddingsRequest(x));
+            insert.inserts(question, emb.getEmbedding(x));
         }
         System.out.println("LO LOGRASTE HPTAAAA");
     }
