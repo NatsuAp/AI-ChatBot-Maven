@@ -17,7 +17,7 @@ public class Frame {
         frame.setIconImage(logo.getImage());  //Imagen
         frame.setLayout(new BorderLayout());  //para posicionar los futuros paneles
         frame.getContentPane().setBackground(new Color(42, 42, 62));  //fondo del frame
-
+       
         return frame;
     }
 }

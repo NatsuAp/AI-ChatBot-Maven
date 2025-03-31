@@ -17,6 +17,7 @@ public class FrameBuilder {
         HeaderPanel headerP = new HeaderPanel();  //
         SearchboxPanel searchboxP = new SearchboxPanel();//  importacion archivos
         HeaderLabel headerL = new HeaderLabel();//
+        
         // AttachButton buttonC = new AttachButton();//
         // MessageButton inButton = new MessageButton();//
         BodyPanel bodyP = new BodyPanel();
@@ -39,7 +40,7 @@ public class FrameBuilder {
         frame.add(searchPanel, BorderLayout.SOUTH);
         frame.add(headerPanel, BorderLayout.NORTH);  //se añaden los paneles al frame
         frame.add(bodyPanel, BorderLayout.CENTER);
-
+        
         frame.setVisible(true);
        
     }

@@ -16,6 +16,8 @@ public class SearchboxPanel {
     public JButton MessageButton;
     public JTextField textArea;
     public Searchbox textA;
+    public AttachPanel atc;
+    public JPanel attach;
 
     public SearchboxPanel() {
         this.buttonC = new AttachButton();//
@@ -23,21 +25,23 @@ public class SearchboxPanel {
         this.AttachButton = this.buttonC.sendButton();//
         this.textA = new Searchbox();
         this.MessageButton = this.inButton.inputButton(this); //
+        this.atc = new AttachPanel();
+        this.attach = atc.Outer();
     }
 
     public JPanel createSearchbox() {
         Border border = BorderFactory.createEmptyBorder(10, 10, 30, 20); // Para darle padding
         JPanel inner = innerbox();
         JPanel OuterPanel = new JPanel(); // Para poder darle pading al panel y no a los componentes
-        JPanel att = new JPanel();
+    
 
         OuterPanel.setLayout(new BorderLayout());// para dividir la barra inferior en LEFT, RIGHT, CENTER, BOTTOM, TOP
         OuterPanel.setBackground(new Color(32, 50, 100));
-        //OuterPanel.setOpaque(false);
+        OuterPanel.setOpaque(false);
         OuterPanel.setBorder(border);
         OuterPanel.setPreferredSize(new Dimension(0, 160));// tamaño preferible
         OuterPanel.add(inner, BorderLayout.SOUTH);
-       
+        OuterPanel.add(attach, BorderLayout.NORTH);
         return OuterPanel;
     }
 

@@ -21,8 +21,11 @@ import javax.swing.border.Border;
 
 import org.example.BackEnd.Requests.azureOCR;
 import org.example.FrontEnd.setFilechooser;
+import org.example.FrontEnd.Panels.AttachPanel;
 
 public class AttachButton {
+    String dummyFile;
+    File file;
 
     public JButton sendButton() {
         setFilechooser fl = new setFilechooser();
@@ -30,7 +33,7 @@ public class AttachButton {
         ImageIcon clip = new ImageIcon("src/main/resources/Images/Clip.png"); // imagen
         JButton button = new JButton(clip); // Recibe como parametro la imagen
         Border border = BorderFactory.createEmptyBorder(0, 0, 4, 7); // Declaracion parametros de borde invisible
-        
+
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
         button.setFocusPainted(false); // Para quitar los bordes, rellenos usuales del boton y dejar solo la imagen
@@ -63,27 +66,44 @@ public class AttachButton {
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
-                
+
                 int response = fileChooser.showOpenDialog(button);
                 if (response == JFileChooser.APPROVE_OPTION) {
-                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-               
-                  azureOCR ocr = new azureOCR();
-                  ocr.AzureRequest(String.valueOf(file));
-                    File pathFile = new File("src\\main\\resources\\UserImages");
-                    
-                //   try {
-                  
-                //    //Files.copy(file.toPath(), pathFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                
-                //   } catch (IOException error) {
-                //   error.printStackTrace();
-                //   }
+                    file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                    dummyFile = file.toString();
+                    AttachPanel at = new AttachPanel();
+                    at.setVisible();
+                    azureOCR ocr = new azureOCR();
+                    // ocr.AzureRequest(String.valueOf(file));
+                    File pathFile = new File("src\\main\\resources\\UserImages\\");
+                   
+                    // try {
+
+                    // //Files.copy(file.toPath(), pathFile.toPath(),
+                    // StandardCopyOption.REPLACE_EXISTING);
+
+                    // } catch (IOException error) {
+                    // error.printStackTrace();
+                    // }
                 }
 
             }
         });
 
         return button;
+    }
+
+    public void setFile() {
+        if (file != null) {
+            file = null;
+        }
+    }
+
+    public String getFile() {
+        if (dummyFile != null) {
+            return dummyFile;
+        }
+        return null;
+
     }
 }

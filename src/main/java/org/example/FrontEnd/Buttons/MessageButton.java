@@ -59,8 +59,10 @@ public class MessageButton extends EmbeddingsRequests{
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
+              
                 System.out.println(text.getFieldText());
-            
+                AttachButton at = new AttachButton();
+                //at.setFile();
                 
             }
         });
