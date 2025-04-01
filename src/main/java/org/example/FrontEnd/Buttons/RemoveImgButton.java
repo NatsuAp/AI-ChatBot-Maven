@@ -1,29 +1,24 @@
 package org.example.FrontEnd.Buttons;
+
+import java.awt.event.MouseListener;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import org.example.Main;
-import org.example.BackEnd.Embeddings.*;
-import org.example.BackEnd.Requests.APIClient;
 import org.example.FrontEnd.Panels.AttachPanel;
-import org.example.FrontEnd.Panels.SearchboxPanel;
-import org.example.FrontEnd.TextArea.Searchbox;
 
-public class MessageButton extends EmbeddingsRequests{
-    CompareEmb comparition = new CompareEmb();
-    SearchboxPanel text;
-    
-    public JButton inputButton(SearchboxPanel textParam) {
-        this.text = textParam;
-        APIClient api = new APIClient();
-        Searchbox Searchbox = new Searchbox();
-        ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
-        JButton button = new JButton(arrow);
-        button.setBorderPainted(false);
+
+public class RemoveImgButton {
+public static JButton removeButton(){
+    ImageIcon tempImg = new ImageIcon("src\\main\\resources\\Images\\cancel.png");
+    Image img = tempImg.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH); //Imagen Nueva de menor tamaño
+    ImageIcon cancel = new ImageIcon(img);
+    JButton button = new JButton(cancel);
+    button.setBorderPainted(false);
         button.setContentAreaFilled(false);
         button.setFocusPainted(false); // Para quitar los bordes, rellenos usuales del boton y dejar solo la imagen
         button.setBorder(null);
@@ -34,7 +29,7 @@ public class MessageButton extends EmbeddingsRequests{
 
             public void mouseEntered(MouseEvent e) { // si pasas el mouse por el boton
                 button.setFocusPainted(true);
-                button.setBorder(BorderFactory.createEmptyBorder(0, 7, 4, 0));
+                
                 
             }
 
@@ -53,22 +48,20 @@ public class MessageButton extends EmbeddingsRequests{
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
         
-               // api.Chat(str);
-                
-                // Aqui falta la funcion que llame a la API
             }
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
-              
-                System.out.println(text.getFieldText());
-                
-                AttachButton.setFile();  //Si el usuario adjunto una imagen, vuelve el espacio del archivo nulo nuevamente
-                AttachPanel.setVisible(); //esconde otra vez el panel de attach
+                AttachButton.setFile();
+                AttachPanel.setVisible();
+               
                 
             }
-        });
 
+            
+
+           
+        });
         return button;
-    }
+}
 }

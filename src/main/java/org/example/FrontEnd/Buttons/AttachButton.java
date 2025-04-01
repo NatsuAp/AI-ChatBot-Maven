@@ -4,28 +4,21 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.Scanner;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
 import org.example.BackEnd.Requests.azureOCR;
 import org.example.FrontEnd.setFilechooser;
+import org.example.FrontEnd.Labels.imageLabels;
 import org.example.FrontEnd.Panels.AttachPanel;
 
 public class AttachButton {
-    String dummyFile;
-    File file;
+
+    public static File file;
 
     public JButton sendButton() {
         setFilechooser fl = new setFilechooser();
@@ -70,13 +63,24 @@ public class AttachButton {
                 int response = fileChooser.showOpenDialog(button);
                 if (response == JFileChooser.APPROVE_OPTION) {
                     file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-                    dummyFile = file.toString();
-                    AttachPanel at = new AttachPanel();
-                    at.setVisible();
+                    AttachPanel.setVisible();
+                    try {
+                        imageLabels.setImage(file.toString());
+                    } catch (Exception error) {
+                        JOptionPane.showMessageDialog(
+                                null, // Parent component (null centers the dialog)
+                                "Ocurrio un error al intentar cargar la imagen", // Message to display
+                                "Error desconocido!", // Title of the dialog
+                                JOptionPane.WARNING_MESSAGE // Type of message (can be INFORMATION_MESSAGE,
+                                                            // ERROR_MESSAGE, etc.)
+                        );
+                        AttachButton.setFile();
+                    }
+
                     azureOCR ocr = new azureOCR();
                     // ocr.AzureRequest(String.valueOf(file));
                     File pathFile = new File("src\\main\\resources\\UserImages\\");
-                   
+
                     // try {
 
                     // //Files.copy(file.toPath(), pathFile.toPath(),
@@ -93,17 +97,24 @@ public class AttachButton {
         return button;
     }
 
-    public void setFile() {
+    public static void setFile() {
         if (file != null) {
             file = null;
         }
     }
 
-    public String getFile() {
-        if (dummyFile != null) {
-            return dummyFile;
+    public static String getFile() {
+        if (file != null) {
+            return file.toString();
         }
         return null;
 
+    }
+
+    public static String sendFile(File file) {
+        if (file != null) {
+            return file.toString();
+        }
+        return null;
     }
 }
