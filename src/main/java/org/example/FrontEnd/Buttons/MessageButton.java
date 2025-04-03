@@ -9,14 +9,16 @@ import javax.swing.JButton;
 import org.example.Main;
 import org.example.BackEnd.Embeddings.*;
 import org.example.BackEnd.Requests.APIClient;
+import org.example.BackEnd.UserInput.GetFinalString;
 import org.example.FrontEnd.Panels.AttachPanel;
 import org.example.FrontEnd.Panels.SearchboxPanel;
 import org.example.FrontEnd.TextArea.Searchbox;
 
 public class MessageButton extends EmbeddingsRequests{
-    CompareEmb comparition = new CompareEmb();
+    GetFinalString request = new GetFinalString();
     SearchboxPanel text;
-    
+    String input;
+    String response;
     public JButton inputButton(SearchboxPanel textParam) {
         this.text = textParam;
         APIClient api = new APIClient();
@@ -52,7 +54,12 @@ public class MessageButton extends EmbeddingsRequests{
             public void mousePressed(MouseEvent e) { // Cuando clickeas
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
-        
+                input = text.getFieldText();
+                if(!input.isBlank()){
+                    response = request.getPrompt(input);
+                    APIClient.Chat(input, response);
+                    System.out.println();
+                }
                // api.Chat(str);
                 
                 // Aqui falta la funcion que llame a la API
@@ -62,7 +69,6 @@ public class MessageButton extends EmbeddingsRequests{
                 button.setOpaque(false);
               
                 System.out.println(text.getFieldText());
-                
                 AttachButton.setFile();  //Si el usuario adjunto una imagen, vuelve el espacio del archivo nulo nuevamente
                 AttachPanel.setVisible(); //esconde otra vez el panel de attach
                 

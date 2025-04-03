@@ -10,11 +10,11 @@ import com.azure.core.credential.AzureKeyCredential;
 import java.sql.*;
 
 
-
+//System.getenv("AZURE_API_KEY");
 public class APIClient {
 
-    public void Chat(String pregunta, String dataBaseANS) {
-        String apiKey = System.getenv("AZURE_API_KEY");
+    public static void Chat(String pregunta, String dataBaseANS) {
+        String apiKey = ""; 
         String url = "https://hacknet-colsanjose.openai.azure.com/";
       
         OpenAIClient client = new OpenAIClientBuilder()

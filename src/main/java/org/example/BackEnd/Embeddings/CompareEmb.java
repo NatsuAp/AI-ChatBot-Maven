@@ -8,24 +8,24 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class CompareEmb {
-    String urlDB = "jdbc:postgresql://hacknet.cncguc2ysbs8.us-east-1.rds.amazonaws.com:5432/HACKNETDB";
-
-    public String[][] Compare(String embedding) {
-        // Coneccion con la base de Datos
-        Properties props = new Properties();
-        props.setProperty("user", "hacknet_colsanjose");
-        props.setProperty("password", "235711");
-        props.setProperty("stringtype", "unspecified");
-        // FALTA USER Y PASSWORD
-        //
-        String[][] res = new String[5][6];
-        ResultSet a = null;
-        Connection conn;
-        try {
-            conn = DriverManager.getConnection(urlDB, props);
+    static String urlDB = "jdbc:postgresql://hacknet.cncguc2ysbs8.us-east-1.rds.amazonaws.com:5432/HACKNETDB";
+    
+        public static String[][] Compare(String embedding) {
+            // Coneccion con la base de Datos
+            Properties props = new Properties();
+            props.setProperty("user", "hacknet_colsanjose");
+            props.setProperty("password", "235711");
+            props.setProperty("stringtype", "unspecified");
+            // FALTA USER Y PASSWORD
+            //
+            String[][] res = new String[5][6];
+            ResultSet a = null;
+            Connection conn;
+            try {
+                conn = DriverManager.getConnection(urlDB, props);
             PreparedStatement st = conn
             .prepareStatement("SELECT ID, Question, AnswerC, Answer, Explanation," +
-            // "(Embedding <=> ?) AS distance " +
+            "(Embedding <=> ?) AS distance " +
             "FROM DATA " +
             "ORDER BY distance ASC " +
             "LIMIT 5");
@@ -41,7 +41,7 @@ public class CompareEmb {
             int i = 0;
             while (a.next()) {
                 for (int j = 0; j < 5; j++) {
-                    res[i][j] = a.getString(j + 1);
+                    res[i][j] = a.getString(j + 1); //TODO: Validar el tipo para poder utilizar el metodo especifico del tipo que se quiere hacer
                 }
                 i++;
             }

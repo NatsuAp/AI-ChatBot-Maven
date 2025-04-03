@@ -1,26 +1,29 @@
 package org.example.BackEnd.UserInput;
 
+import org.example.BackEnd.Embeddings.CompareEmb;
 import org.example.BackEnd.Embeddings.EmbeddingsRequests;
-
 
 public class GetFinalString {
     public String userInput;
+    String[][] output = new String[5][6];
    
     EmbeddingsRequests emb = new EmbeddingsRequests();
+
     public String getPrompt(String userInput) {
         this.userInput = userInput;
-        String prompt = userInput + " //  Aca tienes algunos ejemplos para que te guies con tu respuesta: EJEMPLO 1 : ";
-        String[][] preguntas = new String[5][5];
+        String prompt = userInput;
+        String str="";
         int i = 1;
-        for(String[] x: preguntas){
-            for(String q: x){
-                prompt = prompt + " " + q;
+        output = CompareEmb.Compare(emb.getEmbedding(prompt));
+        for (String[] strings : output) {
+            str = str + "Result " + i + "\n";
+            for (String string : strings) {
+                str = str + string +  "\n";
             }
-            prompt = prompt + "EJEMPLO " + i + ":"; 
+            System.out.println(str);
+            i++;
         }
+        return str;
 
-        
-        return prompt;
-        
     }
 }

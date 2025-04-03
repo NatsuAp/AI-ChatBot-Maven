@@ -15,7 +15,7 @@ import com.azure.core.util.BinaryData;
 
 public class azureOCR {
     String endpoint = "https://hacknet-vision-consanjose.cognitiveservices.azure.com/";
-    String key = "6VS8SKYPdi4ZGs3ltxYQNDdpMJEogk30g0L4N0ghqFdD0B8YWNHUJQQJ99BBACHYHv6XJ3w3AAAFACOGRYBw";
+    String key = "";
 
     public String AzureRequest(String str) {
 
