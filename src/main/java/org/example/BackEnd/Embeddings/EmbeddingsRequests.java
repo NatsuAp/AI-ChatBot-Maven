@@ -10,7 +10,7 @@ import com.azure.core.credential.AzureKeyCredential;
 import java.util.*;
 
 public class EmbeddingsRequests {
-    public String getEmbedding(String embRequest ) {
+    public static String getEmbedding(String embRequest ) {
         String azureOpenaiKey = "DbJJJ2a7jiUDtSZo4aFulZzZX2W3TPQNQvJW2gKHVL0ciZhdXyJiJQQJ99BAACHYHv6XJ3w3AAABACOGh5pr";
         String endpoint = "https://hacknet-colsanjose.openai.azure.com/";
         String deploymentOrModelId = "text-embedding-ada-002";

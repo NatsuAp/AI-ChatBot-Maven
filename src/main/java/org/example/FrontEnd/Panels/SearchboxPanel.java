@@ -59,7 +59,7 @@ public class SearchboxPanel {
         return inner;
 
     }
-
+    //funcion que captura el texto del textfield
     public String getFieldText() {
         String str = textArea.getText();
         textArea.setText("");

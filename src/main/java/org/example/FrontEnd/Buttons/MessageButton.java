@@ -5,24 +5,19 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
-import org.example.Main;
 import org.example.BackEnd.Embeddings.*;
 import org.example.BackEnd.Requests.APIClient;
 import org.example.BackEnd.UserInput.GetFinalString;
 import org.example.FrontEnd.Panels.AttachPanel;
 import org.example.FrontEnd.Panels.SearchboxPanel;
-import org.example.FrontEnd.TextArea.Searchbox;
+
 
 public class MessageButton extends EmbeddingsRequests{
-    GetFinalString request = new GetFinalString();
-    SearchboxPanel text;
-    String input;
-    String response;
+
+    static SearchboxPanel text;
+
     public JButton inputButton(SearchboxPanel textParam) {
-        this.text = textParam;
-        APIClient api = new APIClient();
-        Searchbox Searchbox = new Searchbox();
+        text = textParam;
         ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
         JButton button = new JButton(arrow);
         button.setBorderPainted(false);
@@ -54,21 +49,15 @@ public class MessageButton extends EmbeddingsRequests{
             public void mousePressed(MouseEvent e) { // Cuando clickeas
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
-                input = text.getFieldText();
-                if(!input.isBlank()){
-                    response = request.getPrompt(input);
-                    APIClient.Chat(input, response);
-                    System.out.println();
-                }
-               // api.Chat(str);
-                
-                // Aqui falta la funcion que llame a la API
+
+                sendinput(); //Esta funcion corre el proceso de creacion de embedding del input del usuario, lo compara y manda el request a la IA
+
             }
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
               
-                System.out.println(text.getFieldText());
+
                 AttachButton.setFile();  //Si el usuario adjunto una imagen, vuelve el espacio del archivo nulo nuevamente
                 AttachPanel.setVisible(); //esconde otra vez el panel de attach
                 
@@ -76,5 +65,15 @@ public class MessageButton extends EmbeddingsRequests{
         });
 
         return button;
+    }
+    public static void sendinput(){
+        String input;
+        String response;
+        input = text.getFieldText();
+        if(!input.isBlank()){
+            response = GetFinalString.getPrompt(input);
+            APIClient.Chat(input, response);
+            System.out.println(input);
+        }
     }
 }

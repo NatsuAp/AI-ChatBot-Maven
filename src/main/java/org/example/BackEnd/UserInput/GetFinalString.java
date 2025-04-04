@@ -4,17 +4,17 @@ import org.example.BackEnd.Embeddings.CompareEmb;
 import org.example.BackEnd.Embeddings.EmbeddingsRequests;
 
 public class GetFinalString {
-    public String userInput;
-    String[][] output = new String[5][6];
-   
-    EmbeddingsRequests emb = new EmbeddingsRequests();
 
-    public String getPrompt(String userInput) {
-        this.userInput = userInput;
+
+   
+
+
+    public static String getPrompt(String userInput) {
+        String[][] output = new String[5][6];
         String prompt = userInput;
         String str="";
         int i = 1;
-        output = CompareEmb.Compare(emb.getEmbedding(prompt));
+        output = CompareEmb.Compare(EmbeddingsRequests.getEmbedding(prompt));
         for (String[] strings : output) {
             str = str + "Result " + i + "\n";
             for (String string : strings) {
