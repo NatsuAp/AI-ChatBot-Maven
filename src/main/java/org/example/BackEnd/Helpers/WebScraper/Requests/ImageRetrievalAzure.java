@@ -38,7 +38,7 @@ public String OCRRequest(String str){
         if(originalImage.getWidth()<50 || originalImage.getHeight()<50){
             BufferedImage newImg = resizer.imgResized(originalImage);
 
-            ImageIO.write(newImg, "jpg", new File("src\\main\\resources\\FileImages\\image_"+ i + ".jpg"));
+            ImageIO.write(newImg, "jpg", new File("src\\main\\resources\\FileImages\\image.jpg"));
             i++;
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
        

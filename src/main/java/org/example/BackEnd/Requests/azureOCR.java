@@ -14,11 +14,11 @@ import com.azure.core.credential.KeyCredential;
 import com.azure.core.util.BinaryData;
 
 public class azureOCR {
-    String endpoint = "https://hacknet-vision-consanjose.cognitiveservices.azure.com/";
-    String key = "";
+    static String endpoint = "https://hacknet-vision-consanjose.cognitiveservices.azure.com/";
+    static String key = "6VS8SKYPdi4ZGs3ltxYQNDdpMJEogk30g0L4N0ghqFdD0B8YWNHUJQQJ99BBACHYHv6XJ3w3AAAFACOGRYBw";
 
-    public String AzureRequest(String str) {
-
+    public static String AzureRequest(String str) {
+     String text="";
         // Create a synchronous client using API key authentication
         ImageAnalysisClient client = new ImageAnalysisClientBuilder()
                 .endpoint(endpoint)
@@ -30,13 +30,13 @@ public class azureOCR {
                 null); // options: There are no options for READ visual feature
 
         // Print analysis results to the console
-        System.out.println("Image analysis results:");
-        System.out.println(" Read:");
+
         for (DetectedTextLine line : result.getRead().getBlocks().get(0).getLines()) {
-            System.out.println(line.getText());
+            text+= line.getText() + "\n";
+
 
         }
 
-        return "";
+        return text;
     }
 }

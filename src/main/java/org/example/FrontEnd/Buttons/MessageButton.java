@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import org.example.BackEnd.Embeddings.*;
 import org.example.BackEnd.Requests.APIClient;
+import org.example.BackEnd.Requests.azureOCR;
 import org.example.BackEnd.UserInput.GetFinalString;
 import org.example.FrontEnd.Panels.AttachPanel;
 import org.example.FrontEnd.Panels.SearchboxPanel;
@@ -50,13 +51,14 @@ public class MessageButton extends EmbeddingsRequests{
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
 
-                sendinput(); //Esta funcion corre el proceso de creacion de embedding del input del usuario, lo compara y manda el request a la IA
+                    sendinput(); //Esta funcion corre el proceso de creacion de embedding del input del usuario, lo compara y manda el request a la IA
+
+
 
             }
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
-              
 
                 AttachButton.setFile();  //Si el usuario adjunto una imagen, vuelve el espacio del archivo nulo nuevamente
                 AttachPanel.setVisible(); //esconde otra vez el panel de attach
@@ -66,14 +68,36 @@ public class MessageButton extends EmbeddingsRequests{
 
         return button;
     }
+
     public static void sendinput(){
         String input;
-        String response;
+        String results;
+        String file;
+        String imgStr;
+        String answer;
         input = text.getFieldText();
-        if(!input.isBlank()){
-            response = GetFinalString.getPrompt(input);
-            APIClient.Chat(input, response);
-            System.out.println(input);
+        file = AttachButton.getFile();
+        if(input.isBlank() && file==null){
+            return;
+        }
+        if(!input.isBlank() & file==null){
+
+                results= GetFinalString.getPrompt(input);
+
+           answer = APIClient.Chat(input, results);
+            APIClient.addMesaggeHistory(input, answer);
+
+        } else {
+            imgStr = azureOCR.AzureRequest(file);
+            results = GetFinalString.getPrompt(imgStr);
+            if (input.isBlank()) {
+                input= "Help me";
+            }
+            input+= " This is the question: " + imgStr;
+           answer = APIClient.Chat(input, results);
+            APIClient.addMesaggeHistory(input, answer);
         }
     }
+
+
 }

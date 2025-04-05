@@ -110,11 +110,4 @@ public class AttachButton {
         return null;
 
     }
-
-    public static String sendFile(File file) {
-        if (file != null) {
-            return file.toString();
-        }
-        return null;
-    }
 }

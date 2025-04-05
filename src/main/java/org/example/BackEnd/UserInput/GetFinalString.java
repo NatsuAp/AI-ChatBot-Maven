@@ -5,10 +5,6 @@ import org.example.BackEnd.Embeddings.EmbeddingsRequests;
 
 public class GetFinalString {
 
-
-   
-
-
     public static String getPrompt(String userInput) {
         String[][] output = new String[5][6];
         String prompt = userInput;
