@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>     
     </properties>
     
     <dependencies>
@@ -21,7 +21,11 @@
     <artifactId>azure-ai-vision-imageanalysis</artifactId>
     <version>1.0.0</version>
 </dependency>
-
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.15.1</version>
+</dependency>
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
@@ -42,24 +46,15 @@
         </dependency>
     </dependencies>
 
-  
-       
-       
-
-
-
-
- 
     <repositories>
         <repository>
             <id>central</id>
             <name>Maven Central</name>
             <url>https://repo1.maven.org/maven2/</url>
         </repository>
-
-
     </repositories>
-<build>
+
+  <build>
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -72,7 +67,6 @@
               <goal>read-project-properties</goal>
             </goals>
             <configuration>
-              <useDefaultValues>true</useDefaultValues>
               <files>
                 <file>${project.basedir}/.env</file>
               </files>
@@ -81,6 +75,5 @@
         </executions>
       </plugin>
     </plugins>
-  </build> 
-
+  </build>
 </project>

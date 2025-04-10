@@ -1,4 +1,4 @@
-package org.example.BackEnd;
+package org.example.FrontEnd;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import org.example.FrontEnd.Frame;
+
 import org.example.FrontEnd.Labels.HeaderLabel;
 import org.example.FrontEnd.Panels.*;
 import org.example.FrontEnd.TextArea.Searchbox;

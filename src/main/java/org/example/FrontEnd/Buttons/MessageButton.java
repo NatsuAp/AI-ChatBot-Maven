@@ -1,10 +1,17 @@
 package org.example.FrontEnd.Buttons;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.Base64;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import org.apache.commons.io.FileUtils;
 import org.example.BackEnd.Embeddings.*;
 import org.example.BackEnd.Requests.APIClient;
 import org.example.BackEnd.Requests.azureOCR;
@@ -12,8 +19,7 @@ import org.example.BackEnd.UserInput.GetFinalString;
 import org.example.FrontEnd.Panels.AttachPanel;
 import org.example.FrontEnd.Panels.SearchboxPanel;
 
-
-public class MessageButton extends EmbeddingsRequests{
+public class MessageButton extends EmbeddingsRequests {
 
     static SearchboxPanel text;
 
@@ -33,7 +39,7 @@ public class MessageButton extends EmbeddingsRequests{
             public void mouseEntered(MouseEvent e) { // si pasas el mouse por el boton
                 button.setFocusPainted(true);
                 button.setBorder(BorderFactory.createEmptyBorder(0, 7, 4, 0));
-                
+
             }
 
             @Override
@@ -51,53 +57,73 @@ public class MessageButton extends EmbeddingsRequests{
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
 
-                    sendinput(); //Esta funcion corre el proceso de creacion de embedding del input del usuario, lo compara y manda el request a la IA
-
-
+                sendinput(); // Esta funcion corre el proceso de creacion de embedding del input del usuario,
+                             // lo compara y manda el request a la IA
 
             }
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
 
-                AttachButton.setFile();  //Si el usuario adjunto una imagen, vuelve el espacio del archivo nulo nuevamente
-                AttachPanel.setVisible(); //esconde otra vez el panel de attach
-                
+                AttachButton.setFile(); // Si el usuario adjunto una imagen, vuelve el espacio del archivo nulo
+                                        // nuevamente
+                AttachPanel.setVisible(); // esconde otra vez el panel de attach
+
             }
         });
 
         return button;
     }
 
-    public static void sendinput(){
+    public static void sendinput() {
         String input;
         String results;
         String file;
         String imgStr;
         String answer;
+        byte[] fileContent;
+        String encodedImg=null;
+        
         input = text.getFieldText();
         file = AttachButton.getFile();
-        if(input.isBlank() && file==null){
+        if (input.isBlank() && file == null) {
             return;
         }
-        if(!input.isBlank() & file==null){
+        if (!input.isBlank() & file == null) {
 
-                results= GetFinalString.getPrompt(input);
+            results = GetFinalString.getPrompt(input);
 
-           answer = APIClient.Chat(input, results);
+            answer = APIClient.Chat(input, results, encodedImg);
             APIClient.addMesaggeHistory(input, answer);
 
         } else {
-            imgStr = azureOCR.AzureRequest(file);
-            results = GetFinalString.getPrompt(imgStr);
-            if (input.isBlank()) {
-                input= "Help me";
+            
+            try {
+                fileContent = FileUtils.readFileToByteArray(new File(file));
+
+                 encodedImg = Base64.getEncoder().encodeToString(fileContent);
+                
+                imgStr = azureOCR.AzureRequest(file);
+
+                results = GetFinalString.getPrompt(imgStr);
+
+                if (input.isBlank()) {
+
+                    input = "Help me";
+
+                }
+               // input += " This is the question: " + imgStr;
+
+                answer = APIClient.Chat(input, results, encodedImg);
+
+                APIClient.addMesaggeHistory(input, answer);
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
             }
-            input+= " This is the question: " + imgStr;
-           answer = APIClient.Chat(input, results);
-            APIClient.addMesaggeHistory(input, answer);
+
         }
     }
-
 
 }

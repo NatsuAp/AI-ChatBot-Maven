@@ -60,19 +60,19 @@ public class AttachButton {
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
 
-                int response = fileChooser.showOpenDialog(button);
-                if (response == JFileChooser.APPROVE_OPTION) {
+                int response = fileChooser.showOpenDialog(button);   //Guarda lo que hizo el usuario
+                if (response == JFileChooser.APPROVE_OPTION) {  //Si el usuario selecciono una imagen, entra en el condicional
                     file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                     AttachPanel.setVisible();
                     try {
                         imageLabels.setImage(file.toString());
                     } catch (Exception error) {
                         JOptionPane.showMessageDialog(
-                                null, // Parent component (null centers the dialog)
-                                "Ocurrio un error al intentar cargar la imagen", // Message to display
-                                "Error desconocido!", // Title of the dialog
-                                JOptionPane.WARNING_MESSAGE // Type of message (can be INFORMATION_MESSAGE,
-                                                            // ERROR_MESSAGE, etc.)
+                                null, // 
+                                "Ocurrio un error al intentar cargar la imagen", 
+                                "Error desconocido!", 
+                                JOptionPane.WARNING_MESSAGE 
+                                                            
                         );
                         AttachButton.setFile();
                     }

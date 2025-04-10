@@ -7,7 +7,7 @@ import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.OpenAIClientBuilder;
 import com.azure.ai.openai.models.*;
 import com.azure.core.credential.AzureKeyCredential;
-import java.sql.*;
+
 
 
 //System.getenv("AZURE_API_KEY");
@@ -31,7 +31,7 @@ public class APIClient {
                 chatMessages.add(new ChatRequestUserMessage(user));
                 chatMessages.add(new ChatRequestAssistantMessage(assistant));
     }
-    public static String Chat(String pregunta, String dataBaseANS) {
+    public static String Chat(String pregunta, String dataBaseANS, String imgEncode) {
         String apiKey = "DbJJJ2a7jiUDtSZo4aFulZzZX2W3TPQNQvJW2gKHVL0ciZhdXyJiJQQJ99BAACHYHv6XJ3w3AAABACOGh5pr";
         String url = "https://hacknet-colsanjose.openai.azure.com/";
         String str="";
@@ -39,7 +39,17 @@ public class APIClient {
                 .credential(new AzureKeyCredential(apiKey))
                 .endpoint(url)
                 .buildClient();
-        chatMessages.add(new ChatRequestUserMessage(pregunta));
+                
+        
+        if(imgEncode!=null){
+           chatMessages.add(new ChatRequestUserMessage(Arrays.asList(
+            new ChatMessageTextContentItem(pregunta),
+            new ChatMessageImageContentItem(
+                    new ChatMessageImageUrl("data:image/png;base64, " + imgEncode )
+                    ))));
+        }else{
+            chatMessages.add(new ChatRequestUserMessage(pregunta));
+        }
         chatMessages.add(new ChatRequestSystemMessage("Answers retrieved: "+ dataBaseANS ));
 
 
