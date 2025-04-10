@@ -61,7 +61,6 @@
         <artifactId>properties-maven-plugin</artifactId>
         <version>1.2.1</version>
         <executions>
-          <execution>
             <phase>initialize</phase>
             <goals>
               <goal>read-project-properties</goal>
@@ -71,7 +70,7 @@
                 <file>${project.basedir}/.env</file>
               </files>
             </configuration>
-          </execution>
+         
         </executions>
       </plugin>
     </plugins>

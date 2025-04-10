@@ -10,6 +10,7 @@ import java.util.Base64;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingWorker;
 
 import org.apache.commons.io.FileUtils;
 import org.example.BackEnd.Embeddings.*;
@@ -22,11 +23,11 @@ import org.example.FrontEnd.Panels.SearchboxPanel;
 public class MessageButton extends EmbeddingsRequests {
 
     static SearchboxPanel text;
-
+    JButton button;
     public JButton inputButton(SearchboxPanel textParam) {
         text = textParam;
         ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
-        JButton button = new JButton(arrow);
+        button = new JButton(arrow);
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
         button.setFocusPainted(false); // Para quitar los bordes, rellenos usuales del boton y dejar solo la imagen
@@ -57,8 +58,11 @@ public class MessageButton extends EmbeddingsRequests {
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
 
-                sendinput(); // Esta funcion corre el proceso de creacion de embedding del input del usuario,
-                             // lo compara y manda el request a la IA
+                button.setVisible(false);  
+                SearchboxPanel.setLoadingVisible(true);
+                
+
+                worker.execute(); //Se ejecuta en un thread distinto para que no se congela la UI mientras hace el llamado a la API
 
             }
 
@@ -82,8 +86,8 @@ public class MessageButton extends EmbeddingsRequests {
         String imgStr;
         String answer;
         byte[] fileContent;
-        String encodedImg=null;
-        
+        String encodedImg = null;
+
         input = text.getFieldText();
         file = AttachButton.getFile();
         if (input.isBlank() && file == null) {
@@ -97,12 +101,12 @@ public class MessageButton extends EmbeddingsRequests {
             APIClient.addMesaggeHistory(input, answer);
 
         } else {
-            
+
             try {
                 fileContent = FileUtils.readFileToByteArray(new File(file));
 
-                 encodedImg = Base64.getEncoder().encodeToString(fileContent);
-                
+                encodedImg = Base64.getEncoder().encodeToString(fileContent);
+
                 imgStr = azureOCR.AzureRequest(file);
 
                 results = GetFinalString.getPrompt(imgStr);
@@ -112,7 +116,6 @@ public class MessageButton extends EmbeddingsRequests {
                     input = "Help me";
 
                 }
-               // input += " This is the question: " + imgStr;
 
                 answer = APIClient.Chat(input, results, encodedImg);
 
@@ -126,4 +129,24 @@ public class MessageButton extends EmbeddingsRequests {
         }
     }
 
+    SwingWorker<String, Void> worker = new SwingWorker<>() {
+        @Override
+        protected String doInBackground() throws Exception {
+           
+            sendinput(); // Esta funcion corre el proceso de creacion de embedding del input del usuario,
+                             // lo compara y manda el request a la IA
+
+                       
+            return "Response from API";
+        }
+
+        @Override
+        protected void done() {
+            // After API call finishes
+            button.setVisible(true);  
+                SearchboxPanel.setLoadingVisible(false);
+
+           
+        }
+    };
 }
