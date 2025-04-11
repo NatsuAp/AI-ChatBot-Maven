@@ -1,6 +1,9 @@
 package org.example.FrontEnd.Panels;
 
 import javax.swing.*;
+
+import org.example.FrontEnd.Labels.LoadingLabel;
+
 import java.awt.*;
 
 public class BodyPanel extends JPanel{
@@ -8,7 +11,7 @@ public class BodyPanel extends JPanel{
         JPanel body = new JPanel();
         body.setBackground(new Color(42, 42, 62));   //Cuerpo del frame, donde van los mensajes
         //TODO: Crear interfraz de mensajes
-
+      
         return body;
     }
 }

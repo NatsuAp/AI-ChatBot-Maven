@@ -6,7 +6,7 @@ import java.util.Scanner;
 import org.example.BackEnd.Embeddings.EmbeddingsRequests;
 
 public class GettingStrings {
-    EmbeddingsRequests emb = new EmbeddingsRequests();
+    
     org.example.BackEnd.Setup.insert insert = new org.example.BackEnd.Setup.insert();
 
     public void guardarBD() {
@@ -40,7 +40,7 @@ public class GettingStrings {
             
             System.out.println(individual[0]);
             System.out.println("ESTE PROMP TIENE " + String.valueOf(x.length())+ "LETRAS");
-            insert.inserts(question, emb.getEmbedding(x));
+            insert.inserts(question, EmbeddingsRequests.getEmbedding(x));
         }
         System.out.println("LO LOGRASTE HPTAAAA");
     }

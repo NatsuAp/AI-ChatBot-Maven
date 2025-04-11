@@ -14,7 +14,7 @@ public class SearchboxPanel {
     public AttachButton buttonC;
     public MessageButton inButton;
     public JButton AttachButton;
-    public JButton MessageButton;
+    
     public JTextField textArea;
     public Searchbox textA;
     public AttachPanel atc;
@@ -22,15 +22,15 @@ public class SearchboxPanel {
 
     public SearchboxPanel() {
         this.buttonC = new AttachButton();//
-        this.inButton = new MessageButton();//
+        
         this.AttachButton = this.buttonC.sendButton();//
         this.textA = new Searchbox();
-        this.MessageButton = this.inButton.inputButton(this); //
+        
         this.atc = new AttachPanel();
         this.attach = atc.Outer();
     }
 
-    public static JLabel loading = LoadingLabel.loading();
+  
 
     public JPanel createSearchbox() {
         Border border = BorderFactory.createEmptyBorder(10, 10, 30, 20); // Para darle padding
@@ -44,11 +44,10 @@ public class SearchboxPanel {
         OuterPanel.setPreferredSize(new Dimension(0, 160));// tamaño preferible
         OuterPanel.add(inner, BorderLayout.SOUTH);
         OuterPanel.add(attach, BorderLayout.NORTH);
-        loading.setVisible(false);
-        OuterPanel.add(loading, BorderLayout.EAST);
+       
         return OuterPanel;
     }
-
+    static JButton MessageB = MessageButton.inputButton();
     public JPanel innerbox() {
 
         JPanel inner = new JPanel();
@@ -58,14 +57,19 @@ public class SearchboxPanel {
         inner.setBackground(new Color(48, 52, 63));
         inner.setBorder(border);
         textArea = textA.textField();
-        inner.add(MessageButton, BorderLayout.EAST);
+        inner.add(MessageB, BorderLayout.EAST);
         inner.add(AttachButton, BorderLayout.WEST);
         inner.add(textArea, BorderLayout.CENTER);
        
         return inner;
 
     }
-
+    static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
+    public static void buttonSet(){
+        MessageB.setOpaque(false);
+        MessageB.setIcon(arrow);
+        MessageB.setEnabled(true);
+    }
     // funcion que captura el texto del textfield
     public String getFieldText() {
         String str = textArea.getText();
@@ -73,7 +77,5 @@ public class SearchboxPanel {
         return str;
     }
 
-    public static void setLoadingVisible(Boolean bol) {
-        loading.setVisible(bol);
-    }
+   
 }
