@@ -30,8 +30,7 @@ public class Searchbox {
         searchField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                String input;
-                String response;
+              
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
                     MessageButton.sendinput();

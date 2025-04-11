@@ -24,10 +24,11 @@ import org.example.FrontEnd.Panels.SearchboxPanel;
 
 public class MessageButton extends EmbeddingsRequests {
     static ImageIcon load = LoadingLabel.loading();
-    static SearchboxPanel text;
+    
     static JButton button;
     static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
-
+    static String input;
+    static String file;
     public static JButton inputButton() {
        
 
@@ -62,11 +63,23 @@ public class MessageButton extends EmbeddingsRequests {
             public void mousePressed(MouseEvent e) { // Cuando clickeas
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
-
-                button.setVisible(false);
-
-                worker.execute(); // Se ejecuta en un thread distinto para que no se congela la UI mientras hace
-                                  // el llamado a la API
+                
+                input = SearchboxPanel.getFieldText();
+                file = AttachButton.getFile();
+                if(
+                    (!input.isEmpty() && file!=null) ||
+                    (input.isEmpty() && file!=null)   ||
+                    (!input.isEmpty() && file==null)
+                    ){
+                    SearchboxPanel.buttonSet(false);
+                    createWorker().execute();
+                     // Se ejecuta en un thread distinto para que no se congela la UI mientras hace
+                    // el llamado a la API
+                }
+                   
+                    
+                
+                
 
             }
 
@@ -79,21 +92,19 @@ public class MessageButton extends EmbeddingsRequests {
 
         return button;
     }
-
+     
     public static void sendinput() {
-        String input;
+        
         String results;
-        String file;
+        
         String imgStr;
         String answer;
         byte[] fileContent;
         String encodedImg = null;
 
-        input = text.getFieldText();
-        file = AttachButton.getFile();
-        if (input.isBlank() && file == null) {
-            return;
-        }
+        
+        
+        
         if (!input.isBlank() & file == null) {
 
             results = GetFinalString.getPrompt(input);
@@ -129,21 +140,29 @@ public class MessageButton extends EmbeddingsRequests {
 
         }
     }
-
-    static SwingWorker<Void, Void> worker = new SwingWorker<>() {
+    
+    static SwingWorker<Void, Void> createWorker(){
+        return new SwingWorker<>() {
+    
         @Override
         protected Void doInBackground() throws Exception {
-
-            sendinput(); // Esta funcion corre el proceso de creacion de embedding del input del usuario,
+            try {
+                sendinput(); // Esta funcion corre el proceso de creacion de embedding del input del usuario,
                          // lo compara y manda el request a la IA
-
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+            
             return null;
         }
 
         @Override
         protected void done() {
             // After API call finishes
-           SearchboxPanel.buttonSet();
+            
+            
+            call();
             AttachButton.setFile(); // Si el usuario adjunto una imagen, vuelve el espacio del archivo nulo nuevamente
             
             AttachPanel.setVisible(); // esconde otra vez el panel de attach
@@ -151,4 +170,9 @@ public class MessageButton extends EmbeddingsRequests {
         }
         
     };
+}
+
+    public static void call(){
+        SearchboxPanel.buttonSet(true);
+    }
 }

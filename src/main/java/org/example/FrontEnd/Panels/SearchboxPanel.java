@@ -13,25 +13,23 @@ import java.awt.*;
 public class SearchboxPanel {
     public AttachButton buttonC;
     public MessageButton inButton;
-    public JButton AttachButton;
-    
-    public JTextField textArea;
+    public static JButton AttachButton;
+
+    public static JTextField textArea;
     public Searchbox textA;
     public AttachPanel atc;
     public JPanel attach;
 
     public SearchboxPanel() {
         this.buttonC = new AttachButton();//
-        
+
         this.AttachButton = this.buttonC.sendButton();//
         this.textA = new Searchbox();
-        
+
         this.atc = new AttachPanel();
         this.attach = atc.Outer();
     }
-
-  
-
+    static ImageIcon load = LoadingLabel.loading();
     public JPanel createSearchbox() {
         Border border = BorderFactory.createEmptyBorder(10, 10, 30, 20); // Para darle padding
         JPanel inner = innerbox();
@@ -44,10 +42,12 @@ public class SearchboxPanel {
         OuterPanel.setPreferredSize(new Dimension(0, 160));// tamaño preferible
         OuterPanel.add(inner, BorderLayout.SOUTH);
         OuterPanel.add(attach, BorderLayout.NORTH);
-       
+
         return OuterPanel;
     }
+
     static JButton MessageB = MessageButton.inputButton();
+
     public JPanel innerbox() {
 
         JPanel inner = new JPanel();
@@ -57,25 +57,38 @@ public class SearchboxPanel {
         inner.setBackground(new Color(48, 52, 63));
         inner.setBorder(border);
         textArea = textA.textField();
+        
         inner.add(MessageB, BorderLayout.EAST);
         inner.add(AttachButton, BorderLayout.WEST);
         inner.add(textArea, BorderLayout.CENTER);
-       
+        
         return inner;
 
     }
+
     static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
-    public static void buttonSet(){
-        MessageB.setOpaque(false);
+
+    public static void buttonSet(Boolean bol) {
+        if(bol){
+        
         MessageB.setIcon(arrow);
         MessageB.setEnabled(true);
+        AttachButton.setEnabled(true);
+       
+        }else{
+        MessageB.setIcon(load);
+        MessageB.setEnabled(false);
+        AttachButton.setEnabled(false);
+        }
+        
+        
     }
+
     // funcion que captura el texto del textfield
-    public String getFieldText() {
+    public static String getFieldText() {
         String str = textArea.getText();
         textArea.setText("");
         return str;
     }
 
-   
 }

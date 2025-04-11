@@ -81,14 +81,7 @@ public class AttachButton {
                     // ocr.AzureRequest(String.valueOf(file));
                     File pathFile = new File("src\\main\\resources\\UserImages\\");
 
-                    // try {
-
-                    // //Files.copy(file.toPath(), pathFile.toPath(),
-                    // StandardCopyOption.REPLACE_EXISTING);
-
-                    // } catch (IOException error) {
-                    // error.printStackTrace();
-                    // }
+                    
                 }
 
             }
