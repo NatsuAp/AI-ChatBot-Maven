@@ -1,4 +1,4 @@
-package org.example.FrontEnd;
+package org.example.FrontEnd.Frame;
 
 import java.awt.BorderLayout;
 

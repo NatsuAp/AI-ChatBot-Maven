@@ -1,8 +1,6 @@
 package org.example;
-
-import org.example.BackEnd.*;
 import org.example.BackEnd.Requests.APIClient;
-import org.example.FrontEnd.FrameBuilder;
+import org.example.FrontEnd.Frame.FrameBuilder;
 
 public class Main {
     

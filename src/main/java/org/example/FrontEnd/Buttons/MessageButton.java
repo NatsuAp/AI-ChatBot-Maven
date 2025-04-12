@@ -1,38 +1,37 @@
 package org.example.FrontEnd.Buttons;
 
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.util.Base64;
-
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.SwingWorker;
 
-import org.apache.commons.io.FileUtils;
-import org.example.BackEnd.Embeddings.*;
+import org.example.BackEnd.Helpers.Base64Coder;
 import org.example.BackEnd.Requests.APIClient;
 import org.example.BackEnd.Requests.azureOCR;
+
 import org.example.BackEnd.UserInput.GetFinalString;
+import org.example.FrontEnd.Async.Worker;
 import org.example.FrontEnd.Labels.LoadingLabel;
-import org.example.FrontEnd.Panels.AttachPanel;
 import org.example.FrontEnd.Panels.SearchboxPanel;
 
-public class MessageButton extends EmbeddingsRequests {
+public class MessageButton {
     static ImageIcon load = LoadingLabel.loading();
-    
-    static JButton button;
+
+    public static JButton button = new JButton();
     static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
     static String input;
     static String file;
-    public static JButton inputButton() {
-       
 
-        button = new JButton();
+    public static JButton inputButton() {
+
+        
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setIcon(arrow);
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
@@ -40,139 +39,108 @@ public class MessageButton extends EmbeddingsRequests {
         button.setBorder(null);
         button.setOpaque(false);
         button.setBorder(BorderFactory.createEmptyBorder(0, 7, 0, 0));
-        button.addMouseListener(new MouseAdapter() { // Detector de eventos
+        // listener si el usuario presiona la tecla ENTER, hace lo mismo que si el
+        // usuario presiona el boton
+        
+        button.addMouseListener(new MouseAdapter() { // Listener para el boton
             @Override
 
             public void mouseEntered(MouseEvent e) { // si pasas el mouse por el boton
-                button.setFocusPainted(true);
-                button.setBorder(BorderFactory.createEmptyBorder(0, 7, 4, 0));
-
+                button.setOpaque(true);
+                button.setBackground(new Color(255, 255, 255, 30));
+                button.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255, 40), 1));
             }
 
             @Override
             public void mouseExited(MouseEvent e) { // Cuando quitas el mouse del boton
-                button.setBorderPainted(false);
-                button.setContentAreaFilled(false);
-                button.setFocusPainted(false);
-                button.setBorder(null);
                 button.setOpaque(false);
-                button.setBorder(BorderFactory.createEmptyBorder(0, 7, 0, 0));
+                button.setBackground(null);
+                button.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
             }
 
             @Override
             public void mousePressed(MouseEvent e) { // Cuando clickeas
-                button.setBackground(Color.LIGHT_GRAY);
-                button.setOpaque(true);
-                
-                input = SearchboxPanel.getFieldText();
-                file = AttachButton.getFile();
-                if(
-                    (!input.isEmpty() && file!=null) ||
-                    (input.isEmpty() && file!=null)   ||
-                    (!input.isEmpty() && file==null)
-                    ){
-                    SearchboxPanel.buttonSet(false);
-                    createWorker().execute();
-                     // Se ejecuta en un thread distinto para que no se congela la UI mientras hace
-                    // el llamado a la API
+                if (!button.isEnabled()) {
+                    return;
                 }
-                   
-                    
-                
-                
-
+                startProcess();
             }
 
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
-                
 
             }
         });
+        
 
         return button;
     }
-     
-    public static void sendinput() {
-        
+    //Inicia el proceso y controla los inputs
+    public static void startProcess() {
+        button.setBackground(Color.LIGHT_GRAY);
+        button.setOpaque(true);
+
+        input = SearchboxPanel.getFieldText();
+        file = AttachButton.getFile();
+        if ((!input.isEmpty() && file != null) ||
+                (input.isEmpty() && file != null) ||
+                (!input.isEmpty() && file == null)) {
+
+            System.out.println("entro");
+            SearchboxPanel.buttonSet(false);
+
+            Worker.createWorker().execute();
+
+            // Se ejecuta en un thread distinto para que no se congela la UI mientras hace
+            // el llamado a la API
+        } else {
+            System.out.println("no entro");
+        }
+
+    }
+
+    public static void sendinput() { // TODO: Modificar esta funcion para que reciba la respuesta de la IA, Y eventualmente la retorne.
+                                     
+
         String results;
-        
         String imgStr;
         String answer;
-        byte[] fileContent;
         String encodedImg = null;
 
-        
-        
-        
         if (!input.isBlank() & file == null) {
 
             results = GetFinalString.getPrompt(input);
 
             answer = APIClient.Chat(input, results, encodedImg);
+
             APIClient.addMesaggeHistory(input, answer);
 
         } else {
 
-            try {
-                fileContent = FileUtils.readFileToByteArray(new File(file));
+            encodedImg = Base64Coder.encode(file);
 
-                encodedImg = Base64.getEncoder().encodeToString(fileContent);
+            imgStr = azureOCR.AzureRequest(file);
 
-                imgStr = azureOCR.AzureRequest(file);
+            results = GetFinalString.getPrompt(imgStr);
 
-                results = GetFinalString.getPrompt(imgStr);
+            if (input.isBlank()) {
 
-                if (input.isBlank()) {
+                input = "Help me";
 
-                    input = "Help me";
-
-                }
-
-                answer = APIClient.Chat(input, results, encodedImg);
-
-                APIClient.addMesaggeHistory(input, answer);
-
-            } catch (IOException e) {
-
-                e.printStackTrace();
             }
+
+            answer = APIClient.Chat(input, results, encodedImg);
+
+            APIClient.addMesaggeHistory(input, answer);
 
         }
     }
-    
-    static SwingWorker<Void, Void> createWorker(){
-        return new SwingWorker<>() {
-    
-        @Override
-        protected Void doInBackground() throws Exception {
-            try {
-                sendinput(); // Esta funcion corre el proceso de creacion de embedding del input del usuario,
-                         // lo compara y manda el request a la IA
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            
-            
-            return null;
-        }
 
-        @Override
-        protected void done() {
-            // After API call finishes
-            
-            
-            call();
-            AttachButton.setFile(); // Si el usuario adjunto una imagen, vuelve el espacio del archivo nulo nuevamente
-            
-            AttachPanel.setVisible(); // esconde otra vez el panel de attach
+    public static void disableButton() {
+        button.setEnabled(false);
+    }
 
-        }
-        
-    };
-}
-
-    public static void call(){
-        SearchboxPanel.buttonSet(true);
+    public static void EnableButton() {
+        button.setEnabled(true);
     }
 }

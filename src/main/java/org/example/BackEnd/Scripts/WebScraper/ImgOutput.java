@@ -1,4 +1,4 @@
-package org.example.BackEnd.Helpers.WebScraper;
+package org.example.BackEnd.Scripts.WebScraper;
 
 public class ImgOutput {
     public String outputParse(String str){

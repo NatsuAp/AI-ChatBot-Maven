@@ -6,8 +6,6 @@ import java.util.Arrays;
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClient;
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClientBuilder;
 import com.azure.ai.vision.imageanalysis.models.DetectedTextLine;
-import com.azure.ai.vision.imageanalysis.models.DetectedTextWord;
-import com.azure.ai.vision.imageanalysis.models.ImageAnalysisOptions;
 import com.azure.ai.vision.imageanalysis.models.ImageAnalysisResult;
 import com.azure.ai.vision.imageanalysis.models.VisualFeatures;
 import com.azure.core.credential.KeyCredential;

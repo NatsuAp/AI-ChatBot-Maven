@@ -1,4 +1,4 @@
-package org.example.BackEnd.Helpers;
+package org.example.BackEnd.Scripts;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -7,7 +7,7 @@ import org.example.BackEnd.Embeddings.EmbeddingsRequests;
 
 public class GettingStrings {
     
-    org.example.BackEnd.Setup.insert insert = new org.example.BackEnd.Setup.insert();
+    org.example.BackEnd.Scripts.Sql.insert insert = new org.example.BackEnd.Scripts.Sql.insert();
 
     public void guardarBD() {
         String path = "src\\main\\resources\\n" + //
@@ -19,7 +19,7 @@ public class GettingStrings {
             todo = todo+scanner.nextLine();
         }
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
+           
             e.printStackTrace();
         }
         

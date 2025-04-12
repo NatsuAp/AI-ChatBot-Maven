@@ -38,14 +38,14 @@ public class AttachPanel {
         return attach;
     }
 
-    public JPanel outerButonPanel;
-
+    public static JPanel outerButonPanel;
+    static JButton removeBut = RemoveImgButton.removeButton();
     public JPanel OuterButton() {
         outerButonPanel = new JPanel();
         Border border = BorderFactory.createEmptyBorder(0, 38, 0, 0);
         outerButonPanel.setBorder(border);
         outerButonPanel.setLayout(new BorderLayout());
-        outerButonPanel.add(RemoveImgButton.removeButton(), BorderLayout.NORTH);
+        outerButonPanel.add(removeBut, BorderLayout.NORTH);
         outerButonPanel.setOpaque(false);
         return outerButonPanel;
     }
@@ -58,6 +58,6 @@ public class AttachPanel {
             attach.setVisible(true);
             outer.revalidate();
         }
-
     }
+    
 }

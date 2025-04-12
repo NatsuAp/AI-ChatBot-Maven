@@ -1,4 +1,4 @@
-package org.example.BackEnd.Helpers.WebScraper.Requests;
+package org.example.BackEnd.Scripts.WebScraper.WebScraperRequests;
 
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClient;
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClientBuilder;
@@ -15,7 +15,7 @@ import com.azure.core.credential.KeyCredential;
 import com.azure.core.util.BinaryData;
 import javax.imageio.ImageIO;
 
-import org.example.BackEnd.Helpers.WebScraper.imageResizer;
+import org.example.BackEnd.Scripts.WebScraper.imageResizer;
 
 public class ImageRetrievalAzure {
     //Image img = OGlogo.getImage().getScaledInstance(100,99,Image.SCALE_SMOOTH);
@@ -30,7 +30,7 @@ public String OCRRequest(String str){
     .buildClient();
 
     ImageAnalysisResult result = null;
-    int i = 1;
+  
     try {
         URL imageUrl = new URL(str);
         
@@ -39,7 +39,7 @@ public String OCRRequest(String str){
             BufferedImage newImg = resizer.imgResized(originalImage);
 
             ImageIO.write(newImg, "jpg", new File("src\\main\\resources\\FileImages\\image.jpg"));
-            i++;
+           
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
        
         ImageIO.write(newImg, "png", baos);

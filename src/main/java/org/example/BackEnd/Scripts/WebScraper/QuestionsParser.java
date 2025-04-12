@@ -1,12 +1,12 @@
-package org.example.BackEnd.Helpers.WebScraper;
+package org.example.BackEnd.Scripts.WebScraper;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import org.example.BackEnd.Helpers.WebScraper.Requests.ImageRetrievalAzure;
-import org.example.BackEnd.Helpers.WebScraper.Requests.ImageRetrievalOpenAI;
+import org.example.BackEnd.Scripts.WebScraper.WebScraperRequests.ImageRetrievalAzure;
+import org.example.BackEnd.Scripts.WebScraper.WebScraperRequests.ImageRetrievalOpenAI;
 
 public class QuestionsParser {
     public ArrayList<String> questionParser() {

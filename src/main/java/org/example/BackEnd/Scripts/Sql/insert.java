@@ -1,4 +1,4 @@
-package org.example.BackEnd.Setup;
+package org.example.BackEnd.Scripts.Sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import org.example.BackEnd.Embeddings.EmbeddingsDummie;
-import org.example.BackEnd.Helpers.Questions;
+import org.example.BackEnd.Scripts.Questions;
 
 public class insert {
     String urlDB = "jdbc:postgresql://hacknet.cncguc2ysbs8.us-east-1.rds.amazonaws.com:5432/HACKNETDB";

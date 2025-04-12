@@ -1,4 +1,4 @@
-package org.example.BackEnd.Setup;
+package org.example.BackEnd.Scripts.Sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

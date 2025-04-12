@@ -1,9 +1,5 @@
 package org.example.FrontEnd.Panels;
-
 import javax.swing.*;
-
-import org.example.FrontEnd.Labels.LoadingLabel;
-
 import java.awt.*;
 
 public class BodyPanel extends JPanel{

@@ -2,7 +2,6 @@ package org.example.FrontEnd.TextArea;
 
 import javax.swing.*;
 
-import org.example.BackEnd.Requests.APIClient;
 import org.example.BackEnd.UserInput.GetFinalString;
 import org.example.FrontEnd.Buttons.AttachButton;
 import org.example.FrontEnd.Buttons.MessageButton;
@@ -17,8 +16,7 @@ public class Searchbox {
     GetFinalString request = new GetFinalString();
 
     public JTextField textField() {
-        String input;
-        String response;
+
         searchField = new JTextField(20);
 
         searchField.setFont(new Font("Segoe UI", Font.BOLD, 20));
@@ -26,16 +24,17 @@ public class Searchbox {
         searchField.setForeground(Color.WHITE);
         searchField.setBorder(null);
 
-        // Captura de texto cuando se presiona ENTER
+        // Inicia el proceso con tecla ENTER
         searchField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
               
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-
-                    MessageButton.sendinput();
-                    AttachButton.setFile(); // Si el usuario adjunto una imagen, vuelve el espacio del archivo nulo nuevamente
-                    AttachPanel.setVisible(); // esconde otra vez el panel de attach
+                    if(MessageButton.button.isEnabled()){
+                        MessageButton.startProcess();
+                    }
+                    
+                    
                 }
             }
         });

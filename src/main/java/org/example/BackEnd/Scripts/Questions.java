@@ -1,4 +1,4 @@
-package org.example.BackEnd.Helpers;
+package org.example.BackEnd.Scripts;
 
 public class Questions {
     public String ID;

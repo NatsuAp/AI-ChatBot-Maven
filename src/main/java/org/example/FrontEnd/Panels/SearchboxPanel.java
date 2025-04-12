@@ -5,6 +5,7 @@ import javax.swing.border.Border;
 
 import org.example.FrontEnd.Buttons.AttachButton;
 import org.example.FrontEnd.Buttons.MessageButton;
+import org.example.FrontEnd.Buttons.RemoveImgButton;
 import org.example.FrontEnd.Labels.LoadingLabel;
 import org.example.FrontEnd.TextArea.Searchbox;
 
@@ -23,7 +24,7 @@ public class SearchboxPanel {
     public SearchboxPanel() {
         this.buttonC = new AttachButton();//
 
-        this.AttachButton = this.buttonC.sendButton();//
+        SearchboxPanel.AttachButton = this.buttonC.sendButton();//
         this.textA = new Searchbox();
 
         this.atc = new AttachPanel();
@@ -46,7 +47,7 @@ public class SearchboxPanel {
         return OuterPanel;
     }
 
-    static JButton MessageB = MessageButton.inputButton();
+    public static JButton MessageB = MessageButton.inputButton();
 
     public JPanel innerbox() {
 
@@ -57,7 +58,7 @@ public class SearchboxPanel {
         inner.setBackground(new Color(48, 52, 63));
         inner.setBorder(border);
         textArea = textA.textField();
-        
+        MessageB.setDisabledIcon(load);
         inner.add(MessageB, BorderLayout.EAST);
         inner.add(AttachButton, BorderLayout.WEST);
         inner.add(textArea, BorderLayout.CENTER);
@@ -69,16 +70,16 @@ public class SearchboxPanel {
     static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
 
     public static void buttonSet(Boolean bol) {
-        if(bol){
         
-        MessageB.setIcon(arrow);
+        if(bol){
         MessageB.setEnabled(true);
         AttachButton.setEnabled(true);
-       
+       RemoveImgButton.EnableButton();
         }else{
-        MessageB.setIcon(load);
+       
         MessageB.setEnabled(false);
         AttachButton.setEnabled(false);
+        RemoveImgButton.disableButton();
         }
         
         

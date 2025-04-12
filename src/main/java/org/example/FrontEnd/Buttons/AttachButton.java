@@ -9,23 +9,30 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.border.Border;
-
-import org.example.BackEnd.Requests.azureOCR;
-import org.example.FrontEnd.setFilechooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.example.FrontEnd.Labels.imageLabels;
 import org.example.FrontEnd.Panels.AttachPanel;
 
 public class AttachButton {
 
     public static File file;
-
+    public JFileChooser fileChooser(){
+        JFileChooser fileChooser = new JFileChooser();
+        //Filtro que solo acepta imagenes
+        FileNameExtensionFilter filter =
+                    new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg");
+            fileChooser.setFileFilter(filter);
+    
+            //Remueve la capacidad de recibir cualquier tipo de archivo
+            fileChooser.setAcceptAllFileFilterUsed(false);
+        return fileChooser;
+    }
     public JButton sendButton() {
-        setFilechooser fl = new setFilechooser();
-        JFileChooser fileChooser = fl.fileChooser();
+        
+        JFileChooser fileChooser = fileChooser();
         ImageIcon clip = new ImageIcon("src/main/resources/Images/Clip.png"); // imagen
         JButton button = new JButton(clip); // Recibe como parametro la imagen
-        Border border = BorderFactory.createEmptyBorder(0, 0, 4, 7); // Declaracion parametros de borde invisible
+        
 
         button.setBorderPainted(false);
         button.setContentAreaFilled(false);
@@ -36,17 +43,16 @@ public class AttachButton {
         button.addMouseListener(new MouseAdapter() { // Detector de eventos
             @Override
             public void mouseEntered(MouseEvent e) { // si pasas el mouse por el boton
-                button.setFocusPainted(true);
-                button.setBorder(border);
+                button.setOpaque(true);
+                button.setBackground(new Color(255, 255, 255, 30));
+                button.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255, 40), 0));
             }
 
             @Override
             public void mouseExited(MouseEvent e) { // Cuando quitas el mouse del boton
-                button.setBorderPainted(false);
-                button.setContentAreaFilled(false);
-                button.setFocusPainted(false);
-                button.setBorder(null);
                 button.setOpaque(false);
+                button.setBackground(null);
+                button.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
             }
 
             @Override
@@ -58,6 +64,9 @@ public class AttachButton {
             }
 
             public void mouseReleased(MouseEvent e) {
+                if(!button.isEnabled()){
+                    return;
+                }
                 button.setOpaque(false);
 
                 int response = fileChooser.showOpenDialog(button);   //Guarda lo que hizo el usuario
@@ -77,9 +86,9 @@ public class AttachButton {
                         AttachButton.setFile();
                     }
 
-                    azureOCR ocr = new azureOCR();
+                    //azureOCR ocr = new azureOCR();
                     // ocr.AzureRequest(String.valueOf(file));
-                    File pathFile = new File("src\\main\\resources\\UserImages\\");
+                   // File pathFile = new File("src\\main\\resources\\UserImages\\");
 
                     
                 }

@@ -1,4 +1,4 @@
-package org.example.BackEnd.Helpers.WebScraper;
+package org.example.BackEnd.Scripts.WebScraper;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
