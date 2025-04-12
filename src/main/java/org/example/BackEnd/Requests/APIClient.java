@@ -1,39 +1,48 @@
 package org.example.BackEnd.Requests;
-import java.util.*;
-
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.OpenAIClientBuilder;
-import com.azure.ai.openai.models.*;
+import com.azure.ai.openai.models.ChatChoice;
+import com.azure.ai.openai.models.ChatCompletions;
+import com.azure.ai.openai.models.ChatCompletionsOptions;
+import com.azure.ai.openai.models.ChatMessageImageContentItem;
+import com.azure.ai.openai.models.ChatMessageImageUrl;
+import com.azure.ai.openai.models.ChatMessageTextContentItem;
+import com.azure.ai.openai.models.ChatRequestAssistantMessage;
+import com.azure.ai.openai.models.ChatRequestMessage;
+import com.azure.ai.openai.models.ChatRequestSystemMessage;
+import com.azure.ai.openai.models.ChatRequestUserMessage;
+import com.azure.ai.openai.models.ChatResponseMessage;
 import com.azure.core.credential.AzureKeyCredential;
 
+import io.github.cdimascio.dotenv.Dotenv;
 
 
-//System.getenv("AZURE_API_KEY");
+
 public class APIClient {
     static List<ChatRequestMessage> chatMessages = new ArrayList<>();
     public static void setup(){
         chatMessages.add(new ChatRequestSystemMessage(
-                "You are a helpful AI chatbot assistant specialized in answering questions related to the AP College Board Computer Science curriculum. "
-                        + "You possess in-depth knowledge of programming concepts, algorithms, data structures, and computer science principles outlined in the AP syllabus. "
-                        + "Your goal is to provide clear, concise, and informative responses to students seeking help with their AP Computer Science coursework. "
-                        + "\n\n"
-                        + "Aside from user input, you will receive additional System input containing relevant facts, explanations, or answers retrieved from a knowledge base. "
-                        + "Use this System input to ensure your answers are accurate and grounded. If you do not find sufficient information in the System input or your own understanding, respond with a brief statement of uncertainty (e.g., 'I'm not sure'). "
-                        + "\n\n"
-                        + "When answering, strictly use the context provided by the System input and your existing knowledge of AP Computer Science. "
-                        + "Do not fabricate details or references. If older parts of the conversation become irrelevant or too large, summarize them if needed to keep answers concise. "
-                        + "Remember to be polite, clear, and precise while assisting students with their AP Computer Science questions."
-        ));
+                """
+                You are a helpful AI chatbot assistant specialized in answering questions related to the AP College Board Computer Science curriculum. You possess in-depth knowledge of programming concepts, algorithms, data structures, and computer science principles outlined in the AP syllabus. Your goal is to provide clear, concise, and informative responses to students seeking help with their AP Computer Science coursework. 
+                
+                Aside from user input, you will receive additional System input containing relevant facts, explanations, or answers retrieved from a knowledge base. Use this System input to ensure your answers are accurate and grounded. If you do not find sufficient information in the System input or your own understanding, respond with a brief statement of uncertainty (e.g., 'I'm not sure'). 
+                
+                When answering, strictly use the context provided by the System input and your existing knowledge of AP Computer Science. Do not fabricate details or references. If older parts of the conversation become irrelevant or too large, summarize them if needed to keep answers concise. Remember to be polite, clear, and precise while assisting students with their AP Computer Science questions."""));
     }
     public static void addMesaggeHistory(String user, String assistant){
                 chatMessages.add(new ChatRequestUserMessage(user));
                 chatMessages.add(new ChatRequestAssistantMessage(assistant));
     }
+    static Dotenv dotenv = Dotenv.load();
+
     public static String Chat(String pregunta, String dataBaseANS, String imgEncode) {
-        String apiKey = "DbJJJ2a7jiUDtSZo4aFulZzZX2W3TPQNQvJW2gKHVL0ciZhdXyJiJQQJ99BAACHYHv6XJ3w3AAABACOGh5pr";
-        String url = "https://hacknet-colsanjose.openai.azure.com/";
+        
+        String apiKey = dotenv.get("AZURE_OPENAI_KEY");
+        String url = dotenv.get("AZURE_OPENAI_ENDPOINT");
         String str="";
         OpenAIClient client = new OpenAIClientBuilder()
                 .credential(new AzureKeyCredential(apiKey))

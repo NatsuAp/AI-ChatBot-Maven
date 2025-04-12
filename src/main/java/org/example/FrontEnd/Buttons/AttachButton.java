@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import org.example.FrontEnd.Labels.imageLabels;
 import org.example.FrontEnd.Panels.AttachPanel;
 
@@ -45,7 +47,7 @@ public class AttachButton {
             public void mouseEntered(MouseEvent e) { // si pasas el mouse por el boton
                 button.setOpaque(true);
                 button.setBackground(new Color(255, 255, 255, 30));
-                button.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255, 40), 0));
+                button.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255, 40), 1));
             }
 
             @Override
@@ -63,6 +65,7 @@ public class AttachButton {
                 // Aqui falta la funcion que llame a enviar cualquier imagen
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
                 if(!button.isEnabled()){
                     return;

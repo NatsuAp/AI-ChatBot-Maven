@@ -1,19 +1,17 @@
 package org.example.FrontEnd.TextArea;
 
-import javax.swing.*;
-
-import org.example.BackEnd.UserInput.GetFinalString;
-import org.example.FrontEnd.Buttons.AttachButton;
-import org.example.FrontEnd.Buttons.MessageButton;
-import org.example.FrontEnd.Panels.AttachPanel;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JTextField;
+
+import org.example.FrontEnd.Buttons.MessageButton;
+
 public class Searchbox {
     private JTextField searchField;
-    GetFinalString request = new GetFinalString();
+    
 
     public JTextField textField() {
 

@@ -2,11 +2,9 @@ package org.example.FrontEnd.Buttons;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,14 +12,12 @@ import javax.swing.JButton;
 import org.example.BackEnd.Helpers.Base64Coder;
 import org.example.BackEnd.Requests.APIClient;
 import org.example.BackEnd.Requests.azureOCR;
-
 import org.example.BackEnd.UserInput.GetFinalString;
 import org.example.FrontEnd.Async.Worker;
-import org.example.FrontEnd.Labels.LoadingLabel;
 import org.example.FrontEnd.Panels.SearchboxPanel;
 
 public class MessageButton {
-    static ImageIcon load = LoadingLabel.loading();
+  
 
     public static JButton button = new JButton();
     static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
@@ -66,6 +62,7 @@ public class MessageButton {
                 startProcess();
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
                 button.setOpaque(false);
 
