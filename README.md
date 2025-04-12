@@ -78,11 +78,16 @@ Una interfaz gráfica desarrollada en Java Swing que simula el comportamiento de
 
 ## 👨‍💻 Autor
 
-Desarrollado por **[Tu Nombre Aquí]**  
+Desarrollado por **Andres Villadiego Garcia**  
 Proyecto personal / académico desarrollado con fines de aprendizaje y práctica en Java Swing.
 
 ---
 
 ## 📄 Licencia
 
-Este proyecto está bajo la licencia [MIT](LICENSE) *(o la que desees usar)*.
+## 🛡️ Derechos de autor
+
+
+Se encuentra bajo la licencia **MIT**, lo que permite su uso, modificación y distribución con la condición de que se mantenga el aviso de autoría.
+
+No se autoriza su uso con fines comerciales sin permiso previo.
