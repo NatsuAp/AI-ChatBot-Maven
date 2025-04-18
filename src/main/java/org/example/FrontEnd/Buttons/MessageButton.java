@@ -9,15 +9,10 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import org.example.BackEnd.Helpers.Base64Coder;
-import org.example.BackEnd.Requests.APIClient;
-import org.example.BackEnd.Requests.azureOCR;
-import org.example.BackEnd.UserInput.GetFinalString;
 import org.example.FrontEnd.Async.Worker;
 import org.example.FrontEnd.Panels.SearchboxPanel;
 
 public class MessageButton {
-  
 
     public static JButton button = new JButton();
     static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
@@ -26,7 +21,6 @@ public class MessageButton {
 
     public static JButton inputButton() {
 
-        
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setIcon(arrow);
         button.setBorderPainted(false);
@@ -37,7 +31,7 @@ public class MessageButton {
         button.setBorder(BorderFactory.createEmptyBorder(0, 7, 0, 0));
         // listener si el usuario presiona la tecla ENTER, hace lo mismo que si el
         // usuario presiona el boton
-        
+
         button.addMouseListener(new MouseAdapter() { // Listener para el boton
             @Override
 
@@ -56,9 +50,6 @@ public class MessageButton {
 
             @Override
             public void mousePressed(MouseEvent e) { // Cuando clickeas
-                if (!button.isEnabled()) {
-                    return;
-                }
                 startProcess();
             }
 
@@ -68,76 +59,28 @@ public class MessageButton {
 
             }
         });
-        
 
         return button;
     }
-    //Inicia el proceso y controla los inputs
-    public static void startProcess() {
-        button.setBackground(Color.LIGHT_GRAY);
-        button.setOpaque(true);
+    public static void startProcess(){
+        if (!button.isEnabled() || !isValid()) {
+            return;
+        }
 
+        SearchboxPanel.buttonSet(false);
+
+        // Se ejecuta en un thread distinto para que no se congela la UI mientras hace
+        // el llamado a la API
+        Worker.createWorker(input, file).execute();
+    }
+    public static boolean isValid() {
         input = SearchboxPanel.getFieldText();
         file = AttachButton.getFile();
-        if ((!input.isEmpty() && file != null) ||
-                (input.isEmpty() && file != null) ||
-                (!input.isEmpty() && file == null)) {
-
-            System.out.println("entro");
-            SearchboxPanel.buttonSet(false);
-
-            Worker.createWorker().execute();
-
-            // Se ejecuta en un thread distinto para que no se congela la UI mientras hace
-            // el llamado a la API
-        } else {
+        if (input.isBlank() && file == null) {
             System.out.println("no entro");
+            return false;
         }
-
+        return true;
     }
 
-    public static void sendinput() { // TODO: Modificar esta funcion para que reciba la respuesta de la IA, Y eventualmente la retorne.
-                                     
-
-        String results;
-        String imgStr;
-        String answer;
-        String encodedImg = null;
-
-        if (!input.isBlank() & file == null) {
-
-            results = GetFinalString.getPrompt(input);
-
-            answer = APIClient.Chat(input, results, encodedImg);
-
-            APIClient.addMesaggeHistory(input, answer);
-
-        } else {
-
-            encodedImg = Base64Coder.encode(file);
-
-            imgStr = azureOCR.AzureRequest(file);
-
-            results = GetFinalString.getPrompt(imgStr);
-
-            if (input.isBlank()) {
-
-                input = "Help me";
-
-            }
-
-            answer = APIClient.Chat(input, results, encodedImg);
-
-            APIClient.addMesaggeHistory(input, answer);
-
-        }
-    }
-
-    public static void disableButton() {
-        button.setEnabled(false);
-    }
-
-    public static void EnableButton() {
-        button.setEnabled(true);
-    }
 }

@@ -3,6 +3,8 @@ package org.example.BackEnd.Requests;
 import java.io.File;
 import java.util.Arrays;
 
+import org.example.BackEnd.Setup.EnvManager;
+
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClient;
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClientBuilder;
 import com.azure.ai.vision.imageanalysis.models.DetectedTextLine;
@@ -11,15 +13,17 @@ import com.azure.ai.vision.imageanalysis.models.VisualFeatures;
 import com.azure.core.credential.KeyCredential;
 import com.azure.core.util.BinaryData;
 
-import io.github.cdimascio.dotenv.Dotenv;
+
 
 public class azureOCR {
-    static Dotenv dotenv = Dotenv.load();
-    static String endpoint = dotenv.get("AZURE_OCR_ENDPOINT");
-    static String key = dotenv.get("AZURE_OCR_KEY");
- 
-    public static String AzureRequest(String str) {
+
+  
+    
+
+    public static String OcrRequest(String str) {
         String text = "";
+         String endpoint = EnvManager.get("AZURE_OCR_ENDPOINT");
+        String key = EnvManager.get("AZURE_OCR_KEY");
         // Creacion cliente
         ImageAnalysisClient client = new ImageAnalysisClientBuilder()
                 .endpoint(endpoint)

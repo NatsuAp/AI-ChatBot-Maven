@@ -28,11 +28,8 @@ public class Searchbox {
             public void keyPressed(KeyEvent e) {
               
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    if(MessageButton.button.isEnabled()){
-                        MessageButton.startProcess();
-                    }
-                    
-                    
+                    MessageButton.startProcess();
+    
                 }
             }
         });

@@ -14,7 +14,7 @@ import java.awt.*;
 public class SearchboxPanel {
     public AttachButton buttonC;
     public MessageButton inButton;
-    public static JButton AttachButton;
+    public static JButton AttachB;
 
     public static JTextField textArea;
     public Searchbox textA;
@@ -24,13 +24,15 @@ public class SearchboxPanel {
     public SearchboxPanel() {
         this.buttonC = new AttachButton();//
 
-        SearchboxPanel.AttachButton = this.buttonC.sendButton();//
+        SearchboxPanel.AttachB = this.buttonC.sendButton();//
         this.textA = new Searchbox();
 
         this.atc = new AttachPanel();
         this.attach = atc.Outer();
     }
+
     static ImageIcon load = LoadingLabel.loading();
+
     public JPanel createSearchbox() {
         Border border = BorderFactory.createEmptyBorder(10, 10, 30, 20); // Para darle padding
         JPanel inner = innerbox();
@@ -60,9 +62,9 @@ public class SearchboxPanel {
         textArea = textA.textField();
         MessageB.setDisabledIcon(load);
         inner.add(MessageB, BorderLayout.EAST);
-        inner.add(AttachButton, BorderLayout.WEST);
+        inner.add(AttachB, BorderLayout.WEST);
         inner.add(textArea, BorderLayout.CENTER);
-        
+
         return inner;
 
     }
@@ -70,19 +72,31 @@ public class SearchboxPanel {
     static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
 
     public static void buttonSet(Boolean bol) {
-        
-        if(bol){
-        MessageB.setEnabled(true);
-        AttachButton.setEnabled(true);
-       RemoveImgButton.EnableButton();
-        }else{
-       
-        MessageB.setEnabled(false);
-        AttachButton.setEnabled(false);
-        RemoveImgButton.disableButton();
+
+        if (bol) {
+            MessageB.setEnabled(true);
+
+            AttachB.setEnabled(true);
+
+            MessageB.setEnabled(true);
+
+            RemoveImgButton.EnableButton();
+
+            AttachButton.setFile(); // Si el usuario adjunto una imagen, vuelve el espacio del archivo nulo nuevamente
+                                    
+            AttachPanel.setVisible(); // esconde otra vez el panel de attach
+        } else {
+            MessageB.setBackground(Color.LIGHT_GRAY);
+
+            MessageB.setOpaque(true);
+
+            MessageB.setEnabled(false);
+
+            AttachB.setEnabled(false);
+
+            RemoveImgButton.disableButton();
         }
-        
-        
+
     }
 
     // funcion que captura el texto del textfield

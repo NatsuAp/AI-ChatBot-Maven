@@ -1,4 +1,4 @@
-package org.example.BackEnd.UserInput;
+package org.example.BackEnd.input;
 
 import org.example.BackEnd.Embeddings.CompareEmb;
 import org.example.BackEnd.Embeddings.EmbeddingsRequests;
