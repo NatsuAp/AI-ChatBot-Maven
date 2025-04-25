@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
 import org.example.FrontEnd.Labels.HeaderLabel;
@@ -31,15 +33,17 @@ public class FrameBuilder {
         JLabel headerLabel = headerL.headerLabel();//
 
         JPanel searchPanel = searchboxP.createSearchbox();// importacion metodos
-
-        JPanel bodyPanel = bodyP.Body();
-        JPanel msg = MessagePanel.messagePanel();
-        bodyPanel.add(msg,BorderLayout.CENTER);
-        headerPanel.add(headerLabel);
+        MessagePanel mp = new MessagePanel();
         
+        JScrollPane msg = MessagePanel.msgContainer();
+        JPanel bodyPanel = bodyP.Body();
+
+        bodyPanel.add(msg, BorderLayout.CENTER);
+
+        headerPanel.add(headerLabel);
+
         frame.add(searchPanel, BorderLayout.SOUTH);
 
-       
         frame.add(headerPanel, BorderLayout.NORTH); // se añaden los paneles al frame
 
         frame.add(bodyPanel, BorderLayout.CENTER);

@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import org.example.FrontEnd.Async.Worker;
+import org.example.FrontEnd.Panels.MessagePanel;
 import org.example.FrontEnd.Panels.SearchboxPanel;
 
 public class MessageButton {
@@ -18,9 +19,9 @@ public class MessageButton {
     static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
     static String input;
     static String file;
-
+    
     public static JButton inputButton() {
-
+        MessagePanel mp = new MessagePanel();
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setIcon(arrow);
         button.setBorderPainted(false);
@@ -50,7 +51,9 @@ public class MessageButton {
 
             @Override
             public void mousePressed(MouseEvent e) { // Cuando clickeas
-                startProcess();
+                //startProcess();
+               mp.newMessagePanel(SearchboxPanel.getFieldText());
+
             }
 
             @Override
