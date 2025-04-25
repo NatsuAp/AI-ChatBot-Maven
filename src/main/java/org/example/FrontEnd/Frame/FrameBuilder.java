@@ -33,12 +33,12 @@ public class FrameBuilder {
         JLabel headerLabel = headerL.headerLabel();//
 
         JPanel searchPanel = searchboxP.createSearchbox();// importacion metodos
-        MessagePanel mp = new MessagePanel();
         
-        JScrollPane msg = MessagePanel.msgContainer();
+        
+        
         JPanel bodyPanel = bodyP.Body();
 
-        bodyPanel.add(msg, BorderLayout.CENTER);
+        
 
         headerPanel.add(headerLabel);
 
@@ -47,7 +47,7 @@ public class FrameBuilder {
         frame.add(headerPanel, BorderLayout.NORTH); // se añaden los paneles al frame
 
         frame.add(bodyPanel, BorderLayout.CENTER);
-        frame.pack();
+       // frame.pack();
         frame.setVisible(true);
 
     }
