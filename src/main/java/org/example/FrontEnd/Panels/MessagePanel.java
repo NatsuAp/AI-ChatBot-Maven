@@ -16,7 +16,7 @@ public class MessagePanel {
                 //outerPanel.setPreferredSize(new Dimension(650, 1000));
                // outerPanel.setMaximumSize(new Dimension(300, Short.MAX_VALUE));
                 outerPanel.setOpaque(true);
-                outerPanel.setBackground(Color.BLUE);
+                outerPanel.setBackground(new Color(42, 42, 62));
                
                 scrollPane.getVerticalScrollBar().setUnitIncrement(16);
                 scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -29,22 +29,37 @@ public class MessagePanel {
                 return scrollPane;
         }
 
-        public void newMessagePanel(String text) {
+        public void newMessagePanel(String text, String side) {
+                JPanel newOuter = new JPanel(new BorderLayout());
+
+                newOuter.setBackground(null);
+
                 JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+
+                switch (side) {
+                        case "user":
+                        newOuter.add(panel, BorderLayout.EAST);
+                                break;
+                
+                        case "ia":
+                        newOuter.add(panel, BorderLayout.WEST);
+                                break;
+                }
+                
                 JTextArea dynamicTextArea = new JTextArea(text);
-                panel.setBackground(null);
+                panel.setBackground(Color.BLUE);
                 panel.setOpaque(false);
                 dynamicTextArea.setLineWrap(true);
                 dynamicTextArea.setBounds(0, 0, 400, 400);
                 dynamicTextArea.setLineWrap(true);
                 dynamicTextArea.setWrapStyleWord(true);
                 dynamicTextArea.setEditable(false);
-                dynamicTextArea.setBackground(null);
+                dynamicTextArea.setBackground(new Color(45, 60, 120));
                 dynamicTextArea.setForeground(new Color(12, 223, 233));
 
                 dynamicTextArea.setBorder(null);
                 panel.add(dynamicTextArea);
-                outerPanel.add(panel);
+                outerPanel.add(newOuter);
 
                 // refrescar el panel
                 outerPanel.revalidate();
