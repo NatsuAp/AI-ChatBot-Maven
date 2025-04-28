@@ -18,6 +18,7 @@ import org.example.FrontEnd.Panels.AttachPanel;
 public class AttachButton {
 
     public static File file;
+    //Declaracion fileChooser
     public JFileChooser fileChooser(){
         JFileChooser fileChooser = new JFileChooser();
         //Filtro que solo acepta imagenes
@@ -62,7 +63,7 @@ public class AttachButton {
                 button.setBackground(Color.LIGHT_GRAY);
                 button.setOpaque(true);
 
-                // Aqui falta la funcion que llame a enviar cualquier imagen
+               
             }
 
             @Override

@@ -8,8 +8,8 @@ import org.example.BackEnd.Requests.azureOCR;
 
 public class InputHandler {
      static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
-public static String Query(String input, String file) { // TODO: Modificar esta funcion para que reciba la respuesta de la IA, Y
-                                     // eventualmente la retorne.
+public static String Query(String input, String file) { 
+                                    
 
         String results;
         String imgStr;

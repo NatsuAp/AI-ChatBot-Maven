@@ -1,6 +1,8 @@
 package org.example.FrontEnd.Panels;
 
 import java.awt.*;
+import java.io.File;
+
 import javax.swing.*;
 
 public class MessagePanel {
@@ -47,15 +49,17 @@ public class MessagePanel {
                 }
                 
                 JTextArea dynamicTextArea = new JTextArea(text);
+
                 panel.setBackground(Color.BLUE);
+
                 panel.setOpaque(false);
                 dynamicTextArea.setLineWrap(true);
                 dynamicTextArea.setBounds(0, 0, 400, 400);
                 dynamicTextArea.setLineWrap(true);
                 dynamicTextArea.setWrapStyleWord(true);
                 dynamicTextArea.setEditable(false);
-                dynamicTextArea.setBackground(new Color(45, 60, 120));
-                dynamicTextArea.setForeground(new Color(12, 223, 233));
+                dynamicTextArea.setBackground(new Color(36, 36, 53));
+                dynamicTextArea.setForeground(new Color(255, 242, 241));
 
                 dynamicTextArea.setBorder(null);
                 panel.add(dynamicTextArea);

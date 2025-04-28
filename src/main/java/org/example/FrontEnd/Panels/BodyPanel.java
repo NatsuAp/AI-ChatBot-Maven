@@ -8,7 +8,7 @@ public class BodyPanel extends JPanel{
         body.setBackground(new Color(42, 42, 62));   //Cuerpo del frame, donde van los mensajes
         body.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         body.setLayout(new BorderLayout());
-        //TODO: Crear interfraz de mensajes
+        //TODO: Interfraz mas o menos, revisar la posibilidad de integrar "MARKDOWN" para las respuestas de la IA
         body.add(MessagePanel.msgContainer(), BorderLayout.CENTER);
       
         return body;

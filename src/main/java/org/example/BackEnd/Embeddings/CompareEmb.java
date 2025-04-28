@@ -9,8 +9,18 @@ import java.util.Properties;
 
 public class CompareEmb {
     static String urlDB = "jdbc:postgresql://hacknet.cncguc2ysbs8.us-east-1.rds.amazonaws.com:5432/HACKNETDB";
+        int number;
+        public CompareEmb(int number){
+            this.number = number;
+        }
+
+        public int currentNumber(){
+            return this.number;
+        }
     
         public static String[][] Compare(String embedding) {
+            CompareEmb emb1 = new CompareEmb(0);
+            CompareEmb emb2 = new CompareEmb(2);
             // Coneccion con la base de Datos
             Properties props = new Properties();
             props.setProperty("user", "hacknet_colsanjose");
