@@ -21,6 +21,7 @@ public static String Query(String input, String file) {
 
         if (file != null) {
             encodedImg = Base64Coder.encode(file);
+            
             imgStr = azureOCR.OcrRequest(file);
             results = GetFinalString.getPrompt(imgStr);
         } else {

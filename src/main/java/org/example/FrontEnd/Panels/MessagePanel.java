@@ -37,7 +37,8 @@ public class MessagePanel {
                 newOuter.setBackground(null);
 
                 JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
-
+               
+                
                 switch (side) {
                         case "user":
                         newOuter.add(panel, BorderLayout.EAST);
