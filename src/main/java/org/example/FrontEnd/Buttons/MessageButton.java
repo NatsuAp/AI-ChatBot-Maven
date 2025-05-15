@@ -1,17 +1,12 @@
 package org.example.FrontEnd.Buttons;
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
 import org.example.FrontEnd.Async.Worker;
-import org.example.FrontEnd.Helper.addNewMessage;
-import org.example.FrontEnd.Panels.MessagePanel;
 import org.example.FrontEnd.Panels.SearchboxPanel;
 
 public class MessageButton {
@@ -52,7 +47,10 @@ public class MessageButton {
 
             @Override
             public void mousePressed(MouseEvent e) { // Cuando clickeas
-                startProcess();
+                if(button.isEnabled()){
+                    startProcess();
+                }
+                
              
 
             }

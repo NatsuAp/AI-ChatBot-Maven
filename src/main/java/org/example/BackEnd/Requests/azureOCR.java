@@ -2,13 +2,7 @@ package org.example.BackEnd.Requests;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.logging.ErrorManager;
-
-import javax.swing.JOptionPane;
-
 import org.example.BackEnd.Setup.EnvManager;
-import org.example.FrontEnd.ErrorHandler;
-
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClient;
 import com.azure.ai.vision.imageanalysis.ImageAnalysisClientBuilder;
 import com.azure.ai.vision.imageanalysis.models.DetectedTextLine;

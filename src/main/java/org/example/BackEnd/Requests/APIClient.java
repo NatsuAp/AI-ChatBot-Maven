@@ -49,6 +49,7 @@ public class APIClient {
                 .endpoint(url)
                 .buildClient();
 
+
         if (imgEncode != null) {
             chatMessages.add(new ChatRequestUserMessage(Arrays.asList(
                     new ChatMessageTextContentItem(pregunta),
@@ -57,6 +58,7 @@ public class APIClient {
         } else {
             chatMessages.add(new ChatRequestUserMessage(pregunta));
         }
+        
         chatMessages.add(new ChatRequestSystemMessage("Answers retrieved: " + dataBaseANS));
 
         ChatCompletions chatCompletions = client.getChatCompletions("gpt-4o-mini",

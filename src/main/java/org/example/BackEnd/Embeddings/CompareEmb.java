@@ -19,8 +19,7 @@ public class CompareEmb {
         }
     
         public static String[][] Compare(String embedding) {
-            CompareEmb emb1 = new CompareEmb(0);
-            CompareEmb emb2 = new CompareEmb(2);
+            
             // Coneccion con la base de Datos
             Properties props = new Properties();
             props.setProperty("user", "hacknet_colsanjose");

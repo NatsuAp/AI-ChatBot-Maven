@@ -1,17 +1,9 @@
 package org.example.FrontEnd.Frame;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.border.Border;
-
 import org.example.FrontEnd.Labels.HeaderLabel;
 import org.example.FrontEnd.Panels.*;;
 

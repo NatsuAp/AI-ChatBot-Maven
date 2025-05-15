@@ -1,9 +1,8 @@
 package org.example.FrontEnd.Panels;
 
 import java.awt.*;
-import java.io.File;
-
 import javax.swing.*;
+import javax.swing.border.Border;
 
 public class MessagePanel {
         BodyPanel bodyP = new BodyPanel();
@@ -31,17 +30,19 @@ public class MessagePanel {
                 return scrollPane;
         }
 
-        public void newMessagePanel(String text, String side) {
+        public void newMessagePanel(String text, String side, String file) {
                 JPanel newOuter = new JPanel(new BorderLayout());
-
+                JPanel imgPanel = new JPanel(new BorderLayout());
                 newOuter.setBackground(null);
-
+                imgPanel.setBackground(null);
                 JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
-               
-                
+                JTextArea dynamicTextArea = new JTextArea(text);
+                 panel.add(dynamicTextArea);
                 switch (side) {
                         case "user":
                         newOuter.add(panel, BorderLayout.EAST);
+                        imgPanel.add(newImagePanel(file),BorderLayout.EAST);
+                        outerPanel.add(imgPanel);
                                 break;
                 
                         case "ia":
@@ -49,7 +50,11 @@ public class MessagePanel {
                                 break;
                 }
                 
-                JTextArea dynamicTextArea = new JTextArea(text);
+                
+                
+                
+                
+                
 
                 panel.setBackground(Color.BLUE);
 
@@ -63,9 +68,12 @@ public class MessagePanel {
                 dynamicTextArea.setForeground(new Color(255, 242, 241));
 
                 dynamicTextArea.setBorder(null);
-                panel.add(dynamicTextArea);
+                
+        
+                
                 outerPanel.add(newOuter);
-
+                
+                
                 // refrescar el panel
                 outerPanel.revalidate();
                 outerPanel.repaint();
@@ -75,5 +83,19 @@ public class MessagePanel {
                 //         scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
                 // });
 
+        }
+        public JPanel newImagePanel(String file){
+                JPanel newOuter = new JPanel(new BorderLayout());
+                newOuter.setBackground(null);
+                JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEADING));
+                
+                ImageIcon userImg = new ImageIcon(file);
+                Image scaledImg = userImg.getImage().getScaledInstance(400,300,Image.SCALE_SMOOTH); 
+                ImageIcon newuserImg = new ImageIcon(scaledImg);
+                JLabel img = new JLabel(newuserImg);
+                panel.setBackground(null);
+                panel.add(img);
+                newOuter.add(panel);
+                return newOuter;
         }
 }
