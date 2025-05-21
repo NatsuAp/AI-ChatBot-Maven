@@ -49,6 +49,7 @@ public class CompareEmb {
             a = st.executeQuery();
             int i = 0;
             while (a.next()) {
+                
                 for (int j = 0; j < 5; j++) {
                     res[i][j] = a.getString(j + 1); //TODO: Validar el tipo para poder utilizar el metodo especifico del tipo que se quiere hacer
                 }

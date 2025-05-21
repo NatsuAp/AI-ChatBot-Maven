@@ -5,8 +5,8 @@ import java.awt.*;
 
 
 public class Frame {
+     public static JFrame frame = new JFrame();
     public static JFrame createFrame() {
-        JFrame frame = new JFrame();
         frame.setTitle("ChatBot"); //Titulo Programa
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //cuando cierras la ventana cierra el programa
         frame.setResizable(true); //Se puede editar el tamaño
