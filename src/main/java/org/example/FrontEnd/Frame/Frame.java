@@ -10,7 +10,8 @@ public class Frame {
         frame.setTitle("ChatBot"); //Titulo Programa
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //cuando cierras la ventana cierra el programa
         frame.setResizable(true); //Se puede editar el tamaño
-        frame.setSize(650, 1000); //Tamaño del frame
+        
+        frame.setMinimumSize(new Dimension(650, 1000));
         // File file = new File("logo.png");
         
         ImageIcon logo = new ImageIcon("src\\main\\resources\\Images\\logo.png"); //directorio de imagen
