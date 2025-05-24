@@ -1,8 +1,21 @@
 package org.example.FrontEnd.Panels;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.Border;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Image;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.text.View;
 import javax.swing.text.html.HTMLEditorKit;
 
@@ -37,50 +50,11 @@ public class MessagePanel {
     String parsedStr;
     final String htmlPrompt = """
             <html>
-                <head>
-                    <style>
-                        body {
-                            color: #f0f0f0;
-                            font-family: Segoe UI, Arial, sans-serif;
-                            font-size: 14px;
-                            background-color: transparent;
-                            line-height: 1.6;
-                            padding: 10px;
-                            margin: 0;
-                            word-wrap: break-word;
-                            overflow-wrap: break-word;
-                            width: 100%;
-                        }
-                        pre, code {
-                            background-color: #2e2e3a;
-                            color: #e0e0e0;
-                            padding: 8px;
-                            border-radius: 6px;
-                            font-family: Consolas, monospace;
-                            font-size: 13px;
-                            word-break: break-all;
-                            overflow-x: hidden;
-                        }
-                        h1, h2, h3 {
-                            margin-top: 1em;
-                            margin-bottom: 0.5em;
-                            color: #ffffff;
-                        }
-                        a {
-                            color: #4fc3f7;
-                            text-decoration: none;
-                        }
-                        a:hover {
-                            text-decoration: underline;
-                        }
-                        p {
-                            margin-bottom: 1em;
-                        }
-                    </style>
-                </head>
                 <body>%s</body>
             </html>
             """;
+
+   
 
     public void newMessagePanel(String text, String side, String file) {
         parsedStr = textParser.markDownParse(text);
@@ -95,7 +69,7 @@ public class MessagePanel {
         panel.setOpaque(false);
         panel.setBackground(new Color(36, 36, 53));
         panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 12, 0));
-       
+
         JEditorPane pane = new JEditorPane() {
             @Override
             public boolean getScrollableTracksViewportWidth() {
@@ -104,21 +78,32 @@ public class MessagePanel {
         };
         HTMLEditorKit kit = new HTMLEditorKit();
 
-        kit.getStyleSheet().addRule("""
-                    code {
-                        white-space: pre-wrap;
-                        word-wrap: break-word;
-                        background-color: #2e2e3a;
-                        color: #e0e0e0;
-                        padding: 2px 4px;
-                        border-radius: 4px;
-                        display: inline-block;
-                        font-family: Consolas, monospace;
-                        font-size: 12px;
-                    }
-                """);
-        kit.getStyleSheet().addRule("body { font-family: Consolas; font-size: 12px; }");
-        kit.getStyleSheet().addRule("pre, code { white-space: pre-wrap; word-wrap: break-word; }");
+        kit.getStyleSheet().addRule("body {"
+                + " font-family: 'Segoe UI', Arial, sans-serif;"
+                + " font-size: 14px;"
+                + " color: #f0f0f0;"
+                + " background-color: transparent;"
+                + " line-height: 1.6;"
+                + " padding: 10px;"
+                + " margin: 0;"
+                + " word-wrap: break-word;"
+                + " overflow-wrap: break-word;"
+                + "}");
+        kit.getStyleSheet().addRule("pre, code {"
+                + " display: block;"
+                + " white-space: pre-wrap;"
+                + " word-break: break-word;"
+                + " max-width: 100%;"
+                + " background-color: #2e2e3a;"
+                + " color: #e0e0e0;"
+                + " padding: 8px;"
+                + " border-radius: 6px;"
+                + " font-family: Consolas, monospace;"
+                + " font-size: 13px;"
+                + " box-sizing: border-box;"
+                + " overflow-x: auto;"
+                + "}");
+        kit.getStyleSheet().addRule("code { white-space: pre-wrap; word-break: break-word; }");
 
         pane.setEditorKit(kit);
         pane.setContentType("text/html");
@@ -126,9 +111,10 @@ public class MessagePanel {
         String finalString = htmlPrompt.replace("%s", parsedStr);
 
         // TODO: Terminar esta funcion que muestra las palabras una por una.
-         //typeMessage(pane, finalString, 40);
+        // typeMessage(pane, finalString, 40);
 
         pane.setText(finalString);
+        
         pane.setEditable(false);
         pane.setOpaque(true);
         pane.setBorder(null);
@@ -143,16 +129,17 @@ public class MessagePanel {
         pane.addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(java.awt.event.ComponentEvent e) {
-                
+
                 int width = Frame.frame.getWidth() / 2;
-               System.out.println(width);
+
                 pane.setSize(new Dimension(width, Integer.MAX_VALUE));
 
-//No se que como funciona esto, pero me ayuda a reajustar el tamaño del panel donde esta el mensaje cuando se reajusta el tamaño del frame
+                // No se que como funciona esto, pero me ayuda a reajustar el tamaño del panel
+                // donde esta el mensaje cuando se reajusta el tamaño del frame
                 Dimension prefSize = pane.getUI().getRootView(pane).getPreferredSpan(View.Y_AXIS) > 0
                         ? new Dimension(width, (int) pane.getUI().getRootView(pane).getPreferredSpan(View.Y_AXIS))
                         : pane.getPreferredSize();
-                
+
                 pane.setPreferredSize(prefSize);
 
                 pane.revalidate();
@@ -234,7 +221,7 @@ public class MessagePanel {
 
                 // Wrap current content in full HTML template
                 String wrapped = htmlPrompt.replace("%s", str);
-                
+
                 int width = Frame.frame.getWidth() / 2;
                 pane.setSize(new Dimension(width, Integer.MAX_VALUE));
 
