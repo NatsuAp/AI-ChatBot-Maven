@@ -1,4 +1,4 @@
-package org.example.BackEnd.Requests;
+package org.example.BackEnd.Requests.Azure;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -2,21 +2,26 @@ package org.example.BackEnd.Scripts;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.example.BackEnd.Embeddings.EmbeddingsRequests;
+import com.azure.ai.openai.models.Embeddings;
+import org.example.BackEnd.Requests.Azure.EmbeddingsRequests;
+import org.example.BackEnd.Scripts.Sql.querys;
 
 public class GettingStrings {
 
-    org.example.BackEnd.Scripts.Sql.insert insert = new org.example.BackEnd.Scripts.Sql.insert();
+    querys insert = new querys();
 
-    public void guardarBD() {
-        String path = "src\\main\\resources\\newestData.txt";
+    public static void guardarBD() {
+        String path = "src/main/resources/Data/newestData.txt";
         File file = new File(path);
         String todo = "";
-        try (Scanner scanner = new Scanner(file);) {
+        try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
-                todo = todo + scanner.nextLine();
+                todo += scanner.nextLine();
             }
         } catch (FileNotFoundException e) {
 
@@ -27,6 +32,7 @@ public class GettingStrings {
         String[] preguntas = todo.split("#########################################################");
         // Para meter separar las preguntas y despues llamar la funcion que conecta con
         // la base de datos
+        ArrayList<String> arr = new ArrayList<>();
         for (String x : preguntas) {
             String[] individual = x.split("###");
             System.out.println(individual[0]);
@@ -36,8 +42,23 @@ public class GettingStrings {
 
             System.out.println(individual[0]);
             System.out.println("ESTE PROMP TIENE " + String.valueOf(x.length()) + "LETRAS");
-            insert.inserts(question, EmbeddingsRequests.getEmbedding(x));
+            arr.add(question.ID + " ### " + question.Question + " ### "+
+                    question.AnswerC + " ### " + question.Answer + " ### " +
+                    question.Explanation + " ### " + EmbeddingsRequests.getEmbedding(x));
+
         }
-        System.out.println("LO LOGRASTE HPTAAAA");
+        try(FileWriter writer = new FileWriter("src/main/resources/Data/dataFile.txt")){
+            //querys.inserts(question, EmbeddingsRequests.getEmbedding(x));
+            for(String x : arr) {
+                writer.write(x);
+                writer.write("\n");
+                writer.write("##################################");
+                writer.write("\n");
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("acabo exitosamente");
     }
 }

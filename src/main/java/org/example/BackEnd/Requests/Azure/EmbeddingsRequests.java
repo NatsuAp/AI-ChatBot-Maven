@@ -1,4 +1,4 @@
-package org.example.BackEnd.Embeddings;
+package org.example.BackEnd.Requests.Azure;
 
 import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.OpenAIClientBuilder;
@@ -6,20 +6,24 @@ import com.azure.ai.openai.models.EmbeddingItem;
 import com.azure.ai.openai.models.Embeddings;
 import com.azure.ai.openai.models.EmbeddingsOptions;
 import com.azure.core.credential.AzureKeyCredential;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.util.*;
 
 public class EmbeddingsRequests {
+    static Dotenv env = Dotenv.load();
     public static String getEmbedding(String embRequest ) {
-        String azureOpenaiKey = "DbJJJ2a7jiUDtSZo4aFulZzZX2W3TPQNQvJW2gKHVL0ciZhdXyJiJQQJ99BAACHYHv6XJ3w3AAABACOGh5pr";
-        String endpoint = "https://hacknet-colsanjose.openai.azure.com/";
-        String deploymentOrModelId = "text-embedding-ada-002";
+        String azureOpenaiKey = env.get("AZURE_OPENAI_KEY");
+        String endpoint = env.get("AZURE_OPENAI_ENDPOINT");
+        String deploymentOrModelId = "text-embedding-3-small";
         OpenAIClient client;
         client = new OpenAIClientBuilder()
-                .credential(new AzureKeyCredential(azureOpenaiKey))
                 .endpoint(endpoint)
+                .credential(new AzureKeyCredential(azureOpenaiKey))
                 .buildClient();
-
+//         client = new OpenAIClientBuilder()
+//                .credential(new KeyCredential(env.get("OPENAI_KEY")))
+//                .buildClient();
         EmbeddingsOptions embeddingsOptions = new EmbeddingsOptions(null);
         // String chunk1 = "";
        //  String chunk2 = "";
@@ -54,21 +58,5 @@ public class EmbeddingsRequests {
         return emb;
     }
 
-    public String sumaEmb(String emb1, String emb2) {
-        String emb = "[";
-        emb1 = emb1.substring(1, emb1.length() - 1);
-        emb2 = emb2.substring(1, emb2.length() - 1);
-        String[] emb11 = emb1.split(",");
-        String[] emb22 = emb2.split(",");
-        for (int i = 0; i < emb11.length; i++) {
-            Float x = Float.parseFloat(emb11[i]);
-            Float y = Float.parseFloat(emb22[i]);
-            Float res = (x + y) / 2;
-            String r = String.valueOf(res);
-            emb = emb + r + ",";
-        }
-        emb = emb.substring(0, emb.length() - 1);
-        emb = emb + "]";
-        return emb;
-    }
+
 }
