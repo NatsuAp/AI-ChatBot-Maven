@@ -12,7 +12,7 @@ import com.azure.core.credential.KeyCredential;
 import com.azure.core.util.BinaryData;
 
 
-
+@Deprecated
 public class azureOCR {
 
   

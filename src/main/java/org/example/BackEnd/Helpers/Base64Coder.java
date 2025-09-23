@@ -7,7 +7,7 @@ import java.util.Base64;
 import javax.swing.JOptionPane;
 
 import org.apache.commons.io.FileUtils;
-
+@Deprecated
 public class Base64Coder {
 public static String encode(String file){
     byte[] fileContent;

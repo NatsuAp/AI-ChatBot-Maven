@@ -14,15 +14,20 @@ import com.google.genai.types.Part;
 import com.google.genai.types.SafetySetting;
 import com.google.genai.types.ThinkingConfig;
 import com.google.genai.types.Tool;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class GeminiApi {
    static Dotenv env = Dotenv.load();
     static Client client;
-    static Content systemInstruction;
+    static Content content;
     static Tool googleSearchTool;
     static GenerateContentConfig config;
     static ImmutableList<SafetySetting> safetySettings;
 
-    public static boolean clientSetup(){
+    public static void clientSetup(){
         try{
             client =  Client.builder().apiKey(env.get("GOOGLE_API_KEY")).build();
 
@@ -37,7 +42,7 @@ public class GeminiApi {
                                     .threshold(HarmBlockThreshold.Known.BLOCK_LOW_AND_ABOVE)
                                     .build());
 
-            systemInstruction = Content.fromParts(Part.fromText("""
+            content = Content.fromParts(Part.fromText("""
                         You are a helpful AI chatbot assistant specialized in answering questions related to the AP College Board Computer Science curriculum. You possess in-depth knowledge of programming concepts, algorithms, data structures, and computer science principles outlined in the AP syllabus. Your goal is to provide clear, concise, and informative responses to students seeking help with their AP Computer Science coursework.
 
                         Aside from user input, you will receive additional System input containing relevant facts, explanations, or answers retrieved from a knowledge base. Use this System input to ensure your answers are accurate and grounded. Always answer using the system input given to you, do not answer on your own. If you do not find sufficient information in the System input or your own understanding, respond with a brief statement of uncertainty (e.g., 'I'm not sure').
@@ -53,21 +58,33 @@ public class GeminiApi {
                             .candidateCount(1)
                             .maxOutputTokens(1024)
                             .safetySettings(safetySettings)
-                            .systemInstruction(systemInstruction)
+                            .systemInstruction(content)
                             .tools(googleSearchTool)
                             .build();
         }
         catch(Exception e){
-            System.out.println("hola");
-            System.out.println(e);
-            return false;
+
+            e.printStackTrace();
+
         }
-        return true;
+
     }
 
 
-    public static String chat(String msg){
-        GenerateContentResponse response = client.models.generateContent("gemini-2.5-flash", msg, config);
+    public static String chat(String msg, String img) throws IOException {
+        GenerateContentResponse response = null;
+        if(img!=null){
+            byte[] imageBytes = Files.readAllBytes(Paths.get(img));
+
+            content = Content.fromParts(
+                    Part.fromText(msg),
+                    Part.fromBytes(imageBytes, "image/jpeg"));
+            response = client.models.generateContent("gemini-2.5-flash", content, config);
+        }else{
+            response = client.models.generateContent("gemini-2.5-flash", msg, config);
+
+        }
+
 
         return response.text();
     }

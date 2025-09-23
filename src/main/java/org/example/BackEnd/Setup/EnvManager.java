@@ -2,9 +2,13 @@ package org.example.BackEnd.Setup;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import io.github.cdimascio.dotenv.Dotenv;
 
+/**
+ * @deprecated Esta clase ya no se utiliza en el proyecto.
+ *             Usa {@link GlobalSetup} en su lugar.
+ */
+@Deprecated
 public class EnvManager {
        private static final Map<String, String> env = new HashMap<>();
     private static final Dotenv dotenv = Dotenv.load();

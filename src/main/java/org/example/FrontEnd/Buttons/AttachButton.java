@@ -22,8 +22,9 @@ public class AttachButton {
     public JFileChooser fileChooser(){
         JFileChooser fileChooser = new JFileChooser();
         //Filtro que solo acepta imagenes
+        //"png", "jpg",
         FileNameExtensionFilter filter =
-                    new FileNameExtensionFilter("Image Files", "png", "jpg", "jpeg");
+                    new FileNameExtensionFilter("Image Files", "jpeg", "jpg");
             fileChooser.setFileFilter(filter);
     
             //Remueve la capacidad de recibir cualquier tipo de archivo

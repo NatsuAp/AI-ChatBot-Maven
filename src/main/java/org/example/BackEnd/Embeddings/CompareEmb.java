@@ -1,15 +1,9 @@
 package org.example.BackEnd.Embeddings;
 
-import com.pgvector.PGvector;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
-
-
 import static org.example.BackEnd.Scripts.Sql.querys.conn;
 
 public class CompareEmb {
@@ -23,7 +17,7 @@ public class CompareEmb {
             return this.number;
         }
     
-        public static String[][] Compare(String emb) {
+        public static String[][] Compare(String embedding) {
             
             // Coneccion con la base de Datos
 
@@ -34,14 +28,11 @@ public class CompareEmb {
 
             PreparedStatement st = conn
             .prepareStatement("SELECT ID, Question, AnswerC, Answer, Explanation," +
-            "1 - (Embedding <=> ?::vector) AS cosine_similarity " +
+            "(Embedding <=> ?::vector) AS distance " +
             "FROM preguntas " +
-            "ORDER BY embedding <=> ?::vector " +
+            "ORDER BY distance ASC " +
             "LIMIT 5");
-                PGvector v = new PGvector(emb);
-                st.setObject(1, v);   // for similarity column
-                st.setObject(2, v);
-            st.setString(1, emb);
+            st.setString(1, embedding);
 
             // PreparedStatement st = conn
             //         .prepareStatement("SELECT ID, (Embedding <=> ?) AS distance " +
@@ -49,23 +40,15 @@ public class CompareEmb {
             //                 "ORDER BY distance ASC " +
             //                 "LIMIT 5");
             // st.setString(1, embedding);
-                long id = 1;
-                String content = "";
-                double cosSim = 0;
-                try (ResultSet rs = st.executeQuery()) {
-                    while (rs.next()) {
-                        id = rs.getLong("id");
-                        content = rs.getString("content");
-                        cosSim = rs.getDouble("cosine_similarity");
+            a = st.executeQuery();
+            int i = 0;
+            while (a.next()) {
 
-                    }
-
+                for (int j = 0; j < 5; j++) {
+                    res[i][j] = a.getString(j + 1); //TODO: Validar el tipo para poder utilizar el metodo especifico del tipo que se quiere hacer
                 }
-                System.out.println(id);
-                System.out.println("-------");
-                System.out.println(content);
-                System.out.println("-------");
-                System.out.println(cosSim   );
+                i++;
+            }
             st.close();
             System.out.println(" hecho");
         } catch (SQLException e) {
