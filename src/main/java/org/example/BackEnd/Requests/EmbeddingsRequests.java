@@ -1,4 +1,4 @@
-package org.example.BackEnd.Requests.Azure;
+package org.example.BackEnd.Requests;
 
 import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.OpenAIClientBuilder;

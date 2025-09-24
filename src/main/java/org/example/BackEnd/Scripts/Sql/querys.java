@@ -13,7 +13,7 @@ public class querys {
     static Dotenv env = Dotenv.load();
     public static Connection conn = null;
 
-    public static boolean  getConnection() {
+    public static boolean  getConnectionLocal() {
 
         try{
             Class.forName("org.postgresql.Driver");
@@ -21,6 +21,20 @@ public class querys {
             PGvector.addVectorType(conn);
             return true;
         } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+
+    }
+    public static boolean  getConnectionOnline() {
+
+        try{
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:postgresql://chatdata.postgres.database.azure.com:5432/postgres?user="+env.get("SQLUSER")+"&password="+env.get("SQLPASSWORD")+"&sslmode=require");
+            PGvector.addVectorType(conn);
+            return true;
+        } catch (Exception e) {
+            System.out.println("error de conexion");
             System.out.println(e);
             return false;
         }
@@ -87,12 +101,11 @@ public class querys {
     }
 
     public static void select() throws SQLException{
-        Statement statement;
-        String query = "";
+        String query = "select * from preguntas";
 
         try {
-            statement = conn.createStatement();
-            statement.executeUpdate(query);
+            PreparedStatement st = conn.prepareStatement(query);
+                st.executeUpdate();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
