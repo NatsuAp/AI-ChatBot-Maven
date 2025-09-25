@@ -63,9 +63,7 @@ public class GeminiApi {
                             .build();
         }
         catch(Exception e){
-
             e.printStackTrace();
-
         }
 
     }

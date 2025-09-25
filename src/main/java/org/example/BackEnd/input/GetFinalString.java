@@ -1,7 +1,7 @@
 package org.example.BackEnd.input;
 
 import org.example.BackEnd.Embeddings.CompareEmb;
-import org.example.BackEnd.Requests.Azure.EmbeddingsRequests;
+import org.example.BackEnd.Requests.EmbeddingsRequests;
 
 public class GetFinalString {
 

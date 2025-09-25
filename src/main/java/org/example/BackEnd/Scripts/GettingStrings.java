@@ -3,12 +3,10 @@ package org.example.BackEnd.Scripts;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.azure.ai.openai.models.Embeddings;
-import org.example.BackEnd.Requests.Azure.EmbeddingsRequests;
+import org.example.BackEnd.Requests.EmbeddingsRequests;
 import org.example.BackEnd.Scripts.Sql.querys;
 
 public class GettingStrings {

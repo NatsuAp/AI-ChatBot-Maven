@@ -20,7 +20,7 @@ import com.azure.ai.openai.models.ChatRequestSystemMessage;
 import com.azure.ai.openai.models.ChatRequestUserMessage;
 import com.azure.ai.openai.models.ChatResponseMessage;
 import com.azure.core.credential.AzureKeyCredential;
-
+@Deprecated
 public class APIClient {
     static List<ChatRequestMessage> chatMessages = new ArrayList<>();
 

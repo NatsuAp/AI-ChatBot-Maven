@@ -8,11 +8,21 @@ import org.example.BackEnd.Scripts.Sql.querys;
 
 public class GlobalSetup {
     public static Dotenv env;
-    public static void runSetup(){
-            querys.getConnection();
+    public static boolean runSetup(String toc){
+        try {
+            if (toc.equals("local")) {
+                querys.getConnectionLocal();
+            } else {
+                querys.getConnectionOnline();
+            }
+        }
+        catch (Exception e){
+            return false;
+        }
             env = Dotenv.load();
             APIClient.setup();
             GeminiApi.clientSetup();
             tesseract.tesseractSetup();
+            return true;
     }
 }
