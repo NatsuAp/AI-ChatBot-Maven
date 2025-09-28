@@ -15,7 +15,7 @@ import org.example.FrontEnd.Panels.AttachPanel;
 public class RemoveImgButton {
     static JButton button;
 public static JButton removeButton(){
-    ImageIcon tempImg = new ImageIcon("src\\main\\resources\\Images\\cancel.png");
+    ImageIcon tempImg = new ImageIcon("src/main/resources/Images/cancel.png");
     Image img = tempImg.getImage().getScaledInstance(15,15,Image.SCALE_SMOOTH); //Imagen Nueva de menor tamaño
     ImageIcon cancel = new ImageIcon(img);
     button = new JButton(cancel);

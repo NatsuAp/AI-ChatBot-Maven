@@ -14,7 +14,7 @@ public class Frame {
         frame.setMinimumSize(new Dimension(650, 1000));
         // File file = new File("logo.png");
         
-        ImageIcon logo = new ImageIcon("src\\main\\resources\\Images\\logo.png"); //directorio de imagen
+        ImageIcon logo = new ImageIcon("src/main/resources/Images/logo.png"); //directorio de imagen
         frame.setIconImage(logo.getImage());  //Imagen
         frame.setLayout(new BorderLayout());  //para posicionar los futuros paneles
         frame.getContentPane().setBackground(new Color(42, 42, 62));  //fondo del frame

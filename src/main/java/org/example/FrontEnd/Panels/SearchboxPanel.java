@@ -69,7 +69,7 @@ public class SearchboxPanel {
 
     }
 
-    static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
+    static ImageIcon arrow = new ImageIcon("src/main/resources/Images/Send.png");
 
     public static void buttonSet(Boolean bol) {
 
