@@ -3,7 +3,8 @@ package org.example.BackEnd.Scripts.WebScraper;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-
+//nunca me sirvio esta clase
+@Deprecated
 public class imageResizer {
 
     //clase para subir las dimensiones de las imagenes para azureOCR

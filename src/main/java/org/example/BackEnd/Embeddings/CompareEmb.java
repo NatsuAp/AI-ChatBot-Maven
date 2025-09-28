@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import static org.example.BackEnd.Scripts.Sql.querys.conn;
 
 public class CompareEmb {
-    static String urlDB = "jdbc:postgresql://hacknet.cncguc2ysbs8.us-east-1.rds.amazonaws.com:5432/HACKNETDB";
         int number;
         public CompareEmb(int number){
             this.number = number;

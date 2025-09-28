@@ -1,16 +1,7 @@
 package org.example.app;
 
-
-import io.github.cdimascio.dotenv.Dotenv;
-import org.example.BackEnd.Requests.tesseract;
-import org.example.BackEnd.Scripts.GettingStrings;
-import org.example.BackEnd.Scripts.Sql.querys;
-import org.example.BackEnd.Setup.EnvManager;
 import org.example.BackEnd.Setup.GlobalSetup;
 import org.example.FrontEnd.Frame.FrameBuilder;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
