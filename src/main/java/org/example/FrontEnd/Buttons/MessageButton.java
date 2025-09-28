@@ -12,7 +12,7 @@ import org.example.FrontEnd.Panels.SearchboxPanel;
 public class MessageButton {
 
     public static JButton button = new JButton();
-    static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
+    static ImageIcon arrow = new ImageIcon("src/main/resources/Images/Send.png");
     static String input;
     static String file;
     

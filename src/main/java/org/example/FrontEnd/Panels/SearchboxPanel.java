@@ -13,9 +13,7 @@ import java.awt.*;
 
 public class SearchboxPanel {
     public AttachButton buttonC;
-    public MessageButton inButton;
     public static JButton AttachB;
-
     public static JTextField textArea;
     public Searchbox textA;
     public AttachPanel atc;
@@ -69,7 +67,6 @@ public class SearchboxPanel {
 
     }
 
-    static ImageIcon arrow = new ImageIcon("src\\main\\resources\\Images\\Send.png");
 
     public static void buttonSet(Boolean bol) {
 
