@@ -1,8 +1,8 @@
 package org.example.BackEnd.Requests;
 
-import net.sourceforge.tess4j.Tesseract;
-
 import java.io.File;
+
+import net.sourceforge.tess4j.Tesseract;
 
 public class tesseract {
     public static Tesseract tesseract;

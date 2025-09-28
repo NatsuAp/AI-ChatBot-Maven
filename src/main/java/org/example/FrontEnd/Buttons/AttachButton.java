@@ -93,7 +93,7 @@ public class AttachButton {
 
                     //azureOCR ocr = new azureOCR();
                     // ocr.AzureRequest(String.valueOf(file));
-                   // File pathFile = new File("src\\main\\resources\\UserImages\\");
+                   // File pathFile = new File("src/main/resources/UserImages/");
 
                     
                 }

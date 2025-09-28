@@ -10,7 +10,7 @@ import org.example.BackEnd.Scripts.WebScraper.WebScraperRequests.ImageRetrievalO
 
 public class QuestionsParser {
     public ArrayList<String> questionParser() {
-        String path = "src\\main\\resources\\newData.txt";
+        String path = "src/main/resources/newData.txt";
         File file = new File(path);
         ImageRetrievalAzure ocr = new ImageRetrievalAzure();
         ImageRetrievalOpenAI imgRet = new ImageRetrievalOpenAI();

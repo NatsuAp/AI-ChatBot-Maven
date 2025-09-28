@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class LineRemover {
 
     public void lineRemover() {
-        String path = "src\\main\\resources\\data.txt"; // Documento de Texto con las preguntas, (Sacado con Python)
+        String path = "src/main/resources/data.txt"; // Documento de Texto con las preguntas, (Sacado con Python)
         ArrayList<String> list = new ArrayList<String>();
         File file = new File(path);
 
